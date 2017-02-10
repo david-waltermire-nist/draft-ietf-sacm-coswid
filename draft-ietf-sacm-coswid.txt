@@ -68,16 +68,16 @@ Table of Contents
      1.1.  Requirements notation . . . . . . . . . . . . . . . . . .   3
    2.  Concise SWID CDDL specification . . . . . . . . . . . . . . .   4
    3.  Encoding hashes for Concise SWID tags . . . . . . . . . . . .   8
-   4.  COSE signatures for Concise SWID tags . . . . . . . . . . . .   8
-   5.  IANA considerations . . . . . . . . . . . . . . . . . . . . .   9
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
+   4.  COSE signatures for Concise SWID tags . . . . . . . . . . . .   9
+   5.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  10
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  10
    7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
    8.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  11
-   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  11
+   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  12
    10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
      10.1.  Normative References . . . . . . . . . . . . . . . . . .  12
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  12
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
+     10.2.  Informative References . . . . . . . . . . . . . . . . .  13
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
 
 1.  Introduction
 
@@ -183,6 +183,7 @@ Internet-Draft                   COSWID                    February 2017
    strings of the SWID vocabulary that would have to be stored or
    transported in full if using the original vocabulary are replaced.
 
+   <CODE BEGINS>
    concise-software-identity = {
      global-attributes,
      ? entity-entry,
@@ -220,7 +221,6 @@ Internet-Draft                   COSWID                    February 2017
 
 
 
-
 Birkholz, et al.         Expires August 14, 2017                [Page 4]
 
 Internet-Draft                   COSWID                    February 2017
@@ -236,6 +236,7 @@ Internet-Draft                   COSWID                    February 2017
      ? file-entry,
      ? process-entry,
      ? resource-entry
+     ? firmware-entry
    )
 
    file = {
@@ -258,11 +259,28 @@ Internet-Draft                   COSWID                    February 2017
      path-elements,
    }
 
+   firmware = {
+     firmware-name,
+     ? firmware-version,
+     ? component-index,
+     ? block-device-identifier,
+     model-label,
+     firmware-hash,
+   }
+
    process = {
      global-attributes,
      process-name,
      ? pid,
    }
+
+
+
+
+Birkholz, et al.         Expires August 14, 2017                [Page 5]
+
+Internet-Draft                   COSWID                    February 2017
+
 
    resource = {
      global-attributes,
@@ -274,14 +292,6 @@ Internet-Draft                   COSWID                    February 2017
      meta-elements,
      entity-name,
      ? reg-id,
-
-
-
-Birkholz, et al.         Expires August 14, 2017                [Page 5]
-
-Internet-Draft                   COSWID                    February 2017
-
-
      role,
      ? thumbprint,
    }
@@ -320,6 +330,14 @@ Internet-Draft                   COSWID                    February 2017
      ? revision,
      ? summary,
      ? unspsc-code,
+
+
+
+Birkholz, et al.         Expires August 14, 2017                [Page 6]
+
+Internet-Draft                   COSWID                    February 2017
+
+
      ? unspsc-version,
    }
 
@@ -330,14 +348,6 @@ Internet-Draft                   COSWID                    February 2017
 
    tag-id = (0: text)
    swid-name = (1: text)
-
-
-
-Birkholz, et al.         Expires August 14, 2017                [Page 6]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    entity-entry = (2: entity / [ * entity ])
    evidence-entry = (3: evidence / [ * evidence ])
    link-entry = (4: link / [ * link ])
@@ -376,6 +386,14 @@ Internet-Draft                   COSWID                    February 2017
    date = (34: date-time)
    device-id = (35: text)
    artifact = (36: text)
+
+
+
+Birkholz, et al.         Expires August 14, 2017                [Page 7]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    href = (37: any-uri)
    ownership = (38: "shared" / "private" / "abandon")
    rel = (39: NMTOKEN)
@@ -386,14 +404,6 @@ Internet-Draft                   COSWID                    February 2017
    description = (44: text)
    edition = (45: text)
    entitlement-data-required = (46: bool)
-
-
-
-Birkholz, et al.         Expires August 14, 2017                [Page 7]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    entitlement-key = (47: text)
    generator = (48: text)
    persistent-id = (49: text)
@@ -408,6 +418,17 @@ Internet-Draft                   COSWID                    February 2017
                     ]
                )
 
+   firmware-entry = (57: firmware / [ * firmware ])
+   firmware-hash = (58: [ hash-alg-id: int,
+                         hash-value: bstr,
+                        ]
+                   )
+   firmware-name = (59 : text)
+   firmware-version = (60 : text / int)
+   component-index = (61 : int)
+   model-label = (62: text / int)
+   block-device-identifier = (63 : text / int)
+   <CODE ENDS>
 
 3.  Encoding hashes for Concise SWID tags
 
@@ -416,6 +437,18 @@ Internet-Draft                   COSWID                    February 2017
    Hash Algorithm Registry via the file-hash item (label 56).  The
    number used as a value for hash-alg-id refers the ID in the Named
    Information Hash Algorithm table.
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 14, 2017                [Page 8]
+
+Internet-Draft                   COSWID                    February 2017
+
 
 4.  COSE signatures for Concise SWID tags
 
@@ -436,19 +469,6 @@ Internet-Draft                   COSWID                    February 2017
    contains a single signature.  The following CDDL defines a more
    restrictive subset of header attributes allowed by COSE tailored to
    suit the requirements of Concise SWID.
-
-
-
-
-
-
-
-
-
-Birkholz, et al.         Expires August 14, 2017                [Page 8]
-
-Internet-Draft                   COSWID                    February 2017
-
 
 signed-software-identity = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
 
@@ -472,6 +492,18 @@ COSE-Sign1-coswid = [
     payload: bstr .cbor concise-software-identity,
     signature: bstr,
 ]
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 14, 2017                [Page 9]
+
+Internet-Draft                   COSWID                    February 2017
 
 
 5.  IANA considerations
@@ -498,14 +530,6 @@ COSE-Sign1-coswid = [
    unchanged since it was signed.  If the SWID tag was created by the
    software author, this generally means that it has undergone no change
    since the software application with which the tag is associated was
-
-
-
-Birkholz, et al.         Expires August 14, 2017                [Page 9]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    installed.  By implication, this means that the signed tag reflects
    the software author's understanding of the details of that software
    product.  This can be useful assurance when the information in the
@@ -531,6 +555,13 @@ Internet-Draft                   COSWID                    February 2017
    SWID tags are an easy way to provide an preliminary understanding of
    that endpoint's software inventory.
 
+
+
+Birkholz, et al.         Expires August 14, 2017               [Page 10]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    Any report of an endpoint's SWID tag collection provides information
    about the software inventory of that endpoint.  If such a report is
    exposed to an attacker, this can tell them which software products
@@ -554,14 +585,6 @@ Internet-Draft                   COSWID                    February 2017
    Concise SWID data definition allow for the construction of "infinite"
    SWID tags or SWID tags that contain malicious content with the intend
    if creating non-deterministic states during validation or processing
-
-
-
-Birkholz, et al.         Expires August 14, 2017               [Page 10]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    of SWID tags.  While software product vendors are unlikely to do
    this, SWID tags can be created by any party and the SWID tags
    collected from an endpoint could contain a mixture of vendor and non-
@@ -588,6 +611,13 @@ Internet-Draft                   COSWID                    February 2017
 
    o  Minor type changes of some attributes (e.g.  NMTOKENS)
 
+
+
+Birkholz, et al.         Expires August 14, 2017               [Page 11]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    o  Added semantic differentiation of various name types (e,g. fs-
       name)
 
@@ -605,18 +635,6 @@ Internet-Draft                   COSWID                    February 2017
    First version -00
 
 9.  Contributors
-
-
-
-
-
-
-
-
-Birkholz, et al.         Expires August 14, 2017               [Page 11]
-
-Internet-Draft                   COSWID                    February 2017
-
 
 10.  References
 
@@ -646,6 +664,16 @@ Internet-Draft                   COSWID                    February 2017
    [X.1520]   "Recommendation ITU-T X.1520 (2014), Common
               vulnerabilities and exposures", April 2011.
 
+
+
+
+
+
+Birkholz, et al.         Expires August 14, 2017               [Page 12]
+
+Internet-Draft                   COSWID                    February 2017
+
+
 10.2.  Informative References
 
    [I-D-birkholz-tuda]
@@ -660,19 +688,6 @@ Internet-Draft                   COSWID                    February 2017
               in progress), September 2016.
 
 Authors' Addresses
-
-
-
-
-
-
-
-
-
-Birkholz, et al.         Expires August 14, 2017               [Page 12]
-
-Internet-Draft                   COSWID                    February 2017
-
 
    Henk Birkholz
    Fraunhofer SIT
@@ -701,6 +716,20 @@ Internet-Draft                   COSWID                    February 2017
    Email: cmschmidt@mitre.org
 
 
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 14, 2017               [Page 13]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    David Waltermire
    National Institute of Standards and Technology
    100 Bureau Drive
@@ -725,4 +754,31 @@ Internet-Draft                   COSWID                    February 2017
 
 
 
-Birkholz, et al.         Expires August 14, 2017               [Page 13]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 14, 2017               [Page 14]

@@ -411,6 +411,7 @@ address {
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#concise-swid-cddl-specification" id="concise-swid-cddl-specification">Concise SWID CDDL specification</a></h1>
 <p id="rfc.section.2.p.1">The following is a CDDL representation of the ISO-19770-2:2015 <a href="#SWID">[SWID]</a> XML schema definition of SWID tags. This representation includes all SWID tag fields and thus supports all SWID tag use cases. The CamelCase notation used in the XML schema definition is changed to hyphen-separated notation (e.g. ResourceCollection is named resource-collection in the COSWID CDDL specification). The human-readable names of members are mapped to integer indices via a block of rules at the bottom of the CDDL specification. The 56 character strings of the SWID vocabulary that would have to be stored or transported in full if using the original vocabulary are replaced.</p>
 <pre>
+&lt;CODE BEGINS&gt;
 concise-software-identity = {
   global-attributes,
   ? entity-entry,
@@ -456,6 +457,7 @@ resource-collection = (
   ? file-entry,
   ? process-entry,
   ? resource-entry
+  ? firmware-entry 
 )
 
 file = {
@@ -476,6 +478,15 @@ filesystem-item = (
 directory = {
   filesystem-item,
   path-elements,
+}
+
+firmware = {
+  firmware-name,
+  ? firmware-version,
+  ? component-index,
+  ? block-device-identifier,
+  model-label,
+  firmware-hash,
 }
 
 process = {
@@ -604,6 +615,17 @@ file-hash = (56: [ hash-alg-id: int,
                  ]
             )
 
+firmware-entry = (57: firmware / [ * firmware ])
+firmware-hash = (58: [ hash-alg-id: int,
+                      hash-value: bstr,
+                     ]
+                )
+firmware-name = (59 : text)
+firmware-version = (60 : text / int)
+component-index = (61 : int)
+model-label = (62: text / int)
+block-device-identifier = (63 : text / int) 
+&lt;CODE ENDS&gt;
 </pre>
 <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#encoding-hashes-for-concise-swid-tags" id="encoding-hashes-for-concise-swid-tags">Encoding hashes for Concise SWID tags</a></h1>
 <p id="rfc.section.3.p.1">Concise SWID add explicit support for the representation of file-hashes using algorithms that are registered at the Named Information Hash Algorithm Registry via the file-hash item (label 56). The number used as a value for hash-alg-id refers the ID in the Named Information Hash Algorithm table.</p>
