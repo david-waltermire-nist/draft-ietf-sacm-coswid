@@ -67,7 +67,7 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Requirements notation . . . . . . . . . . . . . . . . . .   3
    2.  Concise SWID CDDL specification . . . . . . . . . . . . . . .   4
-   3.  Encoding hashes for Concise SWID tags . . . . . . . . . . . .   8
+   3.  Encoding hashes for Concise SWID tags . . . . . . . . . . . .   9
    4.  Firmware SWID tags  . . . . . . . . . . . . . . . . . . . . .   9
    5.  COSE signatures for Concise SWID tags . . . . . . . . . . . .   9
    6.  CBOR Web Token for Concise SWID tags  . . . . . . . . . . . .  10
@@ -179,7 +179,7 @@ Internet-Draft                   COSWID                    February 2017
    hyphen-separated notation (e.g.  ResourceCollection is named
    resource-collection in the COSWID CDDL specification).  The human-
    readable names of members are mapped to integer indices via a block
-   of rules at the bottom of the CDDL specification.  The 65 character
+   of rules at the bottom of the CDDL specification.  The 66 character
    strings of the SWID vocabulary that would have to be stored or
    transported in full if using the original vocabulary are replaced.
 
@@ -260,20 +260,20 @@ directory = {
 }
 
 firmware = {
-  firmware-name,
+  firmware-name,                  ; inherited from RFC4108
   ? firmware-version,
-  ? dependency, ; inherited from RFC4108
-  ? component-index, ; equivalent to RFC 4108 fwPkgType
+  ? firmware-package-identifier,  ; inherited from RFC4108
+  ? dependency,                   ; inherited from RFC4108
+  ? component-index,              ; equivalent to RFC4108 fwPkgType
   ? block-device-identifier,
+  ? target-hardware-identifier,   ; an RFC4108 alternative to model-label
   model-label,
-  ? firmware-hash, ; a hash for
-  ? cms-firmware-package, ; RCF4108, experimental, this is an actual firmware blob!
+  ? firmware-hash,                ; a hash for a single, incl. NI hash-algo index
+  ? cms-firmware-package,         ; RCF4108, experimental, this is an actual firmware blob!
 }
 
 process = {
   global-attributes,
-  process-name,
-  ? pid,
 
 
 
@@ -282,6 +282,8 @@ Birkholz, et al.         Expires August 17, 2017                [Page 5]
 Internet-Draft                   COSWID                    February 2017
 
 
+  process-name,
+  ? pid,
 }
 
 resource = {
@@ -328,8 +330,6 @@ software-meta = {
   ? generator,
   ? persistent-id,
   ? product,
-  ? product-family,
-  ? revision,
 
 
 
@@ -338,6 +338,8 @@ Birkholz, et al.         Expires August 17, 2017                [Page 6]
 Internet-Draft                   COSWID                    February 2017
 
 
+  ? product-family,
+  ? revision,
   ? summary,
   ? unspsc-code,
   ? unspsc-version,
@@ -384,8 +386,6 @@ meta-elements = (29: any-element-map / [ 2* any-element-map ])
 entity-name = (30: text)
 reg-id = (31: any-uri)
 role = (32: NMTOKENS)
-thumbprint = (33: text)
-date = (34: date-time)
 
 
 
@@ -394,6 +394,8 @@ Birkholz, et al.         Expires August 17, 2017                [Page 7]
 Internet-Draft                   COSWID                    February 2017
 
 
+thumbprint = (33: text)
+date = (34: date-time)
 device-id = (35: text)
 artifact = (36: text)
 href = (37: any-uri)
@@ -431,17 +433,15 @@ component-index = (61 : int)
 model-label = (62: text / int)
 block-device-identifier = (63 : text / int)
 cms-firmware-package = (64: bstr)
-dependency = (65: { ? firmware-name,
-                    firmware-version,
+firmware-package-identifier = (65: text)
+target-hardware-identifier = (66: text)
+dependency = (67: { ? firmware-name,
+                    ? firmware-version,
+                    ? firmware-package-identifier,
                   }
              )
 <CODE ENDS>
 
-3.  Encoding hashes for Concise SWID tags
-
-   Concise SWID add explicit support for the representation of file-
-   hashes using algorithms that are registered at the Named Information
-   Hash Algorithm Registry via the file-hash item (label 56).  The
 
 
 
@@ -450,6 +450,11 @@ Birkholz, et al.         Expires August 17, 2017                [Page 8]
 Internet-Draft                   COSWID                    February 2017
 
 
+3.  Encoding hashes for Concise SWID tags
+
+   Concise SWID add explicit support for the representation of file-
+   hashes using algorithms that are registered at the Named Information
+   Hash Algorithm Registry via the file-hash item (label 56).  The
    number used as a value for hash-alg-id refers the ID in the Named
    Information Hash Algorithm table.
 
@@ -491,11 +496,6 @@ Internet-Draft                   COSWID                    February 2017
    contains a single signature.  The following CDDL defines a more
    restrictive subset of header attributes allowed by COSE tailored to
    suit the requirements of Concise SWID.
-
-
-
-
-
 
 
 
