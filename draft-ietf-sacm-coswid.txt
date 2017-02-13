@@ -463,7 +463,7 @@ Internet-Draft                   COSWID                    February 2017
    A vendor supplied signed CoSWID tag that includes hash-values for the
    files that compose a software component can be used as a RIM
    (reference integrity measurement).  A RIM is a type of declarative
-   guidance that can be used ti assess the compliance of an endpoint by
+   guidance that can be used to assert the compliance of an endpoint by
    assessing the installed software.  In the context of remote
    attestation based on an attestation via a hardware security module
    (hardware rooted trust), a verifier can appraise the integrity of the
