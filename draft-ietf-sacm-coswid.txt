@@ -68,16 +68,18 @@ Table of Contents
      1.1.  Requirements notation . . . . . . . . . . . . . . . . . .   3
    2.  Concise SWID CDDL specification . . . . . . . . . . . . . . .   4
    3.  Encoding hashes for Concise SWID tags . . . . . . . . . . . .   8
-   4.  COSE signatures for Concise SWID tags . . . . . . . . . . . .   9
-   5.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  10
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  10
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
-   8.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  11
-   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  12
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  12
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  13
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
+   4.  Firmware SWID tags  . . . . . . . . . . . . . . . . . . . . .   9
+   5.  COSE signatures for Concise SWID tags . . . . . . . . . . . .   9
+   6.  CBOR Web Token for Concise SWID tags  . . . . . . . . . . . .  10
+   7.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  10
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
+   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  12
+   10. Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  12
+   11. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  13
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  13
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  13
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  14
 
 1.  Introduction
 
@@ -104,8 +106,6 @@ Table of Contents
    is also installed.  Likewise, when the product is uninstalled or
    replaced, the SWID tag is deleted or replaced, as appropriate.  As a
    result, ISO-19770-2:2015 describes a system wherein there is a
-   correspondence between the set of installed software products on an
-
 
 
 
@@ -114,6 +114,7 @@ Birkholz, et al.         Expires August 17, 2017                [Page 2]
 Internet-Draft                   COSWID                    February 2017
 
 
+   correspondence between the set of installed software products on an
    endpoint, and the presence on that endpoint of the SWID tags
    corresponding to those products.
 
@@ -158,7 +159,6 @@ Internet-Draft                   COSWID                    February 2017
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in RFC
    2119, BCP 14 [RFC2119].
-
 
 
 
@@ -453,7 +453,26 @@ Internet-Draft                   COSWID                    February 2017
    number used as a value for hash-alg-id refers the ID in the Named
    Information Hash Algorithm table.
 
-4.  COSE signatures for Concise SWID tags
+4.  Firmware SWID tags
+
+   The metadata defined in [RFC4108] is incorporated in the set of
+   resource-collection defined by Concise Software Identifier.  The
+   inclusion of the byte string that constitutes a firmware addresses
+   specific characteristics of firmware on a block-device in contrast to
+   software deployed in a file-system.  Trees of retaliative paths
+   expressed by the filesystem-item structure if CoSWID tags might be
+   unable to represent the location of a firmware on a constrained-node
+   (small thing).  In addition, it might not be possible (or feasible)
+   to store a CoSWID (permanently) on small thing.  Hence, the CoSWID
+   can be used as a concise and flexible metadata document that
+   constitutes a container to store a (potentially compressed) firmware
+   in.  The CoSWID tag can be transmitted as an identifying document
+   between endpoints or used as an reference integrity measurement as
+   usual, and it can also convey a piece of firmware, serve its intended
+   purpose as a SWID tag and then - due to the lack of a location to
+   store it - be discarded.
+
+5.  COSE signatures for Concise SWID tags
 
    SWID tags, as defined in the ISO-19770-2:2015 XML schema, can include
    cryptographic signatures to protect the integrity of the SWID tag.
@@ -472,6 +491,20 @@ Internet-Draft                   COSWID                    February 2017
    contains a single signature.  The following CDDL defines a more
    restrictive subset of header attributes allowed by COSE tailored to
    suit the requirements of Concise SWID.
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 17, 2017                [Page 9]
+
+Internet-Draft                   COSWID                    February 2017
+
 
 <CODE BEGINS>
 signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
@@ -498,15 +531,22 @@ COSE-Sign1-coswid = [
 ]
 <CODE ENDS>
 
+6.  CBOR Web Token for Concise SWID tags
 
+   A typical requirement regarding specific instantiations of endpoint -
+   and as a result, specific instantiations of software components - is
+   a representation of the absolute path of a CoSWID tag in a file
+   system in order to derive absolute paths of files represented in a
+   CoSWID tags.  The absolute path of an evidence CoSWID tag can be
+   included as a claim in the header of a CBOR Web Token.  Depending on
+   the source of the token, the claim can be in the protected or
+   unprotected header portion.
 
+   <CODE BEGINS>
+    CDDL TBD
+   <CODE ENDS>
 
-Birkholz, et al.         Expires August 17, 2017                [Page 9]
-
-Internet-Draft                   COSWID                    February 2017
-
-
-5.  IANA considerations
+7.  IANA considerations
 
    This document will include requests to IANA:
 
@@ -515,7 +555,14 @@ Internet-Draft                   COSWID                    February 2017
 
    o  Content-Type for CoAP to be used in COSE.
 
-6.  Security Considerations
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 10]
+
+Internet-Draft                   COSWID                    February 2017
+
+
+8.  Security Considerations
 
    SWID tags contain public information about software products and, as
    such, do not need to be protected against disclosure on an endpoint.
@@ -555,13 +602,6 @@ Internet-Draft                   COSWID                    February 2017
    SWID tags are an easy way to provide an preliminary understanding of
    that endpoint's software inventory.
 
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 10]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    Any report of an endpoint's SWID tag collection provides information
    about the software inventory of that endpoint.  If such a report is
    exposed to an attacker, this can tell them which software products
@@ -570,6 +610,14 @@ Internet-Draft                   COSWID                    February 2017
    are vulnerable to certain types of attacks.  As noted earlier, SWID
    tags are designed to be easily discoverable by an endpoint, but this
    does not present a significant risk since an attacker would already
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 11]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    need to have access to the endpoint to view that information.
    However, when the endpoint transmits its software inventory to
    another party, or that inventory is stored on a server for later
@@ -592,9 +640,9 @@ Internet-Draft                   COSWID                    February 2017
    ought to treat the tag contents as potentially malicious and should
    employ input sanitizing on the tags they ingest.
 
-7.  Acknowledgements
+9.  Acknowledgements
 
-8.  Change Log
+10.  Change Log
 
    Changes since adopted as a WG I-D -00:
 
@@ -611,13 +659,6 @@ Internet-Draft                   COSWID                    February 2017
 
    o  Minor type changes of some attributes (e.g.  NMTOKENS)
 
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 11]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    o  Added semantic differentiation of various name types (e,g. fs-
       name)
 
@@ -625,6 +666,13 @@ Internet-Draft                   COSWID                    February 2017
 
    o  Ambiguity between evidence and payload eliminated by introducing
       explicit members (while still allowing for "empty" swid tags)
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 12]
+
+Internet-Draft                   COSWID                    February 2017
+
 
    o  Added a relatively restrictive COSE envelope using cose_sign1 to
       define signed coswids (single signer only, at the moment)
@@ -634,11 +682,11 @@ Internet-Draft                   COSWID                    February 2017
 
    First version -00
 
-9.  Contributors
+11.  Contributors
 
-10.  References
+12.  References
 
-10.1.  Normative References
+12.1.  Normative References
 
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
@@ -648,6 +696,11 @@ Internet-Draft                   COSWID                    February 2017
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <http://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC4108]  Housley, R., "Using Cryptographic Message Syntax (CMS) to
+              Protect Firmware Packages", RFC 4108,
+              DOI 10.17487/RFC4108, August 2005,
+              <http://www.rfc-editor.org/info/rfc4108>.
 
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
@@ -664,17 +717,18 @@ Internet-Draft                   COSWID                    February 2017
    [X.1520]   "Recommendation ITU-T X.1520 (2014), Common
               vulnerabilities and exposures", April 2011.
 
+12.2.  Informative References
 
 
 
 
 
-Birkholz, et al.         Expires August 17, 2017               [Page 12]
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 13]
 
 Internet-Draft                   COSWID                    February 2017
 
-
-10.2.  Informative References
 
    [I-D-birkholz-tuda]
               Fuchs, A., Birkholz, H., McDonald, I., and C. Bormann,
@@ -716,20 +770,6 @@ Authors' Addresses
    Email: cmschmidt@mitre.org
 
 
-
-
-
-
-
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 13]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    David Waltermire
    National Institute of Standards and Technology
    100 Bureau Drive
@@ -737,46 +777,6 @@ Internet-Draft                   COSWID                    February 2017
    USA
 
    Email: david.waltermire@nist.gov
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
