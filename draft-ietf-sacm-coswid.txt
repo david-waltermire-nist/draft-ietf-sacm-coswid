@@ -20,7 +20,8 @@ Abstract
 
    This document defines a concise representation of ISO 19770-2:2015
    Software Identifiers (SWID tags) that is interoperable with the XML
-   schema definition of ISO 19770-2:2015.
+   schema definition of ISO 19770-2:2015 and augmented for application
+   in Constrained-Node Networks.
 
 Status of This Memo
 
@@ -49,7 +50,6 @@ Copyright Notice
    (http://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
-   to this document.  Code Components extracted from this document must
 
 
 
@@ -58,6 +58,7 @@ Birkholz, et al.         Expires August 17, 2017                [Page 1]
 Internet-Draft                   COSWID                    February 2017
 
 
+   to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
@@ -73,13 +74,13 @@ Table of Contents
    6.  COSE signatures for Concise SWID tags . . . . . . . . . . . .  10
    7.  CBOR Web Token for Concise SWID tags  . . . . . . . . . . . .  11
    8.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  11
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
    10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  13
    11. Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  13
-   12. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  13
-   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
-     13.1.  Normative References . . . . . . . . . . . . . . . . . .  13
-     13.2.  Informative References . . . . . . . . . . . . . . . . .  14
+   12. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  14
+   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
+     13.1.  Normative References . . . . . . . . . . . . . . . . . .  14
+     13.2.  Informative References . . . . . . . . . . . . . . . . .  15
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
 
 1.  Introduction
@@ -93,9 +94,9 @@ Table of Contents
    o  Vulnerability Assessment, which requires a semantic link between
       standardized vulnerability descriptions and IT-assets [X.1520].
 
-   o  Remote Attestation, which requires a link between golden
-      (reference integrity) measurements and software components
-      [I-D-birkholz-tuda].
+   o  Remote Attestation, which requires a link between reference
+      integrity measurements (RIM) and security logs of measured
+      software components [I-D-birkholz-tuda].
 
    SWID tags, as defined in ISO-19770-2:2015 [SWID], provide a
    standardized format for a record that identifies and describes a
@@ -105,7 +106,6 @@ Table of Contents
    to defining the format of these records, ISO-19770-2:2015 defines
    requirements concerning the SWID tag lifecycle.  Specifically, when a
    software product is installed on an endpoint, that product's SWID tag
-   is also installed.  Likewise, when the product is uninstalled or
 
 
 
@@ -114,6 +114,7 @@ Birkholz, et al.         Expires August 17, 2017                [Page 2]
 Internet-Draft                   COSWID                    February 2017
 
 
+   is also installed.  Likewise, when the product is uninstalled or
    replaced, the SWID tag is deleted or replaced, as appropriate.  As a
    result, ISO-19770-2:2015 describes a system wherein there is a
    correspondence between the set of installed software products on an
@@ -164,7 +165,6 @@ Internet-Draft                   COSWID                    February 2017
 
 
 
-
 Birkholz, et al.         Expires August 17, 2017                [Page 3]
 
 Internet-Draft                   COSWID                    February 2017
@@ -182,6 +182,17 @@ Internet-Draft                   COSWID                    February 2017
    of rules at the bottom of the CDDL specification.  The 66 character
    strings of the SWID vocabulary that would have to be stored or
    transported in full if using the original vocabulary are replaced.
+
+   Concise Software Identifiers are tailored to be used in the domain of
+   constrained-node networks.  A typical endpoint is capable of storing
+   the CoSWID tag of installed software, a constrained-node might lack
+   that capability.  CoSWID address these constraints and the
+   corresponding specification is augmented to retain their usefulness
+   in the thing-2-thing domain.  Specific examples include, but are not
+   limited to limiting the scope of hash algorithms to the IANA Named
+   Information tables or including firmware attributes addressing
+   devices that do not necessarily provide a file-system to store a
+   CoSWID tag in.
 
 <CODE BEGINS>
 concise-software-identity = {
@@ -207,6 +218,14 @@ NMTOKEN = text
 NMTOKENS = text
 
 date-time = time
+
+
+
+Birkholz, et al.         Expires August 17, 2017                [Page 4]
+
+Internet-Draft                   COSWID                    February 2017
+
+
 any-uri = text
 label = text / int
 
@@ -218,13 +237,6 @@ any-element-map = {
   global-attributes,
   * label => any-element-map / [ 2* any-element-map ],
 }
-
-
-
-Birkholz, et al.         Expires August 17, 2017                [Page 4]
-
-Internet-Draft                   COSWID                    February 2017
-
 
 global-attributes = (
   ? lang,
@@ -262,6 +274,14 @@ directory = {
 firmware = {
   firmware-name,                  ; inherited from RFC4108
   ? firmware-version,
+
+
+
+Birkholz, et al.         Expires August 17, 2017                [Page 5]
+
+Internet-Draft                   COSWID                    February 2017
+
+
   ? firmware-package-identifier,  ; inherited from RFC4108
   ? dependency,                   ; inherited from RFC4108
   ? component-index,              ; equivalent to RFC4108 fwPkgType
@@ -274,14 +294,6 @@ firmware = {
 
 process = {
   global-attributes,
-
-
-
-Birkholz, et al.         Expires August 17, 2017                [Page 5]
-
-Internet-Draft                   COSWID                    February 2017
-
-
   process-name,
   ? pid,
 }
@@ -318,6 +330,14 @@ link = {
   ? use,
 }
 
+
+
+
+Birkholz, et al.         Expires August 17, 2017                [Page 6]
+
+Internet-Draft                   COSWID                    February 2017
+
+
 software-meta = {
   global-attributes,
   ? activation-status,
@@ -330,14 +350,6 @@ software-meta = {
   ? generator,
   ? persistent-id,
   ? product,
-
-
-
-Birkholz, et al.         Expires August 17, 2017                [Page 6]
-
-Internet-Draft                   COSWID                    February 2017
-
-
   ? product-family,
   ? revision,
   ? summary,
@@ -374,6 +386,14 @@ size = (20: integer)
 key = (21: bool)
 location = (22: text)
 fs-name = (23: text)
+
+
+
+Birkholz, et al.         Expires August 17, 2017                [Page 7]
+
+Internet-Draft                   COSWID                    February 2017
+
+
 root = (24: text)
 path-elements = (25: { * directory-entry,
                        * file-entry,
@@ -386,14 +406,6 @@ meta-elements = (29: any-element-map / [ 2* any-element-map ])
 entity-name = (30: text)
 reg-id = (31: any-uri)
 role = (32: NMTOKENS)
-
-
-
-Birkholz, et al.         Expires August 17, 2017                [Page 7]
-
-Internet-Draft                   COSWID                    February 2017
-
-
 thumbprint = (33: text)
 date = (34: date-time)
 device-id = (35: text)
@@ -430,6 +442,14 @@ firmware-hash = (58: [ hash-alg-id: int,
 firmware-name = (59 : text)
 firmware-version = (60 : text / int)
 component-index = (61 : int)
+
+
+
+Birkholz, et al.         Expires August 17, 2017                [Page 8]
+
+Internet-Draft                   COSWID                    February 2017
+
+
 model-label = (62: text / int)
 block-device-identifier = (63 : text / int)
 cms-firmware-package = (64: bstr)
@@ -441,14 +461,6 @@ dependency = (67: { ? firmware-name,
                   }
              )
 <CODE ENDS>
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017                [Page 8]
-
-Internet-Draft                   COSWID                    February 2017
-
 
 3.  Encoding hashes for Concise SWID tags
 
@@ -475,29 +487,17 @@ Internet-Draft                   COSWID                    February 2017
 
    The metadata defined in [RFC4108] is incorporated in the resource-
    collection structure that semantically differentiates content stored
-   in a Concise Software Identifier.  The optional byte string that
-   constitutes a firmware package addresses specific characteristics of
-   firmware stored directly on a block-device in contrast to software
-   deployed in a file-system.  Trees of relative path-elements expressed
-   by the directory and file structure in CoSWID tags are typically
-   unable to represent the location of a firmware on a constrained-node
-   (small thing).  The composite nature of firmware and also the
-   constitution of small things requires a set of options to identify
-   the correct component in a composite thing for each piece of
-   firmware.  A single component also potentially requires a number of
-   distinct firmware parts potentially depending on each other(s
-   version).  The dependencies cab be limited to the scope of the
-   component itself or extend to the scope of the composite thing.  In
-   addition, it might not be possible (or feasible) to store a CoSWID
-   tag document (permanently) on a small thing along with the
-   corresponding peace of firmware.  Hence, the CoSWID tag can be used
-   as a concise and flexible metadata document that functions as a
-   wrapper containing a (potentially compressed, signed, and/or
-   encrypted) piece of firmware and its corresponding CoSWID attributes.
-   A CoSWID tag about firmware can be transmitted as an identifying
-   document across endpoints or used as an reference integrity
-   measurement as usual.  Alternatively, it can also convey a piece of
-
+   in a Concise Software Identifier.  The optional attributes that
+   annoate a firmware package addresse specific characteristics of
+   pieces of firmware stored directly on a block-device in contrast to
+   software deployed in a file-system.  Trees of relative path-elements
+   expressed by the directory and file structure in CoSWID tags are
+   typically unable to represent the location of a firmware on a
+   constrained-node (small thing).  The composite nature of firmware and
+   also the actual composition of small things require a set of
+   attributes to identify the correct component in a composite thing for
+   each individual piece of firmware.  A single component also
+   potentially requires a number of distinct firmware parts that might
 
 
 
@@ -506,8 +506,19 @@ Birkholz, et al.         Expires August 17, 2017                [Page 9]
 Internet-Draft                   COSWID                    February 2017
 
 
-   firmware, serve its intended purpose as a SWID tag and then - due to
-   the lack of a location to store it - be discarded.
+   depend on each other(s version).  These dependencies can be limited
+   to the scope of the component itself or extend to the scope of a
+   small composite device.  In addition, it might not be possible (or
+   feasible) to store a CoSWID tag document (permanently) on a small
+   thing along with the corresponding piece of firmware.  Hence, CoSWID
+   tags can be used as a concise and flexible metadata document that
+   functions as a wrapper containing a (potentially compressed, signed,
+   and/or encrypted) piece of firmware and its corresponding CoSWID
+   attributes.  A CoSWID tag about firmware can be transmitted as an
+   identifying document across endpoints or used as an reference
+   integrity measurement as usual.  Alternatively, it can also convey an
+   actual piece of firmware, serve its intended purpose as a SWID tag
+   and then - due to the lack of a location to store it - be discarded.
 
 6.  COSE signatures for Concise SWID tags
 
@@ -528,6 +539,28 @@ Internet-Draft                   COSWID                    February 2017
    contains a single signature.  The following CDDL defines a more
    restrictive subset of header attributes allowed by COSE tailored to
    suit the requirements of Concise SWID.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 10]
+
+Internet-Draft                   COSWID                    February 2017
+
 
 <CODE BEGINS>
 signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
@@ -554,14 +587,6 @@ COSE-Sign1-coswid = [
 ]
 <CODE ENDS>
 
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 10]
-
-Internet-Draft                   COSWID                    February 2017
-
-
 7.  CBOR Web Token for Concise SWID tags
 
    A typical requirement regarding specific instantiations of endpoints
@@ -584,6 +609,14 @@ Internet-Draft                   COSWID                    February 2017
 
    o  Integer indices for SWID content attributes and information
       elements.
+
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 11]
+
+Internet-Draft                   COSWID                    February 2017
+
 
    o  Content-Type for CoAP to be used in COSE.
 
@@ -609,15 +642,6 @@ Internet-Draft                   COSWID                    February 2017
    golden measurements.  By contrast, the data contained in unsigned
    tags cannot be trusted to be unmodified.
 
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 11]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    SWID tags are designed to be easily added and removed from an
    endpoint along with the installation or removal of software products.
    On endpoints where addition or removal of software products is
@@ -642,6 +666,14 @@ Internet-Draft                   COSWID                    February 2017
    and versions thereof are present on the endpoint.  By examining this
    list, the attacker might learn of the presence of applications that
    are vulnerable to certain types of attacks.  As noted earlier, SWID
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 12]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    tags are designed to be easily discoverable by an endpoint, but this
    does not present a significant risk since an attacker would already
    need to have access to the endpoint to view that information.
@@ -665,14 +697,6 @@ Internet-Draft                   COSWID                    February 2017
    vendor created tags.  For this reason, tools that consume SWID tags
    ought to treat the tag contents as potentially malicious and should
    employ input sanitizing on the tags they ingest.
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 12]
-
-Internet-Draft                   COSWID                    February 2017
-
 
 10.  Acknowledgements
 
@@ -698,6 +722,14 @@ Internet-Draft                   COSWID                    February 2017
 
    Changes from version 00 to version 01:
 
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 13]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    o  Ambiguity between evidence and payload eliminated by introducing
       explicit members (while still allowing for "empty" swid tags)
 
@@ -719,16 +751,6 @@ Internet-Draft                   COSWID                    February 2017
               Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
               "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-02
               (work in progress), January 2017.
-
-
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 13]
-
-Internet-Draft                   COSWID                    February 2017
-
 
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
@@ -756,6 +778,14 @@ Internet-Draft                   COSWID                    February 2017
               2: Software identification tag'", ISO/IEC 19770-2:2015,
               October 2015.
 
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 14]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    [X.1520]   "Recommendation ITU-T X.1520 (2014), Common
               vulnerabilities and exposures", April 2011.
 
@@ -776,15 +806,6 @@ Internet-Draft                   COSWID                    February 2017
               (CDDL): a notational convention to express CBOR data
               structures", draft-greevenbosch-appsawg-cbor-cddl-09 (work
               in progress), September 2016.
-
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 14]
-
-Internet-Draft                   COSWID                    February 2017
-
 
 Authors' Addresses
 
@@ -815,6 +836,12 @@ Authors' Addresses
    Email: cmschmidt@mitre.org
 
 
+
+Birkholz, et al.         Expires August 17, 2017               [Page 15]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    David Waltermire
    National Institute of Standards and Technology
    100 Bureau Drive
@@ -837,4 +864,33 @@ Authors' Addresses
 
 
 
-Birkholz, et al.         Expires August 17, 2017               [Page 15]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 16]
