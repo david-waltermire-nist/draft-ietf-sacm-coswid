@@ -68,17 +68,18 @@ Table of Contents
      1.1.  Requirements notation . . . . . . . . . . . . . . . . . .   3
    2.  Concise SWID CDDL specification . . . . . . . . . . . . . . .   4
    3.  Encoding hashes for Concise SWID tags . . . . . . . . . . . .   9
-   4.  Firmware SWID tags  . . . . . . . . . . . . . . . . . . . . .   9
-   5.  COSE signatures for Concise SWID tags . . . . . . . . . . . .   9
-   6.  CBOR Web Token for Concise SWID tags  . . . . . . . . . . . .  10
-   7.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  10
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
-   9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  12
-   10. Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  12
-   11. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  13
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
-     12.1.  Normative References . . . . . . . . . . . . . . . . . .  13
-     12.2.  Informative References . . . . . . . . . . . . . . . . .  13
+   4.  CoSWID used as Reference Integrity Measurements (CoSWID RIM)    9
+   5.  Firmware SWID tags  . . . . . . . . . . . . . . . . . . . . .   9
+   6.  COSE signatures for Concise SWID tags . . . . . . . . . . . .   9
+   7.  CBOR Web Token for Concise SWID tags  . . . . . . . . . . . .  10
+   8.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  11
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
+   10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  12
+   11. Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  12
+   12. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  13
+   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
+     13.1.  Normative References . . . . . . . . . . . . . . . . . .  13
+     13.2.  Informative References . . . . . . . . . . . . . . . . .  14
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  14
 
 1.  Introduction
@@ -92,8 +93,9 @@ Table of Contents
    o  Vulnerability Assessment, which requires a semantic link between
       standardized vulnerability descriptions and IT-assets [X.1520].
 
-   o  Remote Attestation, which requires a link between golden (well-
-      known) measurements and software instances [I-D-birkholz-tuda].
+   o  Remote Attestation, which requires a link between golden
+      (reference integrity) measurements and software components
+      [I-D-birkholz-tuda].
 
    SWID tags, as defined in ISO-19770-2:2015 [SWID], provide a
    standardized format for a record that identifies and describes a
@@ -104,8 +106,6 @@ Table of Contents
    requirements concerning the SWID tag lifecycle.  Specifically, when a
    software product is installed on an endpoint, that product's SWID tag
    is also installed.  Likewise, when the product is uninstalled or
-   replaced, the SWID tag is deleted or replaced, as appropriate.  As a
-   result, ISO-19770-2:2015 describes a system wherein there is a
 
 
 
@@ -114,6 +114,8 @@ Birkholz, et al.         Expires August 17, 2017                [Page 2]
 Internet-Draft                   COSWID                    February 2017
 
 
+   replaced, the SWID tag is deleted or replaced, as appropriate.  As a
+   result, ISO-19770-2:2015 describes a system wherein there is a
    correspondence between the set of installed software products on an
    endpoint, and the presence on that endpoint of the SWID tags
    corresponding to those products.
@@ -159,8 +161,6 @@ Internet-Draft                   COSWID                    February 2017
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in RFC
    2119, BCP 14 [RFC2119].
-
-
 
 
 
@@ -458,7 +458,20 @@ Internet-Draft                   COSWID                    February 2017
    number used as a value for hash-alg-id refers the ID in the Named
    Information Hash Algorithm table.
 
-4.  Firmware SWID tags
+4.  CoSWID used as Reference Integrity Measurements (CoSWID RIM)
+
+   A vendor supplied signed CoSWID tag that includes hash-values for the
+   files that compose a software component can be used as a RIM
+   (reference integrity measurement).  A RIM is a type of declarative
+   guidance that can be used ti assess the compliance of an endpoint by
+   assessing the installed software.  In the context of remote
+   attestation based on an attestation via a hardware security module
+   (hardware rooted trust), a verifier can appraise the integrity of the
+   conveyed measurements of software components using a CoSWID RIM
+   provided by a source, such as
+   [I-D.banghart-sacm-rolie-softwaredescriptor].
+
+5.  Firmware SWID tags
 
    The metadata defined in [RFC4108] is incorporated in the set of
    resource-collection defined by Concise Software Identifier.  The
@@ -477,7 +490,7 @@ Internet-Draft                   COSWID                    February 2017
    purpose as a SWID tag and then - due to the lack of a location to
    store it - be discarded.
 
-5.  COSE signatures for Concise SWID tags
+6.  COSE signatures for Concise SWID tags
 
    SWID tags, as defined in the ISO-19770-2:2015 XML schema, can include
    cryptographic signatures to protect the integrity of the SWID tag.
@@ -485,6 +498,14 @@ Internet-Draft                   COSWID                    February 2017
    not exclusively, the vendor of the software product that the SWID tag
    identifies).  Cryptographic signatures can make any modification of
    the tag detectable, which is especially important if the integrity of
+
+
+
+Birkholz, et al.         Expires August 17, 2017                [Page 9]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    the tag is important, such as when the tag is providing golden
    measurements for files.
 
@@ -496,15 +517,6 @@ Internet-Draft                   COSWID                    February 2017
    contains a single signature.  The following CDDL defines a more
    restrictive subset of header attributes allowed by COSE tailored to
    suit the requirements of Concise SWID.
-
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017                [Page 9]
-
-Internet-Draft                   COSWID                    February 2017
-
 
 <CODE BEGINS>
 signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
@@ -531,29 +543,17 @@ COSE-Sign1-coswid = [
 ]
 <CODE ENDS>
 
-6.  CBOR Web Token for Concise SWID tags
+7.  CBOR Web Token for Concise SWID tags
 
-   A typical requirement regarding specific instantiations of endpoint -
-   and as a result, specific instantiations of software components - is
-   a representation of the absolute path of a CoSWID tag in a file
-   system in order to derive absolute paths of files represented in a
-   CoSWID tags.  The absolute path of an evidence CoSWID tag can be
-   included as a claim in the header of a CBOR Web Token.  Depending on
-   the source of the token, the claim can be in the protected or
-   unprotected header portion.
-
-   <CODE BEGINS>
-    CDDL TBD
-   <CODE ENDS>
-
-7.  IANA considerations
-
-   This document will include requests to IANA:
-
-   o  Integer indices for SWID content attributes and information
-      elements.
-
-   o  Content-Type for CoAP to be used in COSE.
+   A typical requirement regarding specific instantiations of endpoints
+   - and, as a result, specific instantiations of software components -
+   is a representation of the absolute path of a CoSWID tag document in
+   a file system in order to derive absolute paths of files represented
+   in the corresponding CoSWID tag.  The absolute path of an evidence
+   CoSWID tag can be included as a claim in the header of a CBOR Web
+   Token [I-D.ietf-ace-cbor-web-token].  Depending on the source of the
+   token, the claim can be in the protected or unprotected header
+   portion.
 
 
 
@@ -562,7 +562,20 @@ Birkholz, et al.         Expires August 17, 2017               [Page 10]
 Internet-Draft                   COSWID                    February 2017
 
 
-8.  Security Considerations
+   <CODE BEGINS>
+    CDDL TBD
+   <CODE ENDS>
+
+8.  IANA considerations
+
+   This document will include requests to IANA:
+
+   o  Integer indices for SWID content attributes and information
+      elements.
+
+   o  Content-Type for CoAP to be used in COSE.
+
+9.  Security Considerations
 
    SWID tags contain public information about software products and, as
    such, do not need to be protected against disclosure on an endpoint.
@@ -597,6 +610,14 @@ Internet-Draft                   COSWID                    February 2017
    on an endpoint without providing a corresponding SWID tag.  As such,
    any collection of SWID tags cannot automatically be assumed to
    represent either a complete or fully accurate representation of the
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 11]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    software inventory of the endpoint.  However, especially on devices
    that more strictly control the ability to add or remove applications,
    SWID tags are an easy way to provide an preliminary understanding of
@@ -610,14 +631,6 @@ Internet-Draft                   COSWID                    February 2017
    are vulnerable to certain types of attacks.  As noted earlier, SWID
    tags are designed to be easily discoverable by an endpoint, but this
    does not present a significant risk since an attacker would already
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 11]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    need to have access to the endpoint to view that information.
    However, when the endpoint transmits its software inventory to
    another party, or that inventory is stored on a server for later
@@ -640,9 +653,9 @@ Internet-Draft                   COSWID                    February 2017
    ought to treat the tag contents as potentially malicious and should
    employ input sanitizing on the tags they ingest.
 
-9.  Acknowledgements
+10.  Acknowledgements
 
-10.  Change Log
+11.  Change Log
 
    Changes since adopted as a WG I-D -00:
 
@@ -650,6 +663,16 @@ Internet-Draft                   COSWID                    February 2017
       19770-2:2015 XML schema definition
 
    o  Fixed broken multi-map members
+
+
+
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 12]
+
+Internet-Draft                   COSWID                    February 2017
+
 
    o  Introduced a more restrictive item (any-element-map) to represent
       custom maps, increased restriction on types for the any-attribute,
@@ -667,13 +690,6 @@ Internet-Draft                   COSWID                    February 2017
    o  Ambiguity between evidence and payload eliminated by introducing
       explicit members (while still allowing for "empty" swid tags)
 
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 12]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    o  Added a relatively restrictive COSE envelope using cose_sign1 to
       define signed coswids (single signer only, at the moment)
 
@@ -682,11 +698,16 @@ Internet-Draft                   COSWID                    February 2017
 
    First version -00
 
-11.  Contributors
+12.  Contributors
 
-12.  References
+13.  References
 
-12.1.  Normative References
+13.1.  Normative References
+
+   [I-D.ietf-ace-cbor-web-token]
+              Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
+              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-02
+              (work in progress), January 2017.
 
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
@@ -701,6 +722,13 @@ Internet-Draft                   COSWID                    February 2017
               Protect Firmware Packages", RFC 4108,
               DOI 10.17487/RFC4108, August 2005,
               <http://www.rfc-editor.org/info/rfc4108>.
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 13]
+
+Internet-Draft                   COSWID                    February 2017
+
 
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
@@ -717,23 +745,17 @@ Internet-Draft                   COSWID                    February 2017
    [X.1520]   "Recommendation ITU-T X.1520 (2014), Common
               vulnerabilities and exposures", April 2011.
 
-12.2.  Informative References
-
-
-
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 13]
-
-Internet-Draft                   COSWID                    February 2017
-
+13.2.  Informative References
 
    [I-D-birkholz-tuda]
               Fuchs, A., Birkholz, H., McDonald, I., and C. Bormann,
               "Time-Based Uni-Directional Attestation", draft-birkholz-
               tuda-03 (work in progress), January 2017.
+
+   [I-D.banghart-sacm-rolie-softwaredescriptor]
+              Waltermire, D. and S. Banghart, "Definition of the ROLIE
+              Software Descriptor Extension", draft-banghart-sacm-rolie-
+              softwaredescriptor-00 (work in progress), October 2016.
 
    [I-D.greevenbosch-appsawg-cbor-cddl]
               Vigano, C. and H. Birkholz, "CBOR data definition language
@@ -750,6 +772,18 @@ Authors' Addresses
    Germany
 
    Email: henk.birkholz@sit.fraunhofer.de
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 14]
+
+Internet-Draft                   COSWID                    February 2017
 
 
    Jessica Fitzgerald-McKay
@@ -781,4 +815,26 @@ Authors' Addresses
 
 
 
-Birkholz, et al.         Expires August 17, 2017               [Page 14]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 17, 2017               [Page 15]
