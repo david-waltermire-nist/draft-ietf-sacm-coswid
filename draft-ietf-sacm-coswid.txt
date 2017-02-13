@@ -473,22 +473,23 @@ Internet-Draft                   COSWID                    February 2017
 
 5.  Firmware SWID tags
 
-   The metadata defined in [RFC4108] is incorporated in the set of
-   resource-collection defined by Concise Software Identifier.  The
-   inclusion of the byte string that constitutes a firmware addresses
-   specific characteristics of firmware on a block-device in contrast to
-   software deployed in a file-system.  Trees of retaliative paths
-   expressed by the filesystem-item structure if CoSWID tags might be
-   unable to represent the location of a firmware on a constrained-node
-   (small thing).  In addition, it might not be possible (or feasible)
-   to store a CoSWID (permanently) on small thing.  Hence, the CoSWID
-   can be used as a concise and flexible metadata document that
-   constitutes a container to store a (potentially compressed) firmware
-   in.  The CoSWID tag can be transmitted as an identifying document
-   between endpoints or used as an reference integrity measurement as
-   usual, and it can also convey a piece of firmware, serve its intended
-   purpose as a SWID tag and then - due to the lack of a location to
-   store it - be discarded.
+   The metadata defined in [RFC4108] is incorporated in the set
+   resource-collection used to semantically differntiate content stored
+   Concise Software Identifier.  The optional byte string that
+   constitutes a firmware package addresses specific characteristics of
+   firmware stored directly on a block-device in contrast to software
+   deployed in a file-system.  Trees of relative path-elementts
+   expressed by the directory and file structure in CoSWID tags is
+   typically unable to represent the location of a firmware on a
+   constrained-node (small thing).  In addition, it might not be
+   possible (or feasible) to store a CoSWID (permanently) on a small
+   thing.  Hence, the CoSWID tag can be used as a concise and flexible
+   metadata document that provides a container to store a (potentially
+   compressed, signed, and/or encrypted) firmware in.  The CoSWID tag
+   can be transmitted as an identifying document between endpoints or
+   used as an reference integrity measurement as usual, and it can also
+   convey a piece of firmware, serve its intended purpose as a SWID tag
+   and then - due to the lack of a location to store it - be discarded.
 
 6.  COSE signatures for Concise SWID tags
 
@@ -497,7 +498,6 @@ Internet-Draft                   COSWID                    February 2017
    In general, tags are signed by the tag creator (typically, although
    not exclusively, the vendor of the software product that the SWID tag
    identifies).  Cryptographic signatures can make any modification of
-   the tag detectable, which is especially important if the integrity of
 
 
 
@@ -506,6 +506,7 @@ Birkholz, et al.         Expires August 17, 2017                [Page 9]
 Internet-Draft                   COSWID                    February 2017
 
 
+   the tag detectable, which is especially important if the integrity of
    the tag is important, such as when the tag is providing golden
    measurements for files.
 
@@ -552,8 +553,7 @@ COSE-Sign1-coswid = [
    in the corresponding CoSWID tag.  The absolute path of an evidence
    CoSWID tag can be included as a claim in the header of a CBOR Web
    Token [I-D.ietf-ace-cbor-web-token].  Depending on the source of the
-   token, the claim can be in the protected or unprotected header
-   portion.
+
 
 
 
@@ -561,6 +561,9 @@ Birkholz, et al.         Expires August 17, 2017               [Page 10]
 
 Internet-Draft                   COSWID                    February 2017
 
+
+   token, the claim can be in the protected or unprotected header
+   portion.
 
    <CODE BEGINS>
     CDDL TBD
@@ -607,9 +610,6 @@ Internet-Draft                   COSWID                    February 2017
    tags in a way that does not reflect the actual presence or absence of
    corresponding software products.  Similarly, not all software
    products automatically install SWID tags, so products may be present
-   on an endpoint without providing a corresponding SWID tag.  As such,
-   any collection of SWID tags cannot automatically be assumed to
-   represent either a complete or fully accurate representation of the
 
 
 
@@ -618,6 +618,9 @@ Birkholz, et al.         Expires August 17, 2017               [Page 11]
 Internet-Draft                   COSWID                    February 2017
 
 
+   on an endpoint without providing a corresponding SWID tag.  As such,
+   any collection of SWID tags cannot automatically be assumed to
+   represent either a complete or fully accurate representation of the
    software inventory of the endpoint.  However, especially on devices
    that more strictly control the ability to add or remove applications,
    SWID tags are an easy way to provide an preliminary understanding of
@@ -663,9 +666,6 @@ Internet-Draft                   COSWID                    February 2017
       19770-2:2015 XML schema definition
 
    o  Fixed broken multi-map members
-
-
-
 
 
 
