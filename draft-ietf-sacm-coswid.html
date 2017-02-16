@@ -301,7 +301,7 @@ address {
 
   <meta name="dct.creator" content="Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D. Waltermire" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-sacm-coswid-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-2-13" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-2-16" />
   <meta name="dct.abstract" content="This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks." />
   <meta name="description" content="This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks." />
 
@@ -325,7 +325,7 @@ address {
   <td class="right">J. Fitzgerald-McKay</td>
 </tr>
 <tr>
-  <td class="left">Expires: August 17, 2017</td>
+  <td class="left">Expires: August 20, 2017</td>
   <td class="right">Department of Defense</td>
 </tr>
 <tr>
@@ -346,7 +346,7 @@ address {
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">February 13, 2017</td>
+  <td class="right">February 16, 2017</td>
 </tr>
 
     	
@@ -366,7 +366,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on August 17, 2017.</p>
+<p>This Internet-Draft will expire on August 20, 2017.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -406,7 +406,7 @@ address {
 <ul>
   <li>Software Inventory Management, a part of the Software Asset Management <a href="#SAM">[SAM]</a> process, which requires an accurate list of discernible deployed software instances.</li>
   <li>Vulnerability Assessment, which requires a semantic link between standardized vulnerability descriptions and IT-assets <a href="#X.1520">[X.1520]</a>.</li>
-  <li>Remote Attestation, which requires a link between reference integrity measurements (RIM) and security logs of measured software components <a href="#I-D-birkholz-tuda">[I-D-birkholz-tuda]</a>.</li>
+  <li>Remote Attestation, which requires a link between reference integrity measurements (RIM) and security logs of measured software components <a href="#I-D.birkholz-tuda">[I-D.birkholz-tuda]</a>.</li>
 </ul>
 <p id="rfc.section.1.p.3">SWID tags, as defined in ISO-19770-2:2015 <a href="#SWID">[SWID]</a>, provide a standardized format for a record that identifies and describes a specific release of a software product. Different software products, and even different releases of a particular software product, each have a different SWID tag record associated with them. In addition to defining the format of these records, ISO-19770-2:2015 defines requirements concerning the SWID tag lifecycle. Specifically, when a software product is installed on an endpoint, that product&#8217;s SWID tag is also installed. Likewise, when the product is uninstalled or replaced, the SWID tag is deleted or replaced, as appropriate. As a result, ISO-19770-2:2015 describes a system wherein there is a correspondence between the set of installed software products on an endpoint, and the presence on that endpoint of the SWID tags corresponding to those products.</p>
 <p id="rfc.section.1.p.4">SWID tags are meant to be flexible and able to express a broad set of metadata about a software product. Moreover, there are multiple types of SWID tags, each providing different types of information. For example, a &#8220;corpus tag&#8221; is used to describe an application&#8217;s installation image on an installation media, while a &#8220;patch tag&#8221; is meant to describe a patch that modifies some other application. While there are very few required fields in SWID tags, there are many optional fields that support different uses of these different types of tags. While a SWID tag that consisted only of required fields could be a few hundred bytes in size, a tag containing many of the optional fields could be many orders of magnitude larger.</p>
@@ -704,7 +704,15 @@ COSE-Sign1-coswid = [
 <p id="rfc.section.9.p.5">Finally, both the ISO-19770-2:2015 XML schema definition and the Concise SWID data definition allow for the construction of &#8220;infinite&#8221; SWID tags or SWID tags that contain malicious content with the intend if creating non-deterministic states during validation or processing of SWID tags. While software product vendors are unlikely to do this, SWID tags can be created by any party and the SWID tags collected from an endpoint could contain a mixture of vendor and non-vendor created tags. For this reason, tools that consume SWID tags ought to treat the tag contents as potentially malicious and should employ input sanitizing on the tags they ingest.</p>
 <h1 id="rfc.section.10"><a href="#rfc.section.10">10.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a></h1>
 <h1 id="rfc.section.11"><a href="#rfc.section.11">11.</a> <a href="#change-log" id="change-log">Change Log</a></h1>
-<p id="rfc.section.11.p.1">Changes since adopted as a WG I-D -00:</p>
+<p id="rfc.section.11.p.1">Changes from version 00 to version 01:</p>
+<p/>
+
+<ul>
+  <li>Added CWT usage for absolute SWID paths on a device</li>
+  <li>Fixed cardinality of type-choices including arrays</li>
+  <li>Included first iteration of firmware resource-collection</li>
+</ul>
+<p id="rfc.section.11.p.3">Changes since adopted as a WG I-D -00:</p>
 <p/>
 
 <ul>
@@ -715,7 +723,7 @@ COSE-Sign1-coswid = [
   <li>Minor type changes of some attributes (e.g. NMTOKENS)</li>
   <li>Added semantic differentiation of various name types (e,g. fs-name)</li>
 </ul>
-<p id="rfc.section.11.p.3">Changes from version 00 to version 01:</p>
+<p id="rfc.section.11.p.5">Changes from version 00 to version 01:</p>
 <p/>
 
 <ul>
@@ -723,7 +731,7 @@ COSE-Sign1-coswid = [
   <li>Added a relatively restrictive COSE envelope using cose_sign1 to define signed coswids (single signer only, at the moment)</li>
   <li>Added a defintion how to encode hashes that can be stored in the any-member using existing IANA tables to reference hash-algorithms</li>
 </ul>
-<p id="rfc.section.11.p.5">First version -00</p>
+<p id="rfc.section.11.p.7">First version -00</p>
 <h1 id="rfc.section.12"><a href="#rfc.section.12">12.</a> <a href="#contributors" id="contributors">Contributors</a></h1>
 <h1 id="rfc.references"><a href="#rfc.references">13.</a> References</h1>
 <h1 id="rfc.references.1"><a href="#rfc.references.1">13.1.</a> Normative References</h1>
@@ -769,15 +777,15 @@ COSE-Sign1-coswid = [
   <tbody>
     <tr>
       <td class="reference">
-        <b id="I-D-birkholz-tuda">[I-D-birkholz-tuda]</b>
-      </td>
-      <td class="top"><a>Fuchs, A.</a>, <a>Birkholz, H.</a>, <a>McDonald, I.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/draft-birkholz-tuda-03">Time-Based Uni-Directional Attestation</a>", Internet-Draft draft-birkholz-tuda-03, January 2017.</td>
-    </tr>
-    <tr>
-      <td class="reference">
         <b id="I-D.banghart-sacm-rolie-softwaredescriptor">[I-D.banghart-sacm-rolie-softwaredescriptor]</b>
       </td>
       <td class="top"><a>Waltermire, D.</a> and <a>S. Banghart</a>, "<a href="http://tools.ietf.org/html/draft-banghart-sacm-rolie-softwaredescriptor-00">Definition of the ROLIE Software Descriptor Extension</a>", Internet-Draft draft-banghart-sacm-rolie-softwaredescriptor-00, October 2016.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="I-D.birkholz-tuda">[I-D.birkholz-tuda]</b>
+      </td>
+      <td class="top"><a>Fuchs, A.</a>, <a>Birkholz, H.</a>, <a>McDonald, I.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/draft-birkholz-tuda-03">Time-Based Uni-Directional Attestation</a>", Internet-Draft draft-birkholz-tuda-03, January 2017.</td>
     </tr>
     <tr>
       <td class="reference">

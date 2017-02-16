@@ -5,12 +5,12 @@
 SACM Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                     J. Fitzgerald-McKay
-Expires: August 17, 2017                           Department of Defense
+Expires: August 20, 2017                           Department of Defense
                                                               C. Schmidt
                                                    The MITRE Corporation
                                                            D. Waltermire
                                                                     NIST
-                                                       February 13, 2017
+                                                       February 16, 2017
 
 
                       Concise Software Identifiers
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 17, 2017.
+   This Internet-Draft will expire on August 20, 2017.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 1]
+Birkholz, et al.         Expires August 20, 2017                [Page 1]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -96,7 +96,7 @@ Table of Contents
 
    o  Remote Attestation, which requires a link between reference
       integrity measurements (RIM) and security logs of measured
-      software components [I-D-birkholz-tuda].
+      software components [I-D.birkholz-tuda].
 
    SWID tags, as defined in ISO-19770-2:2015 [SWID], provide a
    standardized format for a record that identifies and describes a
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 2]
+Birkholz, et al.         Expires August 20, 2017                [Page 2]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -165,7 +165,7 @@ Internet-Draft                   COSWID                    February 2017
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 3]
+Birkholz, et al.         Expires August 20, 2017                [Page 3]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -221,7 +221,7 @@ date-time = time
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 4]
+Birkholz, et al.         Expires August 20, 2017                [Page 4]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -277,7 +277,7 @@ firmware = {
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 5]
+Birkholz, et al.         Expires August 20, 2017                [Page 5]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -333,7 +333,7 @@ link = {
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 6]
+Birkholz, et al.         Expires August 20, 2017                [Page 6]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -389,7 +389,7 @@ fs-name = (23: text)
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 7]
+Birkholz, et al.         Expires August 20, 2017                [Page 7]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -445,7 +445,7 @@ component-index = (61 : int)
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 8]
+Birkholz, et al.         Expires August 20, 2017                [Page 8]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -501,7 +501,7 @@ dependency = (67: { ? firmware-name,
 
 
 
-Birkholz, et al.         Expires August 17, 2017                [Page 9]
+Birkholz, et al.         Expires August 20, 2017                [Page 9]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -557,7 +557,7 @@ Internet-Draft                   COSWID                    February 2017
 
 
 
-Birkholz, et al.         Expires August 17, 2017               [Page 10]
+Birkholz, et al.         Expires August 20, 2017               [Page 10]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -613,7 +613,7 @@ COSE-Sign1-coswid = [
 
 
 
-Birkholz, et al.         Expires August 17, 2017               [Page 11]
+Birkholz, et al.         Expires August 20, 2017               [Page 11]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -669,7 +669,7 @@ Internet-Draft                   COSWID                    February 2017
 
 
 
-Birkholz, et al.         Expires August 17, 2017               [Page 12]
+Birkholz, et al.         Expires August 20, 2017               [Page 12]
 
 Internet-Draft                   COSWID                    February 2017
 
@@ -702,6 +702,14 @@ Internet-Draft                   COSWID                    February 2017
 
 11.  Change Log
 
+   Changes from version 00 to version 01:
+
+   o  Added CWT usage for absolute SWID paths on a device
+
+   o  Fixed cardinality of type-choices including arrays
+
+   o  Included first iteration of firmware resource-collection
+
    Changes since adopted as a WG I-D -00:
 
    o  Removed redundant any-attributes originating from the ISO-
@@ -715,20 +723,19 @@ Internet-Draft                   COSWID                    February 2017
 
    o  Fixed X.1520 reference
 
+
+
+Birkholz, et al.         Expires August 20, 2017               [Page 13]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    o  Minor type changes of some attributes (e.g.  NMTOKENS)
 
    o  Added semantic differentiation of various name types (e,g. fs-
       name)
 
    Changes from version 00 to version 01:
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 13]
-
-Internet-Draft                   COSWID                    February 2017
-
 
    o  Ambiguity between evidence and payload eliminated by introducing
       explicit members (while still allowing for "empty" swid tags)
@@ -770,6 +777,15 @@ Internet-Draft                   COSWID                    February 2017
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <http://www.rfc-editor.org/info/rfc7049>.
 
+
+
+
+
+Birkholz, et al.         Expires August 20, 2017               [Page 14]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    [SAM]      "Information technology - Software asset management - Part
               5: Overview and vocabulary", ISO/IEC 19770-5:2013,
               November 2013.
@@ -778,28 +794,20 @@ Internet-Draft                   COSWID                    February 2017
               2: Software identification tag'", ISO/IEC 19770-2:2015,
               October 2015.
 
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 14]
-
-Internet-Draft                   COSWID                    February 2017
-
-
    [X.1520]   "Recommendation ITU-T X.1520 (2014), Common
               vulnerabilities and exposures", April 2011.
 
 13.2.  Informative References
 
-   [I-D-birkholz-tuda]
-              Fuchs, A., Birkholz, H., McDonald, I., and C. Bormann,
-              "Time-Based Uni-Directional Attestation", draft-birkholz-
-              tuda-03 (work in progress), January 2017.
-
    [I-D.banghart-sacm-rolie-softwaredescriptor]
               Waltermire, D. and S. Banghart, "Definition of the ROLIE
               Software Descriptor Extension", draft-banghart-sacm-rolie-
               softwaredescriptor-00 (work in progress), October 2016.
+
+   [I-D.birkholz-tuda]
+              Fuchs, A., Birkholz, H., McDonald, I., and C. Bormann,
+              "Time-Based Uni-Directional Attestation", draft-birkholz-
+              tuda-03 (work in progress), January 2017.
 
    [I-D.greevenbosch-appsawg-cbor-cddl]
               Vigano, C. and H. Birkholz, "CBOR data definition language
@@ -827,6 +835,13 @@ Authors' Addresses
    Email: jmfitz2@nsa.gov
 
 
+
+
+Birkholz, et al.         Expires August 20, 2017               [Page 15]
+
+Internet-Draft                   COSWID                    February 2017
+
+
    Charles Schmidt
    The MITRE Corporation
    202 Burlington Road
@@ -834,12 +849,6 @@ Authors' Addresses
    USA
 
    Email: cmschmidt@mitre.org
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 15]
-
-Internet-Draft                   COSWID                    February 2017
 
 
    David Waltermire
@@ -884,13 +893,4 @@ Internet-Draft                   COSWID                    February 2017
 
 
 
-
-
-
-
-
-
-
-
-
-Birkholz, et al.         Expires August 17, 2017               [Page 16]
+Birkholz, et al.         Expires August 20, 2017               [Page 16]
