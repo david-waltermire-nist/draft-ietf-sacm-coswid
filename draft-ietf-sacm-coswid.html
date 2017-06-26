@@ -278,21 +278,23 @@ address {
 
   <link href="#rfc.toc" rel="Contents">
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
-<link href="#rfc.section.1.1" rel="Chapter" title="1.1 Requirements notation">
-<link href="#rfc.section.2" rel="Chapter" title="2 Concise SWID CDDL specification">
-<link href="#rfc.section.3" rel="Chapter" title="3 Encoding hashes for Concise SWID tags">
-<link href="#rfc.section.4" rel="Chapter" title="4 CoSWID used as Reference Integrity Measurements (CoSWID RIM)">
-<link href="#rfc.section.5" rel="Chapter" title="5 Firmware SWID tags">
-<link href="#rfc.section.6" rel="Chapter" title="6 COSE signatures for Concise SWID tags">
-<link href="#rfc.section.7" rel="Chapter" title="7 CBOR Web Token for Concise SWID tags">
-<link href="#rfc.section.8" rel="Chapter" title="8 IANA considerations">
-<link href="#rfc.section.9" rel="Chapter" title="9 Security Considerations">
-<link href="#rfc.section.10" rel="Chapter" title="10 Acknowledgements">
-<link href="#rfc.section.11" rel="Chapter" title="11 Change Log">
-<link href="#rfc.section.12" rel="Chapter" title="12 Contributors">
-<link href="#rfc.references" rel="Chapter" title="13 References">
-<link href="#rfc.references.1" rel="Chapter" title="13.1 Normative References">
-<link href="#rfc.references.2" rel="Chapter" title="13.2 Informative References">
+<link href="#rfc.section.1.1" rel="Chapter" title="1.1 Concise SWID Extensions">
+<link href="#rfc.section.1.2" rel="Chapter" title="1.2 Requirements Notation">
+<link href="#rfc.section.2" rel="Chapter" title="2 Concise SWID Data Definition">
+<link href="#rfc.section.3" rel="Chapter" title="3 Description of the SWID Attribute Vocabulary Definition">
+<link href="#rfc.section.4" rel="Chapter" title="4 IANA Considerations">
+<link href="#rfc.section.5" rel="Chapter" title="5 Security Considerations">
+<link href="#rfc.section.6" rel="Chapter" title="6 Acknowledgements">
+<link href="#rfc.section.7" rel="Chapter" title="7 Change Log">
+<link href="#rfc.section.8" rel="Chapter" title="8 Contributors">
+<link href="#rfc.references" rel="Chapter" title="9 References">
+<link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References">
+<link href="#rfc.appendix.A" rel="Chapter" title="A Explicit file-hash Type Used in Concise SWID Tags (label 56)">
+<link href="#rfc.appendix.B" rel="Chapter" title="B CoSWID Attributes for Firmware (label 57)">
+<link href="#rfc.appendix.C" rel="Chapter" title="C Signed Concise SWID Tags using COSE">
+<link href="#rfc.appendix.D" rel="Chapter" title="D CoSWID used as Reference Integrity Measurements (CoSWID RIM)">
+<link href="#rfc.appendix.E" rel="Chapter" title="E CBOR Web Token for Concise SWID Tags">
 <link href="#rfc.authors" rel="Chapter">
 
 
@@ -302,8 +304,8 @@ address {
   <meta name="dct.creator" content="Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D. Waltermire" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-sacm-coswid-01" />
   <meta name="dct.issued" scheme="ISO8601" content="2017-6-26" />
-  <meta name="dct.abstract" content="This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks." />
-  <meta name="description" content="This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks." />
+  <meta name="dct.abstract" content="This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, CoSWID support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
+  <meta name="description" content="This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, CoSWID support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
 
 </head>
 
@@ -357,7 +359,7 @@ address {
   <span class="filename">draft-ietf-sacm-coswid-01</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks.</p>
+<p>This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, CoSWID support the definition of additional semantics via well-defined data definitions incorporated by extension points.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
@@ -374,37 +376,41 @@ address {
 
   	<li>1.   <a href="#rfc.section.1">Introduction</a>
 </li>
-<ul><li>1.1.   <a href="#rfc.section.1.1">Requirements notation</a>
+<ul><li>1.1.   <a href="#rfc.section.1.1">Concise SWID Extensions</a>
 </li>
-</ul><li>2.   <a href="#rfc.section.2">Concise SWID CDDL specification</a>
+<li>1.2.   <a href="#rfc.section.1.2">Requirements Notation</a>
 </li>
-<li>3.   <a href="#rfc.section.3">Encoding hashes for Concise SWID tags</a>
+</ul><li>2.   <a href="#rfc.section.2">Concise SWID Data Definition</a>
 </li>
-<li>4.   <a href="#rfc.section.4">CoSWID used as Reference Integrity Measurements (CoSWID RIM)</a>
+<li>3.   <a href="#rfc.section.3">Description of the SWID Attribute Vocabulary Definition</a>
 </li>
-<li>5.   <a href="#rfc.section.5">Firmware SWID tags</a>
+<li>4.   <a href="#rfc.section.4">IANA Considerations</a>
 </li>
-<li>6.   <a href="#rfc.section.6">COSE signatures for Concise SWID tags</a>
+<li>5.   <a href="#rfc.section.5">Security Considerations</a>
 </li>
-<li>7.   <a href="#rfc.section.7">CBOR Web Token for Concise SWID tags</a>
+<li>6.   <a href="#rfc.section.6">Acknowledgements</a>
 </li>
-<li>8.   <a href="#rfc.section.8">IANA considerations</a>
+<li>7.   <a href="#rfc.section.7">Change Log</a>
 </li>
-<li>9.   <a href="#rfc.section.9">Security Considerations</a>
+<li>8.   <a href="#rfc.section.8">Contributors</a>
 </li>
-<li>10.   <a href="#rfc.section.10">Acknowledgements</a>
+<li>9.   <a href="#rfc.references">References</a>
 </li>
-<li>11.   <a href="#rfc.section.11">Change Log</a>
+<ul><li>9.1.   <a href="#rfc.references.1">Normative References</a>
 </li>
-<li>12.   <a href="#rfc.section.12">Contributors</a>
+<li>9.2.   <a href="#rfc.references.2">Informative References</a>
 </li>
-<li>13.   <a href="#rfc.references">References</a>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Explicit file-hash Type Used in Concise SWID Tags (label 56)</a>
 </li>
-<ul><li>13.1.   <a href="#rfc.references.1">Normative References</a>
+<li>Appendix B.   <a href="#rfc.appendix.B">CoSWID Attributes for Firmware (label 57)</a>
 </li>
-<li>13.2.   <a href="#rfc.references.2">Informative References</a>
+<li>Appendix C.   <a href="#rfc.appendix.C">Signed Concise SWID Tags using COSE</a>
 </li>
-</ul><li><a href="#rfc.authors">Authors' Addresses</a>
+<li>Appendix D.   <a href="#rfc.appendix.D">CoSWID used as Reference Integrity Measurements (CoSWID RIM)</a>
+</li>
+<li>Appendix E.   <a href="#rfc.appendix.E">CBOR Web Token for Concise SWID Tags</a>
+</li>
+<li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
 
 
@@ -417,23 +423,35 @@ address {
 <p></p>
 
 <ul>
-<li>Software Inventory Management, a part of the Software Asset Management <a href="#SAM" class="xref">[SAM]</a> process, which requires an accurate list of discernible deployed software instances.</li>
+<li>Software Inventory Management, a part of the Software Asset Management <a href="#SAM" class="xref">[SAM]</a> process, which requires an accurate list of discernible deployed software components.</li>
 <li>Vulnerability Assessment, which requires a semantic link between standardized vulnerability descriptions and IT-assets <a href="#X.1520" class="xref">[X.1520]</a>.</li>
 <li>Remote Attestation, which requires a link between reference integrity measurements (RIM) and security logs of measured software components <a href="#I-D.birkholz-tuda" class="xref">[I-D.birkholz-tuda]</a>.</li>
 </ul>
-<p id="rfc.section.1.p.3">SWID tags, as defined in ISO-19770-2:2015 <a href="#SWID" class="xref">[SWID]</a>, provide a standardized format for a record that identifies and describes a specific release of a software product. Different software products, and even different releases of a particular software product, each have a different SWID tag record associated with them. In addition to defining the format of these records, ISO-19770-2:2015 defines requirements concerning the SWID tag lifecycle. Specifically, when a software product is installed on an endpoint, that product&#8217;s SWID tag is also installed. Likewise, when the product is uninstalled or replaced, the SWID tag is deleted or replaced, as appropriate. As a result, ISO-19770-2:2015 describes a system wherein there is a correspondence between the set of installed software products on an endpoint, and the presence on that endpoint of the SWID tags corresponding to those products.</p>
+<p id="rfc.section.1.p.3">SWID tags, as defined in ISO-19770-2:2015 <a href="#SWID" class="xref">[SWID]</a>, provide a standardized format for a record that identifies and describes a specific release of a software product. Different software products, and even different releases of a particular software product, each have a different SWID tag record associated with them. In addition to defining the format of these records, ISO-19770-2:2015 defines requirements concerning the SWID tag life-cycle. Specifically, when a software product is installed on an endpoint, that product&#8217;s SWID tag is also installed. Likewise, when the product is uninstalled or replaced, the SWID tag is deleted or replaced, as appropriate. As a result, ISO-19770-2:2015 describes a system wherein there is a correspondence between the set of installed software products on an endpoint, and the presence on that endpoint of the SWID tags corresponding to those products.</p>
 <p id="rfc.section.1.p.4">SWID tags are meant to be flexible and able to express a broad set of metadata about a software product. Moreover, there are multiple types of SWID tags, each providing different types of information. For example, a &#8220;corpus tag&#8221; is used to describe an application&#8217;s installation image on an installation media, while a &#8220;patch tag&#8221; is meant to describe a patch that modifies some other application. While there are very few required fields in SWID tags, there are many optional fields that support different uses of these different types of tags. While a SWID tag that consisted only of required fields could be a few hundred bytes in size, a tag containing many of the optional fields could be many orders of magnitude larger.</p>
-<p id="rfc.section.1.p.5">This document defines a more concise representation of SWID tags in the Concise Binary Object Representation (CBOR) <a href="#RFC7049" class="xref">[RFC7049]</a>.  This is described via the CBOR Data Definition Language (CDDL) <a href="#I-D.greevenbosch-appsawg-cbor-cddl" class="xref">[I-D.greevenbosch-appsawg-cbor-cddl]</a>.  The resulting Concise SWID data definition is interoperable with the XML schema definition of ISO-19770-2:2015 <a href="#SWID" class="xref">[SWID]</a>. The vocabulary, i.e., the CDDL names of the types and members used in the Concise SWID data definition, is mapped to more concise labels represented as small integers. The names used in the CDDL and the mapping to the CBOR representation using integer labels is based on the vocabulary of the XML attribute and element names defined in ISO-19770-2:2015.</p>
-<p id="rfc.section.1.p.6">Real-world instances of SWID tags can be fairly large, and the communication of SWID tags in use-applications such as those described earlier can cause a large amount of data to be transported. This can be larger than acceptable for constrained devices and networks. Concise SWID tags significantly reduce the amount of data transported as compared to a typical SWID tag. This reduction is enable through the use of CBOR, which maps human-readable labels of that content to more concise integer labels (indices). This allows SWID tags to be part of an enterprise security solution for a wider range of endpoints and environments.</p>
+<p id="rfc.section.1.p.5">This document defines a more concise representation of SWID tags in the Concise Binary Object Representation (CBOR) <a href="#RFC7049" class="xref">[RFC7049]</a>. This is described via the Concise Data Definition Language (CDDL) <a href="#I-D.greevenbosch-appsawg-cbor-cddl" class="xref">[I-D.greevenbosch-appsawg-cbor-cddl]</a>. The resulting Concise SWID data definition is interoperable with the XML schema definition of ISO-19770-2:2015 <a href="#SWID" class="xref">[SWID]</a>. The vocabulary, i.e., the CDDL names of the types and members used in the CoSWID data definition, is mapped to more concise labels represented as small integers. The names used in the CDDL data definition and the mapping to the CBOR representation using integer labels is based on the vocabulary of the XML attribute and element names defined in ISO-19770-2:2015.</p>
+<p id="rfc.section.1.p.6">Real-world instances of SWID tags can be fairly large, and the communication of SWID tags in use-applications such as those described earlier can cause a large amount of data to be transported.  This can be larger than acceptable for constrained devices and networks. CoSWID tags significantly reduce the amount of data transported as compared to a typical SWID tag. This reduction is enable through the use of CBOR, which maps human-readable labels of that content to more concise integer labels (indices). This allows SWID tags to be part of an enterprise security solution for a wider range of endpoints and environments.</p>
 <h1 id="rfc.section.1.1">
-<a href="#rfc.section.1.1">1.1.</a> <a href="#requirements-notation" id="requirements-notation">Requirements notation</a>
+<a href="#rfc.section.1.1">1.1.</a> <a href="#concise-swid-extensions" id="concise-swid-extensions">Concise SWID Extensions</a>
 </h1>
-<p id="rfc.section.1.1.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in RFC 2119, BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
+<p id="rfc.section.1.1.p.1">This document specifies a standard equivalent to the ISO-19770-2:2015 standard.  The corresponding CoSWID data definition includes two kinds of augmentation.</p>
+<p></p>
+
+<ul>
+<li>the explicit definition of types for attributes that are typically stored in the &#8220;any attribute&#8221; of an ISO-19770-2:2015 in XML representation. These are covered in the main body of this document.</li>
+<li>the inclusion of extension points in the CoSWID data definition that allow for additional uses of CoSWID tags that go beyond the original scope of ISO-19770-2:2015 tags. These are covered in appendices to this document.</li>
+</ul>
+<h1 id="rfc.section.1.2">
+<a href="#rfc.section.1.2">1.2.</a> <a href="#requirements-notation" id="requirements-notation">Requirements Notation</a>
+</h1>
+<p id="rfc.section.1.2.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in RFC 2119, BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
 <h1 id="rfc.section.2">
-<a href="#rfc.section.2">2.</a> <a href="#concise-swid-cddl-specification" id="concise-swid-cddl-specification">Concise SWID CDDL specification</a>
+<a href="#rfc.section.2">2.</a> <a href="#concise-swid-data-definition" id="concise-swid-data-definition">Concise SWID Data Definition</a>
 </h1>
-<p id="rfc.section.2.p.1">The following is a CDDL representation of the ISO-19770-2:2015 <a href="#SWID" class="xref">[SWID]</a> XML schema definition of SWID tags. This representation includes all SWID tag fields and thus supports all SWID tag use cases. The CamelCase notation used in the XML schema definition is changed to hyphen-separated notation (e.g. ResourceCollection is named resource-collection in the COSWID CDDL specification). The human-readable names of members are mapped to integer indices via a block of rules at the bottom of the CDDL specification. The 66 character strings of the SWID vocabulary that would have to be stored or transported in full if using the original vocabulary are replaced.</p>
-<p id="rfc.section.2.p.2">Concise Software Identifiers are tailored to be used in the domain of constrained-node networks. A typical endpoint is capable of storing the CoSWID tag of installed software, a constrained-node might lack that capability. CoSWID address these constraints and the corresponding specification is augmented to retain their usefulness in the thing-2-thing domain. Specific examples include, but are not limited to limiting the scope of hash algorithms to the IANA Named Information tables or including firmware attributes addressing devices that do not necessarily provide a file-system to store a CoSWID tag in.</p>
+<p id="rfc.section.2.p.1">The following is a CDDL representation of the ISO-19770-2:2015 <a href="#SWID" class="xref">[SWID]</a> XML schema definition of SWID tags. This representation includes every SWID tag fields and attribute and thus supports all SWID tag use cases. The CamelCase notation used in the XML schema definition is changed to a hyphen-separated notation (e.g. ResourceCollection is named resource-collection in the CoSWID data definition).  This deviation from the original notation used in the XML representation reduces ambiguity when referencing certain attributes in corresponding textual descriptions. An attribute referred by its name in CamelCase notation explicitly relates to XML SWID tags, an attribute referred by its name in hyphen-separated notation explicitly relates to CoSWID tags. This approach simplifies the composition of further work that reference both XML SWID and CoSWID documents.</p>
+<p id="rfc.section.2.p.2">Human-readable names of members in the CDDL data definition are mapped to integer indices via a block of rules at the bottom of the definition. The 66 character strings of the SWID vocabulary that would have to be stored or transported in full if using the original vocabulary are replaced.</p>
+<p id="rfc.section.2.p.3">Concise Software Identifiers are tailored to be used in the domain of constrained-node networks. A typical endpoint is capable of storing the CoSWID tag of installed software, a constrained-node might lack that capability. CoSWID address these constraints and the corresponding specification is augmented to retain their usefulness in the thing-2-thing domain. Specific examples include, but are not limited to limiting the scope of hash algorithms to the IANA Named Information tables or including firmware attributes addressing devices that do not necessarily provide a file-system to store a CoSWID tag in.</p>
+<p id="rfc.section.2.p.4">In order to create a valid CoSWID document the structure of the corresponding CBOR message MUST adhere to the following CDDL data definition.</p>
 <pre>
 &lt;CODE BEGINS&gt;
 concise-software-identity = {
@@ -628,22 +646,209 @@ file-hash = (56: [ hash-alg-id: int,
 &lt;CODE ENDS&gt;
 </pre>
 <h1 id="rfc.section.3">
-<a href="#rfc.section.3">3.</a> <a href="#encoding-hashes-for-concise-swid-tags" id="encoding-hashes-for-concise-swid-tags">Encoding hashes for Concise SWID tags</a>
+<a href="#rfc.section.3">3.</a> <a href="#description-of-the-swid-attribute-vocabulary-definition" id="description-of-the-swid-attribute-vocabulary-definition">Description of the SWID Attribute Vocabulary Definition</a>
 </h1>
-<p id="rfc.section.3.p.1">Concise SWID add explicit support for the representation of file-hashes using algorithms that are registered at the Named Information Hash Algorithm Registry via the file-hash item (label 56). The number used as a value for hash-alg-id refers the ID in the Named Information Hash Algorithm table.</p>
+<p id="rfc.section.3.p.1">Yet to be written still&#8230;</p>
 <h1 id="rfc.section.4">
-<a href="#rfc.section.4">4.</a> <a href="#coswid-used-as-reference-integrity-measurements-coswid-rim" id="coswid-used-as-reference-integrity-measurements-coswid-rim">CoSWID used as Reference Integrity Measurements (CoSWID RIM)</a>
+<a href="#rfc.section.4">4.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
-<p id="rfc.section.4.p.1">A vendor supplied signed CoSWID tag that includes hash-values for the files that compose a software component can be used as a RIM (reference integrity measurement). A RIM is a type of declarative guidance that can be used to assert the compliance of an endpoint by assessing the installed software. In the context of remote attestation based on an attestation via a hardware security module (hardware rooted trust), a verifier can appraise the integrity of the conveyed measurements of software components using a CoSWID RIM provided by a source, such as <a href="#I-D.banghart-sacm-rolie-softwaredescriptor" class="xref">[I-D.banghart-sacm-rolie-softwaredescriptor]</a>.</p>
+<p id="rfc.section.4.p.1">This document will include requests to IANA:</p>
+<p></p>
+
+<ul>
+<li>Integer indices for SWID content attributes and information elements.</li>
+<li>Content-Type for CoAP to be used in COSE.</li>
+</ul>
 <h1 id="rfc.section.5">
-<a href="#rfc.section.5">5.</a> <a href="#firmware-swid-tags" id="firmware-swid-tags">Firmware SWID tags</a>
+<a href="#rfc.section.5">5.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
-<p id="rfc.section.5.p.1">The metadata defined in <a href="#RFC4108" class="xref">[RFC4108]</a> is incorporated in the resource-collection structure that semantically differentiates content stored in a Concise Software Identifier. The optional attributes that annoate a firmware package addresse specific characteristics of pieces of firmware stored directly on a block-device in contrast to software deployed in a file-system. Trees of relative path-elements expressed by the directory and file structure in CoSWID tags are typically unable to represent the location of a firmware on a constrained-node (small thing). The composite nature of firmware and also the actual composition of small things require a set of attributes to identify the correct component in a composite thing for each individual piece of firmware. A single component also potentially requires a number of distinct firmware parts that might depend on each other(s version). These dependencies can be limited to the scope of the component itself or extend to the scope of a small composite device. In addition, it might not be possible (or feasible) to store a CoSWID tag document (permanently) on a small thing along with the corresponding piece of firmware. Hence, CoSWID tags can be used as a concise and flexible metadata document that functions as a wrapper containing a (potentially compressed, signed, and/or encrypted) piece of firmware and its corresponding CoSWID attributes. A CoSWID tag about firmware can be transmitted as an identifying document across endpoints or used as an reference integrity measurement as usual. Alternatively, it can also convey an actual piece of firmware, serve its intended purpose as a SWID tag and then - due to the lack of a location to store it - be discarded.</p>
+<p id="rfc.section.5.p.1">SWID tags contain public information about software products and, as such, do not need to be protected against disclosure on an endpoint.  Similarly, SWID tags are intended to be easily discoverable by applications and users on an endpoint in order to make it easy to identify and collect all of an endpoint&#8217;s SWID tags.  As such, any security considerations regarding SWID tags focus on the application of SWID tags to address security challenges, and the possible disclosure of the results of those applications.</p>
+<p id="rfc.section.5.p.2">A signed SWID tag whose signature is intact can be relied upon to be unchanged since it was signed.  If the SWID tag was created by the software author, this generally means that it has undergone no change since the software application with which the tag is associated was installed.  By implication, this means that the signed tag reflects the software author&#8217;s understanding of the details of that software product.  This can be useful assurance when the information in the tag needs to be trusted, such as when the tag is being used to convey golden measurements.  By contrast, the data contained in unsigned tags cannot be trusted to be unmodified.</p>
+<p id="rfc.section.5.p.3">SWID tags are designed to be easily added and removed from an endpoint along with the installation or removal of software products.  On endpoints where addition or removal of software products is tightly controlled, the addition or removal of SWID tags can be similarly controlled.  On more open systems, where many users can manage the software inventory, SWID tags may be easier to add or remove.  On such systems, it may be possible to add or remove SWID tags in a way that does not reflect the actual presence or absence of corresponding software products.  Similarly, not all software products automatically install SWID tags, so products may be present on an endpoint without providing a corresponding SWID tag.  As such, any collection of SWID tags cannot automatically be assumed to represent either a complete or fully accurate representation of the software inventory of the endpoint.  However, especially on devices that more strictly control the ability to add or remove applications, SWID tags are an easy way to provide an preliminary understanding of that endpoint&#8217;s software inventory.</p>
+<p id="rfc.section.5.p.4">Any report of an endpoint&#8217;s SWID tag collection provides information about the software inventory of that endpoint.  If such a report is exposed to an attacker, this can tell them which software products and versions thereof are present on the endpoint.  By examining this list, the attacker might learn of the presence of applications that are vulnerable to certain types of attacks.  As noted earlier, SWID tags are designed to be easily discoverable by an endpoint, but this does not present a significant risk since an attacker would already need to have access to the endpoint to view that information.  However, when the endpoint transmits its software inventory to another party, or that inventory is stored on a server for later analysis, this can potentially expose this information to attackers who do not yet have access to the endpoint.  As such, it is important to protect the confidentiality of SWID tag information that has been collected from an endpoint, not because those tags individually contain sensitive information, but because the collection of SWID tags and their association with an endpoint reveals information about that endpoint&#8217;s attack surface.</p>
+<p id="rfc.section.5.p.5">Finally, both the ISO-19770-2:2015 XML schema definition and the Concise SWID data definition allow for the construction of &#8220;infinite&#8221; SWID tags or SWID tags that contain malicious content with the intend if creating non-deterministic states during validation or processing of SWID tags. While software product vendors are unlikely to do this, SWID tags can be created by any party and the SWID tags collected from an endpoint could contain a mixture of vendor and non-vendor created tags. For this reason, tools that consume SWID tags ought to treat the tag contents as potentially malicious and should employ input sanitizing on the tags they ingest.</p>
 <h1 id="rfc.section.6">
-<a href="#rfc.section.6">6.</a> <a href="#cose-signatures-for-concise-swid-tags" id="cose-signatures-for-concise-swid-tags">COSE signatures for Concise SWID tags</a>
+<a href="#rfc.section.6">6.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
 </h1>
-<p id="rfc.section.6.p.1">SWID tags, as defined in the ISO-19770-2:2015 XML schema, can include cryptographic signatures to protect the integrity of the SWID tag. In general, tags are signed by the tag creator (typically, although not exclusively, the vendor of the software product that the SWID tag identifies). Cryptographic signatures can make any modification of the tag detectable, which is especially important if the integrity of the tag is important, such as when the tag is providing golden measurements for files.</p>
-<p id="rfc.section.6.p.2">The ISO-19770-2:2015 XML schema uses XML DSIG to support cryptographic signatures. Concise SWID tags require a different signature scheme than this. COSE (CBOR Encoded Message Syntax) provides the required mechanism <a href="#I-D.ietf-cose-msg" class="xref">[I-D.ietf-cose-msg]</a>. Concise SWID can be wrapped in a COSE Single Signer Data Object (cose-sign1) that contains a single signature. The following CDDL defines a more restrictive subset of header attributes allowed by COSE tailored to suit the requirements of Concise SWID.</p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#change-log" id="change-log">Change Log</a>
+</h1>
+<p id="rfc.section.7.p.1">Changes from version 00 to version 01:</p>
+<p></p>
+
+<ul>
+<li>Added CWT usage for absolute SWID paths on a device</li>
+<li>Fixed cardinality of type-choices including arrays</li>
+<li>Included first iteration of firmware resource-collection</li>
+</ul>
+<p id="rfc.section.7.p.3">Changes since adopted as a WG I-D -00:</p>
+<p></p>
+
+<ul>
+<li>Removed redundant any-attributes originating from the ISO-19770-2:2015 XML schema definition</li>
+<li>Fixed broken multi-map members</li>
+<li>Introduced a more restrictive item (any-element-map) to represent custom maps, increased restriction on types for the any-attribute, accordingly</li>
+<li>Fixed X.1520 reference</li>
+<li>Minor type changes of some attributes (e.g. NMTOKENS)</li>
+<li>Added semantic differentiation of various name types (e,g. fs-name)</li>
+</ul>
+<p id="rfc.section.7.p.5">Changes from version 00 to version 01:</p>
+<p></p>
+
+<ul>
+<li>Ambiguity between evidence and payload eliminated by introducing explicit members (while still</li>
+<li>allowing for &#8220;empty&#8221; SWID tags)</li>
+<li>Added a relatively restrictive COSE envelope using cose_sign1 to define signed CoSWID (single signer only, at the moment)</li>
+<li>Added a definition how to encode hashes that can be stored in the any-member using existing IANA tables to reference hash-algorithms</li>
+</ul>
+<p id="rfc.section.7.p.7">Changes from version 01 to version 02:</p>
+<p></p>
+
+<ul>
+<li>Enforced a more strict separation between the core CoSWID definition and additional usage by moving content to corresponding appendices.</li>
+<li>Removed artifacts inherited from the reference schema provided by ISO (e.g. NMTOKEN(S))</li>
+<li>Simplified the core data definition by removing group and type choices where possible</li>
+<li>Minor reordering of map members</li>
+<li>Added a first extension point to address requested flexibility for extensions beyond the any-element</li>
+</ul>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> <a href="#contributors" id="contributors">Contributors</a>
+</h1>
+<h1 id="rfc.references">
+<a href="#rfc.references">9.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">9.1.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.ietf-ace-cbor-web-token">[I-D.ietf-ace-cbor-web-token]</b></td>
+<td class="top">
+<a>Jones, M.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-ace-cbor-web-token-05">CBOR Web Token (CWT)</a>", Internet-Draft draft-ietf-ace-cbor-web-token-05, June 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-cose-msg">[I-D.ietf-cose-msg]</b></td>
+<td class="top">
+<a>Schaad, J.</a>, "<a href="http://tools.ietf.org/html/draft-ietf-cose-msg-24">CBOR Object Signing and Encryption (COSE)</a>", Internet-Draft draft-ietf-cose-msg-24, November 2016.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4108">[RFC4108]</b></td>
+<td class="top">
+<a>Housley, R.</a>, "<a href="http://tools.ietf.org/html/rfc4108">Using Cryptographic Message Syntax (CMS) to Protect Firmware Packages</a>", RFC 4108, DOI 10.17487/RFC4108, August 2005.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC4949">[RFC4949]</b></td>
+<td class="top">
+<a>Shirey, R.</a>, "<a href="http://tools.ietf.org/html/rfc4949">Internet Security Glossary, Version 2</a>", FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7049">[RFC7049]</b></td>
+<td class="top">
+<a>Bormann, C.</a> and <a>P. Hoffman</a>, "<a href="http://tools.ietf.org/html/rfc7049">Concise Binary Object Representation (CBOR)</a>", RFC 7049, DOI 10.17487/RFC7049, October 2013.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7228">[RFC7228]</b></td>
+<td class="top">
+<a>Bormann, C.</a>, <a>Ersue, M.</a> and <a>A. Keranen</a>, "<a href="http://tools.ietf.org/html/rfc7228">Terminology for Constrained-Node Networks</a>", RFC 7228, DOI 10.17487/RFC7228, May 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="SAM">[SAM]</b></td>
+<td class="top">"<a>Information technology - Software asset management - Part 5: Overview and vocabulary</a>", ISO/IEC 19770-5:2013, November 2013.</td>
+</tr>
+<tr>
+<td class="reference"><b id="SWID">[SWID]</b></td>
+<td class="top">"<a>Information technology - Software asset management - Part 2: Software identification tag'</a>", ISO/IEC 19770-2:2015, October 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="X.1520">[X.1520]</b></td>
+<td class="top">"<a>Recommendation ITU-T X.1520 (2014), Common vulnerabilities and exposures</a>", April 2011.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">9.2.</a> Informative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.banghart-sacm-rolie-softwaredescriptor">[I-D.banghart-sacm-rolie-softwaredescriptor]</b></td>
+<td class="top">
+<a>Waltermire, D.</a> and <a>S. Banghart</a>, "<a href="http://tools.ietf.org/html/draft-banghart-sacm-rolie-softwaredescriptor-01">Definition of the ROLIE Software Descriptor Extension</a>", Internet-Draft draft-banghart-sacm-rolie-softwaredescriptor-01, May 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.birkholz-tuda">[I-D.birkholz-tuda]</b></td>
+<td class="top">
+<a>Fuchs, A.</a>, <a>Birkholz, H.</a>, <a>McDonald, I.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/draft-birkholz-tuda-04">Time-Based Uni-Directional Attestation</a>", Internet-Draft draft-birkholz-tuda-04, March 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.greevenbosch-appsawg-cbor-cddl">[I-D.greevenbosch-appsawg-cbor-cddl]</b></td>
+<td class="top">
+<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl-10">CBOR data definition language (CDDL): a notational convention to express CBOR data structures</a>", Internet-Draft draft-greevenbosch-appsawg-cbor-cddl-10, March 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-sacm-terminology">[I-D.ietf-sacm-terminology]</b></td>
+<td class="top">
+<a>Birkholz, H.</a>, <a>Lu, J.</a>, <a>Strassner, J.</a> and <a>N. Cam-Winget</a>, "<a href="http://tools.ietf.org/html/draft-ietf-sacm-terminology-12">Security Automation and Continuous Monitoring (SACM) Terminology</a>", Internet-Draft draft-ietf-sacm-terminology-12, March 2017.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.appendix.A">
+<a href="#rfc.appendix.A">Appendix A.</a> <a href="#explicit-file-hash-type-used-in-concise-swid-tags-label-56" id="explicit-file-hash-type-used-in-concise-swid-tags-label-56">Explicit file-hash Type Used in Concise SWID Tags (label 56)</a>
+</h1>
+<p id="rfc.section.A.p.1">CoSWID add explicit support for the representation of file-hashes using algorithms that are registered at the Named Information Hash Algorithm Registry via the file-hash member (label 56).</p>
+<pre>
+file-hash = (56: [ hash-alg-id: int, hash-value: bstr ] )
+</pre>
+<p id="rfc.section.A.p.2">The number used as a value for hash-alg-id MUST refer the ID in the Named Information Hash Algorithm table; other hash algorithms MUST NOT be used. The hash-value MUST represent the raw hash value of the file-entry the file-hash type is included in.</p>
+<h1 id="rfc.appendix.B">
+<a href="#rfc.appendix.B">Appendix B.</a> <a href="#coswid-attributes-for-firmware-label-57" id="coswid-attributes-for-firmware-label-57">CoSWID Attributes for Firmware (label 57)</a>
+</h1>
+<p id="rfc.section.B.p.1">The ISO-19770-2:2015 specification of SWID tags assumes the existence of a file system a software component is installed and stored in. In the case of constrained-node networks <a href="#RFC7228" class="xref">[RFC7228]</a> or network equipment this assumption might not apply. Concise software instances in the form of (modular) firmware are often stored directly on a block device that is a hardware component of the constrained-node or network equipment. Multiple differentiable block devices or segmented block devices that contain parts of modular firmware components (potentially each with their own instance version) are already common at the time of this writing.</p>
+<p id="rfc.section.B.p.2">The optional attributes that annotate a firmware package address specific characteristics of pieces of firmware stored directly on a block-device in contrast to software deployed in a file-system.  In essence, trees of relative path-elements expressed by the directory and file structure in CoSWID tags are typically unable to represent the location of a firmware on a constrained-node (small thing). The composite nature of firmware and also the actual composition of small things require a set of attributes to address the identification of the correct component in a composite thing for each individual piece of firmware. A single component also potentially requires a number of distinct firmware parts that might depend on each other (versions). These dependencies can be limited to the scope of the component itself or extend to the scope of a larger composite device. In addition, it might not be possible (or feasible) to store a CoSWID tag document (permanently) on a small thing along with the corresponding piece of firmware.</p>
+<p id="rfc.section.B.p.3">To address the specific characteristics of firmware, the extension point <samp>resource-extension is used to allow for an additional type of resource description---firmware-entry---thereby increasing the self-descriptiveness and flexibility of CoSWID. The optional use of the extension point</samp>resource-extension in respect to firmware MUST adhere to the following CDDL data definition.</p>
+<pre>
+&lt;CODE BEGINS&gt;
+$$resource-extension //= (firmware-entry,)
+
+firmware = {
+  firmware-name,                  ; inherited from RFC4108
+  ? firmware-version,
+  ? firmware-package-identifier,  ; inherited from RFC4108
+  ? dependency,                   ; inherited from RFC4108
+  ? component-index,              ; equivalent to RFC4108 fwPkgType
+  ? block-device-identifier,
+  ? target-hardware-identifier,   ; an RFC4108 alternative to model-label
+  model-label,
+  ? firmware-hash,                ; a hash for a single, incl. NI hash-algo index
+  ? cms-firmware-package,         ; RCF4108, experimental, this is an actual firmware blob!
+}
+
+firmware-entry = (57: firmware / [ 2* firmware ])
+firmware-hash = (58: [ hash-alg-id: int,
+                      hash-value: bstr,
+                     ]
+                )
+firmware-name = (59 : text)
+firmware-version = (60 : text / int)
+component-index = (61 : int)
+model-label = (62: text / int)
+block-device-identifier = (63 : text / int)
+cms-firmware-package = (64: bstr)
+firmware-package-identifier = (65: text)
+target-hardware-identifier = (66: text)
+dependency = (67: { ? firmware-name,
+                    ? firmware-version,
+                    ? firmware-package-identifier,
+                  }
+             )
+&lt;CODE ENDS&gt;
+</pre>
+<p id="rfc.section.B.p.4">The members of the firmware group that constitutes the content of the firmware-entry is based on the metadata about firmware defined in <a href="#RFC4108" class="xref">[RFC4108]</a>. As with every semantic differentiation that is supported by the resource-collection type, the use of firmware-entry is optional. It is REQUIRED not to instantiate more than one firmware-entry, as the firmware group is used in a map and therefore only allows for unique labels.</p>
+<p id="rfc.section.B.p.5">The optional cms-firmware-package member allows to include the actual firmware in the CoSWID tag that also expresses its metadata as a byte-string. This option enables a CoSWID tag to be used as a container or wrapper that composes both firmware and its metadata in a single document (which again can be signed, encrypted and/or compressed). In consequence, a CoSWID tag about firmware can be conveyed as an identifying document across endpoints or used as a reference integrity measurement as usual. Alternatively, it can also convey an actual piece of firmware, serve its intended purpose as a SWID tag and then - due to the lack of a location to store it - be discarded.</p>
+<h1 id="rfc.appendix.C">
+<a href="#rfc.appendix.C">Appendix C.</a> <a href="#signed-concise-swid-tags-using-cose" id="signed-concise-swid-tags-using-cose">Signed Concise SWID Tags using COSE</a>
+</h1>
+<p id="rfc.section.C.p.1">SWID tags, as defined in the ISO-19770-2:2015 XML schema, can include cryptographic signatures to protect the integrity of the SWID tag. In general, tags are signed by the tag creator (typically, although not exclusively, the vendor of the software product that the SWID tag identifies).  Cryptographic signatures can make any modification of the tag detectable, which is especially important if the integrity of the tag is important, such as when the tag is providing reference integrity measurments for files.</p>
+<p id="rfc.section.C.p.2">The ISO-19770-2:2015 XML schema uses XML DSIG to support cryptographic signatures. CoSWID tags require a different signature scheme than this. COSE (CBOR Object Signing and Encryption) provides the required mechanism <a href="#I-D.ietf-cose-msg" class="xref">[I-D.ietf-cose-msg]</a>. Concise SWID can be wrapped in a COSE Single Signer Data Object (cose-sign1) that contains a single signature. The following CDDL defines a more restrictive subset of header attributes allowed by COSE tailored to suit the requirements of Concise SWID.</p>
 <pre>
 &lt;CODE BEGINS&gt;
 signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
@@ -670,132 +875,29 @@ COSE-Sign1-coswid = [
 ]
 &lt;CODE ENDS&gt;
 </pre>
-<h1 id="rfc.section.7">
-<a href="#rfc.section.7">7.</a> <a href="#cbor-web-token-for-concise-swid-tags" id="cbor-web-token-for-concise-swid-tags">CBOR Web Token for Concise SWID tags</a>
+<h1 id="rfc.appendix.D">
+<a href="#rfc.appendix.D">Appendix D.</a> <a href="#coswid-used-as-reference-integrity-measurements-coswid-rim" id="coswid-used-as-reference-integrity-measurements-coswid-rim">CoSWID used as Reference Integrity Measurements (CoSWID RIM)</a>
 </h1>
-<p id="rfc.section.7.p.1">A typical requirement regarding specific instantiations of endpoints &#8211; and, as a result, specific instantiations of software components - is a representation of the absolute path of a CoSWID tag document in a file system in order to derive absolute paths of files represented in the corresponding CoSWID tag. The absolute path of an evidence CoSWID tag can be included as a claim in the header of a CBOR Web Token <a href="#I-D.ietf-ace-cbor-web-token" class="xref">[I-D.ietf-ace-cbor-web-token]</a>. Depending on the source of the token, the claim can be in the protected or unprotected header portion.</p>
+<p id="rfc.section.D.p.1">A vendor supplied signed CoSWID tag that includes hash-values for the files that compose a software component can be used as a RIM (reference integrity measurement). A RIM is a type of declarative guidance that can be used to assert the compliance of an endpoint by assessing the installed software. In the context of remote attestation based on an attestation via hardware rooted trust, a verifier can appraise the integrity of the conveyed measurements of software components using a CoSWID RIM provided by a source, such as <a href="#I-D.banghart-sacm-rolie-softwaredescriptor" class="xref">[I-D.banghart-sacm-rolie-softwaredescriptor]</a>.</p>
+<p></p>
+
+<dl>
+<dt>RIM Manifests (RIMM):</dt>
+<dd style="margin-left: 8">A group of SWID tags about the same (sub-)system, system entity, or (sub-)component (compare <a href="#RFC4949" class="xref">[RFC4949]</a>). A RIMM manifest is a distinct document that is typically conveyed en-block and constitutes declarative guidance in respect to a specific (target) endpoint (compare <a href="#I-D.ietf-sacm-terminology" class="xref">[I-D.ietf-sacm-terminology]</a>).</dd>
+</dl>
+<p id="rfc.section.D.p.3">If multiple CoSWID compose a RIMM, the following CDDL data definition SHOULD be used.</p>
+<pre>
+RIMM = [ + concise-software-identity / signed-coswid ]
+</pre>
+<h1 id="rfc.appendix.E">
+<a href="#rfc.appendix.E">Appendix E.</a> <a href="#cbor-web-token-for-concise-swid-tags" id="cbor-web-token-for-concise-swid-tags">CBOR Web Token for Concise SWID Tags</a>
+</h1>
+<p id="rfc.section.E.p.1">A typical requirement regarding specific instantiations of endpoints &#8211; and, as a result, specific instantiations of software components - is a representation of the absolute path of a CoSWID tag document in a file system in order to derive absolute paths of files represented in the corresponding CoSWID tag. The absolute path of an evidence CoSWID tag can be included as a claim in the header of a CBOR Web Token <a href="#I-D.ietf-ace-cbor-web-token" class="xref">[I-D.ietf-ace-cbor-web-token]</a>. Depending on the source of the token, the claim can be in the protected or unprotected header portion.</p>
 <pre>
 &lt;CODE BEGINS&gt;
  CDDL TBD
 &lt;CODE ENDS&gt;
 </pre>
-<h1 id="rfc.section.8">
-<a href="#rfc.section.8">8.</a> <a href="#iana-considerations" id="iana-considerations">IANA considerations</a>
-</h1>
-<p id="rfc.section.8.p.1">This document will include requests to IANA:</p>
-<p></p>
-
-<ul>
-<li>Integer indices for SWID content attributes and information elements.</li>
-<li>Content-Type for CoAP to be used in COSE.</li>
-</ul>
-<h1 id="rfc.section.9">
-<a href="#rfc.section.9">9.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
-</h1>
-<p id="rfc.section.9.p.1">SWID tags contain public information about software products and, as such, do not need to be protected against disclosure on an endpoint.  Similarly, SWID tags are intended to be easily discoverable by applications and users on an endpoint in order to make it easy to identify and collect all of an endpoint&#8217;s SWID tags.  As such, any security considerations regarding SWID tags focus on the application of SWID tags to address security challenges, and the possible disclosure of the results of those applications.</p>
-<p id="rfc.section.9.p.2">A signed SWID tag whose signature is intact can be relied upon to be unchanged since it was signed.  If the SWID tag was created by the software author, this generally means that it has undergone no change since the software application with which the tag is associated was installed.  By implication, this means that the signed tag reflects the software author&#8217;s understanding of the details of that software product.  This can be useful assurance when the information in the tag needs to be trusted, such as when the tag is being used to convey golden measurements.  By contrast, the data contained in unsigned tags cannot be trusted to be unmodified.</p>
-<p id="rfc.section.9.p.3">SWID tags are designed to be easily added and removed from an endpoint along with the installation or removal of software products.  On endpoints where addition or removal of software products is tightly controlled, the addition or removal of SWID tags can be similarly controlled.  On more open systems, where many users can manage the software inventory, SWID tags may be easier to add or remove.  On such systems, it may be possible to add or remove SWID tags in a way that does not reflect the actual presence or absence of corresponding software products.  Similarly, not all software products automatically install SWID tags, so products may be present on an endpoint without providing a corresponding SWID tag.  As such, any collection of SWID tags cannot automatically be assumed to represent either a complete or fully accurate representation of the software inventory of the endpoint.  However, especially on devices that more strictly control the ability to add or remove applications, SWID tags are an easy way to provide an preliminary understanding of that endpoint&#8217;s software inventory.</p>
-<p id="rfc.section.9.p.4">Any report of an endpoint&#8217;s SWID tag collection provides information about the software inventory of that endpoint.  If such a report is exposed to an attacker, this can tell them which software products and versions thereof are present on the endpoint.  By examining this list, the attacker might learn of the presence of applications that are vulnerable to certain types of attacks.  As noted earlier, SWID tags are designed to be easily discoverable by an endpoint, but this does not present a significant risk since an attacker would already need to have access to the endpoint to view that information.  However, when the endpoint transmits its software inventory to another party, or that inventory is stored on a server for later analysis, this can potentially expose this information to attackers who do not yet have access to the endpoint.  As such, it is important to protect the confidentiality of SWID tag information that has been collected from an endpoint, not because those tags individually contain sensitive information, but because the collection of SWID tags and their association with an endpoint reveals information about that endpoint&#8217;s attack surface.</p>
-<p id="rfc.section.9.p.5">Finally, both the ISO-19770-2:2015 XML schema definition and the Concise SWID data definition allow for the construction of &#8220;infinite&#8221; SWID tags or SWID tags that contain malicious content with the intend if creating non-deterministic states during validation or processing of SWID tags. While software product vendors are unlikely to do this, SWID tags can be created by any party and the SWID tags collected from an endpoint could contain a mixture of vendor and non-vendor created tags. For this reason, tools that consume SWID tags ought to treat the tag contents as potentially malicious and should employ input sanitizing on the tags they ingest.</p>
-<h1 id="rfc.section.10">
-<a href="#rfc.section.10">10.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
-</h1>
-<h1 id="rfc.section.11">
-<a href="#rfc.section.11">11.</a> <a href="#change-log" id="change-log">Change Log</a>
-</h1>
-<p id="rfc.section.11.p.1">Changes from version 00 to version 01:</p>
-<p></p>
-
-<ul>
-<li>Added CWT usage for absolute SWID paths on a device</li>
-<li>Fixed cardinality of type-choices including arrays</li>
-<li>Included first iteration of firmware resource-collection</li>
-</ul>
-<p id="rfc.section.11.p.3">Changes since adopted as a WG I-D -00:</p>
-<p></p>
-
-<ul>
-<li>Removed redundant any-attributes originating from the ISO-19770-2:2015 XML schema definition</li>
-<li>Fixed broken multi-map members</li>
-<li>Introduced a more restrictive item (any-element-map) to represent custom maps, increased restriction on types for the any-attribute, accordingly</li>
-<li>Fixed X.1520 reference</li>
-<li>Minor type changes of some attributes (e.g. NMTOKENS)</li>
-<li>Added semantic differentiation of various name types (e,g. fs-name)</li>
-</ul>
-<p id="rfc.section.11.p.5">Changes from version 00 to version 01:</p>
-<p></p>
-
-<ul>
-<li>Ambiguity between evidence and payload eliminated by introducing explicit members (while still allowing for &#8220;empty&#8221; swid tags)</li>
-<li>Added a relatively restrictive COSE envelope using cose_sign1 to define signed coswids (single signer only, at the moment)</li>
-<li>Added a defintion how to encode hashes that can be stored in the any-member using existing IANA tables to reference hash-algorithms</li>
-</ul>
-<p id="rfc.section.11.p.7">First version -00</p>
-<h1 id="rfc.section.12">
-<a href="#rfc.section.12">12.</a> <a href="#contributors" id="contributors">Contributors</a>
-</h1>
-<h1 id="rfc.references">
-<a href="#rfc.references">13.</a> References</h1>
-<h1 id="rfc.references.1">
-<a href="#rfc.references.1">13.1.</a> Normative References</h1>
-<table><tbody>
-<tr>
-<td class="reference"><b id="I-D.ietf-ace-cbor-web-token">[I-D.ietf-ace-cbor-web-token]</b></td>
-<td class="top">
-<a>Jones, M.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-ace-cbor-web-token-05">CBOR Web Token (CWT)</a>", Internet-Draft draft-ietf-ace-cbor-web-token-05, June 2017.</td>
-</tr>
-<tr>
-<td class="reference"><b id="I-D.ietf-cose-msg">[I-D.ietf-cose-msg]</b></td>
-<td class="top">
-<a>Schaad, J.</a>, "<a href="http://tools.ietf.org/html/draft-ietf-cose-msg-24">CBOR Object Signing and Encryption (COSE)</a>", Internet-Draft draft-ietf-cose-msg-24, November 2016.</td>
-</tr>
-<tr>
-<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
-<td class="top">
-<a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
-</tr>
-<tr>
-<td class="reference"><b id="RFC4108">[RFC4108]</b></td>
-<td class="top">
-<a>Housley, R.</a>, "<a href="http://tools.ietf.org/html/rfc4108">Using Cryptographic Message Syntax (CMS) to Protect Firmware Packages</a>", RFC 4108, DOI 10.17487/RFC4108, August 2005.</td>
-</tr>
-<tr>
-<td class="reference"><b id="RFC7049">[RFC7049]</b></td>
-<td class="top">
-<a>Bormann, C.</a> and <a>P. Hoffman</a>, "<a href="http://tools.ietf.org/html/rfc7049">Concise Binary Object Representation (CBOR)</a>", RFC 7049, DOI 10.17487/RFC7049, October 2013.</td>
-</tr>
-<tr>
-<td class="reference"><b id="SAM">[SAM]</b></td>
-<td class="top">"<a>Information technology - Software asset management - Part 5: Overview and vocabulary</a>", ISO/IEC 19770-5:2013, November 2013.</td>
-</tr>
-<tr>
-<td class="reference"><b id="SWID">[SWID]</b></td>
-<td class="top">"<a>Information technology - Software asset management - Part 2: Software identification tag'</a>", ISO/IEC 19770-2:2015, October 2015.</td>
-</tr>
-<tr>
-<td class="reference"><b id="X.1520">[X.1520]</b></td>
-<td class="top">"<a>Recommendation ITU-T X.1520 (2014), Common vulnerabilities and exposures</a>", April 2011.</td>
-</tr>
-</tbody></table>
-<h1 id="rfc.references.2">
-<a href="#rfc.references.2">13.2.</a> Informative References</h1>
-<table><tbody>
-<tr>
-<td class="reference"><b id="I-D.banghart-sacm-rolie-softwaredescriptor">[I-D.banghart-sacm-rolie-softwaredescriptor]</b></td>
-<td class="top">
-<a>Waltermire, D.</a> and <a>S. Banghart</a>, "<a href="http://tools.ietf.org/html/draft-banghart-sacm-rolie-softwaredescriptor-01">Definition of the ROLIE Software Descriptor Extension</a>", Internet-Draft draft-banghart-sacm-rolie-softwaredescriptor-01, May 2017.</td>
-</tr>
-<tr>
-<td class="reference"><b id="I-D.birkholz-tuda">[I-D.birkholz-tuda]</b></td>
-<td class="top">
-<a>Fuchs, A.</a>, <a>Birkholz, H.</a>, <a>McDonald, I.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/draft-birkholz-tuda-04">Time-Based Uni-Directional Attestation</a>", Internet-Draft draft-birkholz-tuda-04, March 2017.</td>
-</tr>
-<tr>
-<td class="reference"><b id="I-D.greevenbosch-appsawg-cbor-cddl">[I-D.greevenbosch-appsawg-cbor-cddl]</b></td>
-<td class="top">
-<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl-10">CBOR data definition language (CDDL): a notational convention to express CBOR data structures</a>", Internet-Draft draft-greevenbosch-appsawg-cbor-cddl-10, March 2017.</td>
-</tr>
-</tbody></table>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
