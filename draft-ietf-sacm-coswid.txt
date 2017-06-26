@@ -766,11 +766,11 @@ Appendix B.  CoSWID Attributes for Firmware (label 57)
    corresponding piece of firmware.
 
    To address the specific characteristics of firmware, the extension
-   point "resource-extension is used to allow for an additional type of
-   resource description---firmware-entry---thereby increasing the self-
+   point "$$resource-extension" is used to allow for an additional type
+   of resource description--firmware-entry--thereby increasing the self-
    descriptiveness and flexibility of CoSWID.  The optional use of the
-   extension point"resource-extension in respect to firmware MUST adhere
-   to the following CDDL data definition.
+   extension point "$$resource-extension" in respect to firmware MUST
+   adhere to the following CDDL data definition.
 
 
 
