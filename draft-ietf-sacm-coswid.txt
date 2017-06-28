@@ -5,12 +5,12 @@
 SACM Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                     J. Fitzgerald-McKay
-Expires: December 28, 2017                         Department of Defense
+Expires: December 30, 2017                         Department of Defense
                                                               C. Schmidt
                                                    The MITRE Corporation
                                                            D. Waltermire
                                                                     NIST
-                                                           June 26, 2017
+                                                           June 28, 2017
 
 
                       Concise Software Identifiers
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 28, 2017.
+   This Internet-Draft will expire on December 30, 2017.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 1]
+Birkholz, et al.        Expires December 30, 2017               [Page 1]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 2]
+Birkholz, et al.        Expires December 30, 2017               [Page 2]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -165,7 +165,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 3]
+Birkholz, et al.        Expires December 30, 2017               [Page 3]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -221,7 +221,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 4]
+Birkholz, et al.        Expires December 30, 2017               [Page 4]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -277,7 +277,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 5]
+Birkholz, et al.        Expires December 30, 2017               [Page 5]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -333,7 +333,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 6]
+Birkholz, et al.        Expires December 30, 2017               [Page 6]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -389,16 +389,16 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 7]
+Birkholz, et al.        Expires December 30, 2017               [Page 7]
 
 Internet-Draft                   COSWID                        June 2017
 
 
    entity-entry = (2: entity / [ 2* entity ])
-   evidence-entry = (3: evidence / [ 2* evidence ])
-   link-entry = (4: link / [ * link ])
+   evidence-entry = (3: evidence)
+   link-entry = (4: link / [ 2* link ])
    software-meta-entry = (5: software-meta / [ 2* software-meta ])
-   payload-entry = (6: payload / [ 2* payload ])
+   payload-entry = (6: payload)
    any-element-entry = (7: any-element-map / [ 2* any-element-map ])
    corpus = (8: bool)
    patch = (9: bool)
@@ -445,7 +445,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 8]
+Birkholz, et al.        Expires December 30, 2017               [Page 8]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -501,7 +501,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017               [Page 9]
+Birkholz, et al.        Expires December 30, 2017               [Page 9]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -557,7 +557,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 10]
+Birkholz, et al.        Expires December 30, 2017              [Page 10]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -613,7 +613,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 11]
+Birkholz, et al.        Expires December 30, 2017              [Page 11]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -669,7 +669,7 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 12]
+Birkholz, et al.        Expires December 30, 2017              [Page 12]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -725,7 +725,7 @@ Appendix A.  Explicit file-hash Type Used in Concise SWID Tags (label
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 13]
+Birkholz, et al.        Expires December 30, 2017              [Page 13]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -781,7 +781,7 @@ Appendix B.  CoSWID Attributes for Firmware (label 57)
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 14]
+Birkholz, et al.        Expires December 30, 2017              [Page 14]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -837,7 +837,7 @@ dependency = (67: { ? firmware-name,
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 15]
+Birkholz, et al.        Expires December 30, 2017              [Page 15]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -893,7 +893,7 @@ Appendix C.  Signed Concise SWID Tags using COSE
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 16]
+Birkholz, et al.        Expires December 30, 2017              [Page 16]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -949,7 +949,7 @@ Appendix D.  CoSWID used as Reference Integrity Measurements (CoSWID
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 17]
+Birkholz, et al.        Expires December 30, 2017              [Page 17]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -1005,7 +1005,7 @@ Authors' Addresses
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 18]
+Birkholz, et al.        Expires December 30, 2017              [Page 18]
 
 Internet-Draft                   COSWID                        June 2017
 
@@ -1061,4 +1061,4 @@ Internet-Draft                   COSWID                        June 2017
 
 
 
-Birkholz, et al.        Expires December 28, 2017              [Page 19]
+Birkholz, et al.        Expires December 30, 2017              [Page 19]
