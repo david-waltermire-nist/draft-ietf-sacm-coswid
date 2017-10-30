@@ -23,13 +23,12 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    right: calc(50vw - 500px);
+    right: calc(50vw - 525px);
     width: 300px;
-    padding: 0 1em;
     z-index: 1;
   }
   #rfc\.toc {
-    top: 16px;
+    top: 15px;
   }
   ul.toc {
     top: 80px;
@@ -37,8 +36,7 @@
   }
 
   body {
-    padding-left: 1.5em;
-    padding-right: 29em;
+    padding-right: 350px;
   }
 }
 
@@ -47,7 +45,7 @@ body {
   color: #333;
   font-size-adjust: 0.5;
   line-height: 130%;
-  margin: 2.5em auto;
+  margin: 25px auto;
   max-width: 724px;
 }
 
@@ -295,15 +293,17 @@ address {
 <link href="#rfc.appendix.C" rel="Chapter" title="C Signed Concise SWID Tags using COSE">
 <link href="#rfc.appendix.D" rel="Chapter" title="D CoSWID used as Reference Integrity Measurements (CoSWID RIM)">
 <link href="#rfc.appendix.E" rel="Chapter" title="E CBOR Web Token for Concise SWID Tags">
+<link href="#rfc.appendix.F" rel="Chapter" title="F Group Definitions">
+<link href="#rfc.appendix.G" rel="Chapter" title="G Item Definitions">
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.6.2 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.8.2 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D. Waltermire" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-sacm-coswid-01" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-6-28" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-sacm-coswid-latest" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-10-30" />
   <meta name="dct.abstract" content="This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, CoSWID support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
   <meta name="description" content="This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, CoSWID support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
 
@@ -327,7 +327,7 @@ address {
 <td class="right">J. Fitzgerald-McKay</td>
 </tr>
 <tr>
-<td class="left">Expires: December 30, 2017</td>
+<td class="left">Expires: May 3, 2018</td>
 <td class="right">Department of Defense</td>
 </tr>
 <tr>
@@ -348,7 +348,7 @@ address {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">June 28, 2017</td>
+<td class="right">October 30, 2017</td>
 </tr>
 
     	
@@ -356,18 +356,18 @@ address {
   </table>
 
   <p class="title">Concise Software Identifiers<br />
-  <span class="filename">draft-ietf-sacm-coswid-01</span></p>
+  <span class="filename">draft-ietf-sacm-coswid-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
 <p>This document defines a concise representation of ISO 19770-2:2015 Software Identifiers (SWID tags) that is interoperable with the XML schema definition of ISO 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, CoSWID support the definition of additional semantics via well-defined data definitions incorporated by extension points.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
-<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 30, 2017.</p>
+<p>This Internet-Draft will expire on May 3, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
-<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
   <hr class="noprint" />
@@ -410,6 +410,10 @@ address {
 </li>
 <li>Appendix E.   <a href="#rfc.appendix.E">CBOR Web Token for Concise SWID Tags</a>
 </li>
+<li>Appendix F.   <a href="#rfc.appendix.F">Group Definitions</a>
+</li>
+<li>Appendix G.   <a href="#rfc.appendix.G">Item Definitions</a>
+</li>
 <li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
 
@@ -428,9 +432,9 @@ address {
 <li>Remote Attestation, which requires a link between reference integrity measurements (RIM) and security logs of measured software components <a href="#I-D.birkholz-tuda" class="xref">[I-D.birkholz-tuda]</a>.</li>
 </ul>
 <p id="rfc.section.1.p.3">SWID tags, as defined in ISO-19770-2:2015 <a href="#SWID" class="xref">[SWID]</a>, provide a standardized format for a record that identifies and describes a specific release of a software product. Different software products, and even different releases of a particular software product, each have a different SWID tag record associated with them. In addition to defining the format of these records, ISO-19770-2:2015 defines requirements concerning the SWID tag life-cycle. Specifically, when a software product is installed on an endpoint, that product&#8217;s SWID tag is also installed. Likewise, when the product is uninstalled or replaced, the SWID tag is deleted or replaced, as appropriate. As a result, ISO-19770-2:2015 describes a system wherein there is a correspondence between the set of installed software products on an endpoint, and the presence on that endpoint of the SWID tags corresponding to those products.</p>
-<p id="rfc.section.1.p.4">SWID tags are meant to be flexible and able to express a broad set of metadata about a software product. Moreover, there are multiple types of SWID tags, each providing different types of information. For example, a &#8220;corpus tag&#8221; is used to describe an application&#8217;s installation image on an installation media, while a &#8220;patch tag&#8221; is meant to describe a patch that modifies some other application. While there are very few required fields in SWID tags, there are many optional fields that support different uses of these different types of tags. While a SWID tag that consisted only of required fields could be a few hundred bytes in size, a tag containing many of the optional fields could be many orders of magnitude larger.</p>
+<p id="rfc.section.1.p.4">SWID tags are meant to be flexible and able to express a broad set of metadata about a software product. Moreover, there are multiple types of SWID tags, each providing different types of information. For example, a &#8220;corpus tag&#8221; is used to describe an application&#8217;s installation image on an installation media, while a &#8220;patch tag&#8221; is meant to describe a patch that modifies some other application.  While there are very few required fields in SWID tags, there are many optional fields that support different uses of these different types of tags. While a SWID tag that consisted only of required fields could be a few hundred bytes in size, a tag containing many of the optional fields could be many orders of magnitude larger.</p>
 <p id="rfc.section.1.p.5">This document defines a more concise representation of SWID tags in the Concise Binary Object Representation (CBOR) <a href="#RFC7049" class="xref">[RFC7049]</a>. This is described via the Concise Data Definition Language (CDDL) <a href="#I-D.greevenbosch-appsawg-cbor-cddl" class="xref">[I-D.greevenbosch-appsawg-cbor-cddl]</a>. The resulting Concise SWID data definition is interoperable with the XML schema definition of ISO-19770-2:2015 <a href="#SWID" class="xref">[SWID]</a>. The vocabulary, i.e., the CDDL names of the types and members used in the CoSWID data definition, is mapped to more concise labels represented as small integers. The names used in the CDDL data definition and the mapping to the CBOR representation using integer labels is based on the vocabulary of the XML attribute and element names defined in ISO-19770-2:2015.</p>
-<p id="rfc.section.1.p.6">Real-world instances of SWID tags can be fairly large, and the communication of SWID tags in use-applications such as those described earlier can cause a large amount of data to be transported.  This can be larger than acceptable for constrained devices and networks. CoSWID tags significantly reduce the amount of data transported as compared to a typical SWID tag. This reduction is enable through the use of CBOR, which maps human-readable labels of that content to more concise integer labels (indices). This allows SWID tags to be part of an enterprise security solution for a wider range of endpoints and environments.</p>
+<p id="rfc.section.1.p.6">Real-world instances of SWID tags can be fairly large, and the communication of SWID tags in use-applications such as those described earlier can cause a large amount of data to be transported. This can be larger than acceptable for constrained devices and networks. CoSWID tags significantly reduce the amount of data transported as compared to a typical SWID tag. This reduction is enable through the use of CBOR, which maps human-readable labels of that content to more concise integer labels (indices). This allows SWID tags to be part of an enterprise security solution for a wider range of endpoints and environments.</p>
 <h1 id="rfc.section.1.1">
 <a href="#rfc.section.1.1">1.1.</a> <a href="#concise-swid-extensions" id="concise-swid-extensions">Concise SWID Extensions</a>
 </h1>
@@ -469,7 +473,7 @@ concise-software-identity = {
   ? supplemental,
   tag-id,
   ? tag-version,
-  ? version,
+  ? software-version,
   ? version-scheme,
 }
 
@@ -501,7 +505,7 @@ resource-collection = (
 file = {
   filesystem-item,
   ? size,
-  ? version,
+  ? file-version,
   ? file-hash,
 }
 
@@ -593,7 +597,7 @@ patch = (9: bool)
 media = (10: text)
 supplemental = (11: bool)
 tag-version = (12: integer)
-version = (13: text)
+software-version = (13: text)
 version-scheme = (14: text)
 lang = (15: text)
 directory-entry = (16: directory / [ 2* directory ])
@@ -601,45 +605,47 @@ file-entry = (17: file / [ 2* file ])
 process-entry = (18: process / [ 2* process ])
 resource-entry = (19: resource / [ 2* resource ])
 size = (20: integer)
-key = (21: bool)
-location = (22: text)
-fs-name = (23: text)
-root = (24: text)
-path-elements = (25: { * file-entry,
+file-version = (21: text)
+key = (22: bool)
+location = (23: text)
+fs-name = (24: text)
+root = (25: text)
+path-elements = (26: { * file-entry,
                        * directory-entry,
                      }
                 )
-process-name = (26: text)
-pid = (27: integer)
-type = (28: text)
-extended-data = (29: any-element-map / [ 2* any-element-map ])
-entity-name = (30: text)
-reg-id = (31: any-uri)
-role = (32: text / [2* text])
-thumbprint = (33: text)
-date = (34: time)
-device-id = (35: text)
-artifact = (36: text)
-href = (37: any-uri)
-ownership = (38: "shared" / "private" / "abandon")
-rel = (39: text)
-use = (40: "optional" / "required" / "recommended")
-activation-status = (41: text)
-channel-type = (42: text)
-colloquial-version = (43: text)
-description = (44: text)
-edition = (45: text)
-entitlement-data-required = (46: bool)
-entitlement-key = (47: text)
-generator = (48: text)
-persistent-id = (49: text)
-product = (50: text)
-product-family = (51: text)
-revision = (52: text)
-summary = (53: text)
-unspsc-code = (54: text)
-unspsc-version = (55: text)
-file-hash = (56: [ hash-alg-id: int,
+process-name = (27: text)
+pid = (28: integer)
+type = (29: text)
+extended-data = (30: any-element-map / [ 2* any-element-map ])
+entity-name = (31: text)
+reg-id = (32: any-uri)
+role = (33: text / [2* text])
+thumbprint = (34: text)
+date = (35: time)
+device-id = (36: text)
+artifact = (37: text)
+href = (38: any-uri)
+ownership = (39: "shared" / "private" / "abandon")
+rel = (40: text)
+media-type = (41: text)
+use = (42: "optional" / "required" / "recommended")
+activation-status = (43: text)
+channel-type = (44: text)
+colloquial-version = (45: text)
+description = (46: text)
+edition = (47: text)
+entitlement-data-required = (48: bool)
+entitlement-key = (49: text)
+generator = (50: text)
+persistent-id = (51: text)
+product = (52: text)
+product-family = (53: text)
+revision = (54: text)
+summary = (55: text)
+unspsc-code = (56: text)
+unspsc-version = (57: text)
+file-hash = (58: [ hash-alg-id: int,
                    hash-value: bstr,
                  ]
             )
@@ -722,37 +728,37 @@ file-hash = (56: [ hash-alg-id: int,
 <tr>
 <td class="reference"><b id="I-D.ietf-ace-cbor-web-token">[I-D.ietf-ace-cbor-web-token]</b></td>
 <td class="top">
-<a>Jones, M.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-ace-cbor-web-token-05">CBOR Web Token (CWT)</a>", Internet-Draft draft-ietf-ace-cbor-web-token-05, June 2017.</td>
+<a>Jones, M.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="https://tools.ietf.org/html/draft-ietf-ace-cbor-web-token-09">CBOR Web Token (CWT)</a>", Internet-Draft draft-ietf-ace-cbor-web-token-09, October 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-cose-msg">[I-D.ietf-cose-msg]</b></td>
 <td class="top">
-<a>Schaad, J.</a>, "<a href="http://tools.ietf.org/html/draft-ietf-cose-msg-24">CBOR Object Signing and Encryption (COSE)</a>", Internet-Draft draft-ietf-cose-msg-24, November 2016.</td>
+<a>Schaad, J.</a>, "<a href="https://tools.ietf.org/html/draft-ietf-cose-msg-24">CBOR Object Signing and Encryption (COSE)</a>", Internet-Draft draft-ietf-cose-msg-24, November 2016.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC2119">[RFC2119]</b></td>
 <td class="top">
-<a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC4108">[RFC4108]</b></td>
 <td class="top">
-<a>Housley, R.</a>, "<a href="http://tools.ietf.org/html/rfc4108">Using Cryptographic Message Syntax (CMS) to Protect Firmware Packages</a>", RFC 4108, DOI 10.17487/RFC4108, August 2005.</td>
+<a>Housley, R.</a>, "<a href="https://tools.ietf.org/html/rfc4108">Using Cryptographic Message Syntax (CMS) to Protect Firmware Packages</a>", RFC 4108, DOI 10.17487/RFC4108, August 2005.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC4949">[RFC4949]</b></td>
 <td class="top">
-<a>Shirey, R.</a>, "<a href="http://tools.ietf.org/html/rfc4949">Internet Security Glossary, Version 2</a>", FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007.</td>
+<a>Shirey, R.</a>, "<a href="https://tools.ietf.org/html/rfc4949">Internet Security Glossary, Version 2</a>", FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7049">[RFC7049]</b></td>
 <td class="top">
-<a>Bormann, C.</a> and <a>P. Hoffman</a>, "<a href="http://tools.ietf.org/html/rfc7049">Concise Binary Object Representation (CBOR)</a>", RFC 7049, DOI 10.17487/RFC7049, October 2013.</td>
+<a>Bormann, C.</a> and <a>P. Hoffman</a>, "<a href="https://tools.ietf.org/html/rfc7049">Concise Binary Object Representation (CBOR)</a>", RFC 7049, DOI 10.17487/RFC7049, October 2013.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7228">[RFC7228]</b></td>
 <td class="top">
-<a>Bormann, C.</a>, <a>Ersue, M.</a> and <a>A. Keranen</a>, "<a href="http://tools.ietf.org/html/rfc7228">Terminology for Constrained-Node Networks</a>", RFC 7228, DOI 10.17487/RFC7228, May 2014.</td>
+<a>Bormann, C.</a>, <a>Ersue, M.</a> and <a>A. Keranen</a>, "<a href="https://tools.ietf.org/html/rfc7228">Terminology for Constrained-Node Networks</a>", RFC 7228, DOI 10.17487/RFC7228, May 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="SAM">[SAM]</b></td>
@@ -773,22 +779,22 @@ file-hash = (56: [ hash-alg-id: int,
 <tr>
 <td class="reference"><b id="I-D.banghart-sacm-rolie-softwaredescriptor">[I-D.banghart-sacm-rolie-softwaredescriptor]</b></td>
 <td class="top">
-<a>Waltermire, D.</a> and <a>S. Banghart</a>, "<a href="http://tools.ietf.org/html/draft-banghart-sacm-rolie-softwaredescriptor-01">Definition of the ROLIE Software Descriptor Extension</a>", Internet-Draft draft-banghart-sacm-rolie-softwaredescriptor-01, May 2017.</td>
+<a>Waltermire, D.</a> and <a>S. Banghart</a>, "<a href="https://tools.ietf.org/html/draft-banghart-sacm-rolie-softwaredescriptor-01">Definition of the ROLIE Software Descriptor Extension</a>", Internet-Draft draft-banghart-sacm-rolie-softwaredescriptor-01, May 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.birkholz-tuda">[I-D.birkholz-tuda]</b></td>
 <td class="top">
-<a>Fuchs, A.</a>, <a>Birkholz, H.</a>, <a>McDonald, I.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/draft-birkholz-tuda-04">Time-Based Uni-Directional Attestation</a>", Internet-Draft draft-birkholz-tuda-04, March 2017.</td>
+<a>Fuchs, A.</a>, <a>Birkholz, H.</a>, <a>McDonald, I.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-birkholz-tuda-04">Time-Based Uni-Directional Attestation</a>", Internet-Draft draft-birkholz-tuda-04, March 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.greevenbosch-appsawg-cbor-cddl">[I-D.greevenbosch-appsawg-cbor-cddl]</b></td>
 <td class="top">
-<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl-10">CBOR data definition language (CDDL): a notational convention to express CBOR data structures</a>", Internet-Draft draft-greevenbosch-appsawg-cbor-cddl-10, March 2017.</td>
+<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl-11">Concise data definition language (CDDL): a notational convention to express CBOR data structures</a>", Internet-Draft draft-greevenbosch-appsawg-cbor-cddl-11, July 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-sacm-terminology">[I-D.ietf-sacm-terminology]</b></td>
 <td class="top">
-<a>Birkholz, H.</a>, <a>Lu, J.</a>, <a>Strassner, J.</a> and <a>N. Cam-Winget</a>, "<a href="http://tools.ietf.org/html/draft-ietf-sacm-terminology-12">Security Automation and Continuous Monitoring (SACM) Terminology</a>", Internet-Draft draft-ietf-sacm-terminology-12, March 2017.</td>
+<a>Birkholz, H.</a>, <a>Lu, J.</a>, <a>Strassner, J.</a> and <a>N. Cam-Winget</a>, "<a href="https://tools.ietf.org/html/draft-ietf-sacm-terminology-13">Security Automation and Continuous Monitoring (SACM) Terminology</a>", Internet-Draft draft-ietf-sacm-terminology-13, July 2017.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.appendix.A">
@@ -898,6 +904,83 @@ RIMM = [ + concise-software-identity / signed-coswid ]
  CDDL TBD
 &lt;CODE ENDS&gt;
 </pre>
+<h1 id="rfc.appendix.F">
+<a href="#rfc.appendix.F">Appendix F.</a> <a href="#group-definitions" id="group-definitions">Group Definitions</a>
+</h1>
+<p id="rfc.section.F.p.1">These groups are intermediate CDDL data definitions that are reused in several items in the CoSWID CDDL data definition.</p>
+<p></p>
+
+<ul>
+<li>resource-collection group: A list of items both used in evidence (discovered by an inventory process) and payload (installed in a system entity) content of a CoSWID tag document to structure and differentiate the content of specific CoSWID tag types. Potential content includes directories, files, processes, resources or firmwares.</li>
+<li>filesystem group: A list of items both used in representing the nodes of a file-system hierarchy, i.e. directory items that allow one or more directories to be defined in the file structure, and file items that allow one or more files to be specified for a given location.</li>
+<li>global-attributes: A list of items including an optional language definition to support the processing of text-string values and an unbounded set of any-attribute items.</li>
+<li>any-attribute: A specific rule providing a restricted frame to include arbitrary information via members that constitute key value(s) pairs where both keys and values can be integers or text-strings.</li>
+</ul>
+<h1 id="rfc.appendix.G">
+<a href="#rfc.appendix.G">Appendix G.</a> <a href="#item-definitions" id="item-definitions">Item Definitions</a>
+</h1>
+<p id="rfc.section.G.p.1">This Appendix includes the description of every primitive and non-primitive type the concise-software-identifier is composed of. Every integer label included at the end of the CDDL data definition is addressed in this section.</p>
+<p></p>
+
+<ol>
+<li>tag-id: An identifier uniquely referencing a (composite) software component. The tag identifier is intended to be globally unique. There are no strict guidelines on how this identifier is structured, but examples include a 16 byte GUID (e.g.  class 4 UUID).</li>
+<li>swid-name: This item provides the software component name as it would typically be referenced.  For example, what would be seen in the add/remove dialog on a Windows device, or what is specified as the name of a packaged software product or a patch identifier name on a Linux device.</li>
+<li>entity: Specifies the organizations related to the software component referenced by this CoSWID tag.</li>
+<li>evidence: This item is used to provide results from a scan of a system where software that does not have a CoSWID tag is discovered. This information is not provided by the software-creator, and is instead created when a system is being scanned and the evidence for why software is believed to be installed on the device is provided in the evidence item.</li>
+<li>link: A reference to any another item (can include details that are related to the CoSWID tag such as details on where specific resources can be found, e.g.  vulnerability database associations, ROLIE feeds, MUD files, etc).  This is modeled directly to match the HTML [LINK] element; it is critical for streamlining software discovery scenarios to ensure their consistency.</li>
+<li>software-meta: An open-ended collection of key/value data related to this CoSWID.  The attributes included in this Element are predefined attributes to ensure common usage across the industry.  The schema allows for any additional attribute to be included in a CoSWID tag, though it is recommended that industry norms for new attributes are defined and followed to the degree possible.</li>
+<li>payload: The items that may be installed on a system entity when the software component is installed.  Note that payload may be a superset of the items installed and - depending on optimization mechanisms in  respect to that system entity - may or may not include every item that could be created or executed on the corresponding system entitiy when software components are installed.  In general, payload will be used to indicate the files that may be installed with a software component. Therefore payload will often be a superset of those files (i.e. if a particular optional sub-component is not installed, the files associated with that software component may be included in payload, but not installed in the system entity).</li>
+<li>any-element: A default map that can contain arbitrary map members and even nested maps (which would be also any-elements). In essence, the any-element allows items not defined in this CDDL data definition to be included in a Concise Software Identifier.</li>
+<li>patch: A set of files that is intended to modify an existing set of files (including configuration files, scripts and corresponding environment variables that are create by the OS for the runtime environment) that composes a software component. A software component patch does neither alter the version number (see 13) nor the release details (descriptive english text, see 44) of a software components. [revision 52?]. If a Concise SWID tag is a patch, it MUST contain the patch item and its value MUST be set to true.  It is recommended but not required to include a rel(ation) item in a patch CoSWID. If a CoSWID includes a patch member, but not a rel member, it is implied that it SHOULD be installed independently of any other CoSWID tag document  &#8211; even if an effective but not explicit relationship exists.</li>
+<li>media: This text value is a hint to the tag consumer to understand what this SWID tag applies to. This item can also be included in the link item to represent a attributes defined by the W3C Media Queries Recommendation (see http://www.w3.org/TR/css3-mediaqueries/). A hint to the consumer of the link to what the target item is applicable for.</li>
+<li>supplemental: Specifies that this tag provides supplemental tag data that can be merged with primary tag data to create a complete record of the software information.  Supplemental tags will often be provided at install time and may be provided by different entities (such as the tag consumer, or a Value Added Reseller).</li>
+<li>tag-version: This item indicates if a specific release of a software component has more than one tag that can represent that specific release. This may be the case if a CoSWID tag producer creates and releases an incorrect tag that they subsequently want to fix,  but with no underlying changes to the product the CoSWID tag represents. This could happen if, for example, a patch is distributed that has a link reference that does not cover all the various software releases it can patch. A newer CoSWID tag for that patch can be generated and the tag-version value incremented to indicate that the data is updated.</li>
+<li>software-version: Underlying development version for the software component.</li>
+<li>version-scheme: Scheme used for the version number. Valid enumerations are : * alphanumeric: strictly a string, sorting alphanumerically * decimal: a floating point number (i.e., 1.25 is less than 1.3 ) * multipartnumeric: numbers separated via dots, where the numbers are * interpreted as integers (ie, 1.2.3 ,  1.4.5.6 , 1.2.3.4.5.6.7). This string * convention is similar to OIDs.  * multipartnumeric+suffix: numbers separated via dots, where the numbers are * interpreted as integers with an additional string suffix (e.g., 1.2.3a).  * semver: a string as defined by the semver.org spec [FiXME: reference] * unknown: the last resort choice, no attempt should be made to order these</li>
+<li>lang: An RFC5646 conferment language tag or corresponding IANA index integer.</li>
+<li>directory: A directory item allows one or more directories to be defined in the file structure.</li>
+<li>file: A file element that allows one or more files to be specified for a given location.</li>
+<li>process: Provides process (software component in execution) information for data that will show up in a devices process table.</li>
+<li>resource: A set of items that can be used to provide arbitrary resource information about an application installed on a system entity, or evidence collected from a system entity.</li>
+<li>size: The file size in bytes of the file.</li>
+<li>file-version The file version.</li>
+<li>key: Files that are considered important or required for the use of a software component.  Typical key files would be those which, if not available on a system entity, would cause the software component not to execute or function properly.  Key files will typically be used to validate that a software component referenced by the CoSWID tag document is actually installed on a specific system entity.</li>
+<li>location: The directory or location where a file was found or can expected to be located.  This text-string is intended to include the filename itself.  This SHOULD be the relative path represented by the root item.</li>
+<li>fs-name: The file name or directory name without any path characters.</li>
+<li>root: A system-specific root folder that the location item is an offset from. If this is not specified the assumption is the root is the same folder as the location of the CoSWID tag. The text-string value represents a path expression relative to the CoSWID tag document location in the (composite) file-system hierarchy.</li>
+<li>path-elements: Provides the ability to apply a directory structure to the path expressions for files defined in a payload or evidence item.</li>
+<li>process-name: The process name as it will be found in the system entity&#8217;s process table.</li>
+<li>pid: The process ID for the process in execution that can be included in the process item as part of an evidence tag.</li>
+<li>type: The type of resource represented via a text-string  (typically, registry-key, port or root-uri)</li>
+<li>extended-data: An open-ended collection of elements that can be used to attach arbitrary metadata to an entity item.</li>
+<li>entity-name: The text-string name of the organization claiming a particular role in the CoSWID tag.</li>
+<li>reg-id: The registration id is intended to uniquely identify a naming authority in a given scope (e.g. global, organization, vendor, customer, administrative domain, etc.) that is implied by the referenced naming authority. The value of an registration ID MUST be a RFC 3986 URI. The scope SHOULD be the scope of an organization. In a given scope, the registration id MUST be used consistently.</li>
+<li>role: The relationship between this organization and this tag. The role of tag creator is required for every CoSWID tag. The role of an entity may include any role value, but the per-defined roles include: &#8220;aggregator&#8221;, &#8220;distributor&#8221;, &#8220;licensor&#8221;, &#8220;software-creator&#8221;, &#8220;tag-creator&#8221;. The enumerations of this will include a request to IANA in order to be reference-able via an integer index.</li>
+<li>thumbprint: This value provides a hexadecimal string that contains a hash (i.e. the thumbprint) of the signing entities certificate [s] [FIXME: this requires the same structure as file-hash?].</li>
+<li>date: The sate and time evidence represented by an evidence item was gathered.</li>
+<li>device-id: A text-string identifier for a device evidence was gathered from.</li>
+<li>artifact: For installation media (rel=&#8221;installation-media&#8221;) - dictates the canonical name for the file.  Items with the same artifact name should be considered mirrors of each other (so download from wherever works).</li>
+<li>href: The link to the item being referenced.  The href can point to several different things, and can be any of the following: * a relative uri (no scheme), which is interpreted depending on context (for example, &#8220;./folder/supplemental.coswid&#8221;) * a physical file location with any system-acceptable URI scheme (e.g., file:// http:// https:// ftp://) * an URI with &#8220;coswid:&#8221; as the scheme, which refers to another CoSWID by tag-id.  This URI would need to be resolved in the context of the system by software that can lookup other CoSWID tags (for example, * &#8220;coswid:2df9de35-0aff-4a86-ace6-f7dddd1ade4c&#8221;).  an URI with &#8220;swidpath:&#8221; as the scheme, which refers to another CoSIWD via an XPATH query. This URI would need to be resolved in the context of the system entity via dedicated software components that can lookup other CoSWID tags and select the appropriate tag based on an XPATH query. Examples include: * swidpath://SoftwareIdentity[Entity/@regid=&#8217;http://contoso.com&#8217;] would * retrieve all CoSWID tags that include an entity where the regid was * &#8220;Contoso&#8221;.  * swidpath://SoftwareIdentity[Meta/@persistentId=&#8217;b0c55172-38e9-4e36-be86-92206ad8eddb&#8217;] * would retrieve CoSWID tags that matched the persistent-id.  See XPATH query standard : http://www.w3.org/TR/xpath20/ [FIXME: Concise XPATH representation is covered in the YANG-CBOR I-D]</li>
+<li>ownership: Determines the relative strength of ownership of the software components. Valid enumerations are: abandon, private, shared</li>
+<li>rel: The relationship between this CoSWID and the target file. Relationships can be identified by referencing the IANA registration library: https://www.iana.org/assignments/link-relations/link-relations.xhtml.</li>
+<li>media-type: The IANA MediaType for the target file; this provides the consumer with intelligence of what to expect. See http://www.iana.org/assignments/media-types/media-types.xhtml for more details on link type.</li>
+<li>use: Determines if the target software is a hard requirement or not. Valid enumerations are: required, recommended, optional,</li>
+<li>activation-status: Identification of the activation status of this software title (e.g. Trial, Serialized, Licensed, Unlicensed, etc).  Typically, this is used in supplemental tags.</li>
+<li>channel-type: Provides information on which channel this particular software was targeted for (e.g. Volume, Retail, OEM, Academic, etc). Typically used in supplemental tags.</li>
+<li>colloquial-version: The informal or colloquial version of the product (i.e. 2013). Note that this version may be the same through multiple releases of a software product where the version specified in entity is much more specific and will change for each software release.  Note that this representation of version is typically used to identify a group of specific software releases that are part of the same release/support infrastructure (i.e. Fabrikam Office 2013).  This version is used for string comparisons only and is not compared to be an earlier or later release (that is done via the entity version [FIXME: consistency).</li>
+<li>description: A longer, detailed description of the software.  This description can be multiple sentences (differentiated from summary, which is a very short, one-sentence description).</li>
+<li>edition: The variation of the product (Extended, Enterprise, Professional, Standard etc).</li>
+<li>entitlement-data-required: An indicator to determine if there should be accompanying proof of entitlement when a software license reconciliation is completed.</li>
+<li>entitlement-key: A vendor-specific textual key that can be used to reconcile the validity of an entitlement. (e.g. serial number, product or license key).</li>
+<li>generator: The name of the software tool that created a CoSWID tag.  This item is typically used if tags are created on the fly or via a catalog-based analysis for data found on a computing device.</li>
+<li>persistent-id: A GUID used to represent products installed where the product are related, but may be different versions.  For example, an &#8220;upgradeCode&#8221; (see http://msdn.microsoft.com/en-us/library/aa372375(v=vs.85).aspx as an reference for this example).</li>
+<li>product: The base name of the product (e.g. [FIXME: what are appropriate examples?].</li>
+<li>product-family: The overall product family this software belongs to.  Product family is not used to identify that a product is part of a suite, but is instead used when a set of products that are all related may be installed on multiple different devices.  For example, an enterprise backup system may consist of a backup services, multiple different backup services that support mail services, databases and ERP systems, as well as individual software components that backup client system entities. In such an usage scenario, all software components that are part of the backup system would have the same product-family name so they can be grouped together in respect to reporting systems.</li>
+<li>revision: The informal or colloquial representation of the sub-version of the given product (ie, SP1, R2, RC1, Beta 2, etc).  Note that the version will provide very exact version details, the revision is intended for use in environments where reporting on the informal or colloquial representation of the software is important (for example, if for a certain business process, an organization recognizes that it must have, for example &#8220;ServicePack 1&#8221; or later of a specific product installed on all devices, they can use the revision data value to quickly identify any devices that do not meet this requirement).  Depending on how a software organizations distributes revisions, this value could be specified in a primary (if distributed as an upgrade) or supplemental (if distributed as a patch) CoSWID tag.</li>
+<li>summary: A short (one-sentence) description of the software.</li>
+<li>unspsc-code: An 8 digit code that provides UNSPSC classification of the software product this SWID tag identifies.  For more information see, http://www.unspsc.org/.</li>
+<li>unspsc-version: The version of the UNSPSC code used to define the UNSPSC code value. For more information see, http://www.unspsc.org/.</li>
+</ol>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
