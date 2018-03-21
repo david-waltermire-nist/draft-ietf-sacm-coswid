@@ -5,26 +5,27 @@
 SACM Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                     J. Fitzgerald-McKay
-Expires: September 21, 2018                        Department of Defense
+Expires: September 22, 2018                        Department of Defense
                                                               C. Schmidt
                                                    The MITRE Corporation
                                                            D. Waltermire
                                                                     NIST
-                                                          March 20, 2018
+                                                          March 21, 2018
 
 
                       Concise Software Identifiers
-                       draft-ietf-sacm-coswid-04
+                       draft-ietf-sacm-coswid-05
 
 Abstract
 
    This document defines a concise representation of ISO/IEC
-   19770-2:2015 Software Identifiers (SWID tags) that is interoperable
-   with the XML schema definition of ISO/IEC 19770-2:2015 and augmented
-   for application in Constrained-Node Networks.  Next to the inherent
-   capability of SWID tags to express arbitrary context information,
-   CoSWID support the definition of additional semantics via well-
-   defined data definitions incorporated by extension points.
+   19770-2:2015 Software Identification (SWID) tags that are
+   interoperable with the XML schema definition of ISO/IEC 19770-2:2015
+   and augmented for application in Constrained-Node Networks.  Next to
+   the inherent capability of SWID tags to express arbitrary context
+   information, Concise SWID (CoSWID) tags support the definition of
+   additional semantics via well-defined data definitions incorporated
+   by extension points.
 
 Status of This Memo
 
@@ -41,23 +42,24 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 21, 2018.
+   This Internet-Draft will expire on September 22, 2018.
 
 Copyright Notice
 
    Copyright (c) 2018 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
-   This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents
 
 
 
-Birkholz, et al.       Expires September 21, 2018               [Page 1]
+
+Birkholz, et al.       Expires September 22, 2018               [Page 1]
 
 Internet-Draft                   COSWID                       March 2018
 
 
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
    (https://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
@@ -69,50 +71,51 @@ Internet-Draft                   COSWID                       March 2018
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     1.1.  The SWID Tag Lifecycle  . . . . . . . . . . . . . . . . .   3
+     1.1.  The SWID Tag Lifecycle  . . . . . . . . . . . . . . . . .   4
      1.2.  Concise SWID Extensions . . . . . . . . . . . . . . . . .   6
-     1.3.  Requirements Notation . . . . . . . . . . . . . . . . . .   6
+     1.3.  Requirements Notation . . . . . . . . . . . . . . . . . .   7
    2.  Concise SWID Data Definition  . . . . . . . . . . . . . . . .   7
-     2.1.  The concise-software-identity Object  . . . . . . . . . .   7
+     2.1.  The concise-software-identity Object  . . . . . . . . . .   8
        2.1.1.  Determining the tag type  . . . . . . . . . . . . . .  11
        2.1.2.  concise-software-identity Co-constraints  . . . . . .  12
      2.2.  The global-attributes Group . . . . . . . . . . . . . . .  12
-     2.3.  The any-element-entry . . . . . . . . . . . . . . . . . .  13
+     2.3.  The any-element-map Entry . . . . . . . . . . . . . . . .  13
      2.4.  The entity Object . . . . . . . . . . . . . . . . . . . .  13
-     2.5.  The link Object . . . . . . . . . . . . . . . . . . . . .  15
+     2.5.  The link Object . . . . . . . . . . . . . . . . . . . . .  14
      2.6.  The software-meta Object  . . . . . . . . . . . . . . . .  16
      2.7.  The Resource Collection Definition  . . . . . . . . . . .  19
        2.7.1.  The hash-entry Array  . . . . . . . . . . . . . . . .  19
        2.7.2.  The resource-collection Group . . . . . . . . . . . .  20
        2.7.3.  The payload Object  . . . . . . . . . . . . . . . . .  22
        2.7.4.  The evidence Object . . . . . . . . . . . . . . . . .  23
-     2.8.  Full CDDL Definition  . . . . . . . . . . . . . . . . . .  23
+     2.8.  Full CDDL Definition  . . . . . . . . . . . . . . . . . .  24
    3.  CoSWID Indexed Label Values . . . . . . . . . . . . . . . . .  28
      3.1.  Version Scheme  . . . . . . . . . . . . . . . . . . . . .  28
      3.2.  Entity Role Values  . . . . . . . . . . . . . . . . . . .  28
    4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  29
      4.1.  SWID/CoSWID Version Schema Values Registry  . . . . . . .  29
      4.2.  SWID/CoSWID Entity Role Values Registry . . . . . . . . .  30
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  30
-   6.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  32
-   7.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  32
-   8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  34
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  34
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  34
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  35
-   Appendix A.  CoSWID Attributes for Firmware (label 60)  . . . . .  35
-   Appendix B.  Signed Concise SWID Tags using COSE  . . . . . . . .  38
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  31
+   6.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  33
+   7.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  33
+   8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  35
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  35
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  35
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  36
+   Appendix A.  CoSWID Attributes for Firmware (label 60)  . . . . .  37
+   Appendix B.  Signed Concise SWID Tags using COSE  . . . . . . . .  39
    Appendix C.  CoSWID used as Reference Integrity Measurements
-                (CoSWID RIM) . . . . . . . . . . . . . . . . . . . .  39
-   Appendix D.  CBOR Web Token for Concise SWID Tags . . . . . . . .  40
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  40
+                (CoSWID RIM) . . . . . . . . . . . . . . . . . . . .  40
 
 
 
-Birkholz, et al.       Expires September 21, 2018               [Page 2]
+Birkholz, et al.       Expires September 22, 2018               [Page 2]
 
 Internet-Draft                   COSWID                       March 2018
 
+
+   Appendix D.  CBOR Web Token for Concise SWID Tags . . . . . . . .  41
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  41
 
 1.  Introduction
 
@@ -123,80 +126,91 @@ Internet-Draft                   COSWID                       March 2018
       discernible deployed software components.
 
    o  Vulnerability Assessment, which requires a semantic link between
-      standardized vulnerability descriptions and IT-assets [X.1520].
+      standardized vulnerability descriptions and software components
+      installed on IT-assets [X.1520].
 
    o  Remote Attestation, which requires a link between reference
       integrity measurements (RIM) and security logs of measured
       software components [I-D.birkholz-tuda].
 
    SWID tags, as defined in ISO-19770-2:2015 [SWID], provide a
-   standardized format for a record that identifies and describes a
+   standardized XML-based record format that identifies and describes a
    specific release of a software component.  Different software
    components, and even different releases of a particular software
    component, each have a different SWID tag record associated with
    them.  SWID tags are meant to be flexible and able to express a broad
    set of metadata about a software component.
 
-   Real-world instances of SWID tags can be fairly large, and the
-   communication of SWID tags in use-applications such as those
-   described earlier can cause a large amount of data to be transported.
-   This can be larger than acceptable for constrained devices and
-   networks.  CoSWID tags significantly reduce the amount of data
-   transported as compared to a typical SWID tag.  This reduction is
-   enable through the use of CBOR, which maps human-readable labels of
-   that content to more concise integer labels (indices).  This allows
-   SWID tags to be part of an enterprise security solution for a wider
-   range of endpoints and environments.
+   While there are very few required fields in SWID tags, there are many
+   optional fields that support different use scenarios.  While a SWID
+   tag consisting of only required fields might be a few hundred bytes
+   in size, a tag containing many of the optional fields can be many
+   orders of magnitude larger.  Thus, real-world instances of SWID tags
+   can be fairly large, and the communication of SWID tags in use-
+   applications such as those described earlier can cause a large amount
+   of data to be transported.  This can be larger than acceptable for
+   constrained devices and networks.  Concise SWID (CoSWID) tags
+   significantly reduce the amount of data transported as compared to a
+   typical SWID tag.  This reduction is enabled through the use of CBOR,
+   which maps human-readable labels of that content to more concise
+   integer labels (indices).  The use of CBOR to express SWID
+   information in CoSWID tags allows both CoSWID and SWID tags to be
+   part of an enterprise security solution for a wider range of
+   endpoints and environments.
+
+
+
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018               [Page 3]
+
+Internet-Draft                   COSWID                       March 2018
+
 
 1.1.  The SWID Tag Lifecycle
 
-   In addition to defining the format of these records, ISO/IEC
-   19770-2:2015 defines requirements concerning the SWID tag life-cycle.
+   In addition to defining the format of a SWID tag record, ISO/IEC
+   19770-2:2015 defines requirements concerning the SWID tag lifecycle.
    Specifically, when a software component is installed on an endpoint,
    that product's SWID tag is also installed.  Likewise, when the
    product is uninstalled or replaced, the SWID tag is deleted or
    replaced, as appropriate.  As a result, ISO/IEC 19770-2:2015
    describes a system wherein there is a correspondence between the set
-   of installed software products on an endpoint, and the presence on
-   that endpoint of the SWID tags corresponding to those products.
+   of installed software components on an endpoint, and the presence of
+   the correspondingsponding SWID tags for these components on that
+   endpoint.  CoSWIDs share the same lifecycle requirements as a SWID
+   tag.
 
    The following is an excerpt (with some modifications and reordering)
    from NIST Interagency Report (NISTIR) 8060: Guidelines for the
-
-
-
-Birkholz, et al.       Expires September 21, 2018               [Page 3]
-
-Internet-Draft                   COSWID                       March 2018
-
-
    Creation of Interoperable SWID Tags [SWID-GUIDANCE], which describes
    the tag types used within the lifecycle defined in ISO-19770-2:2015.
 
       The SWID specification defines four types of SWID tags: primary,
       patch, corpus, and supplemental.
 
+   1.  Primary Tag - A SWID or CoSWID tag that identifies and describes
+       a software component is installed on a computing device.
 
+   2.  Patch Tag - A SWID or CoSWID tag that identifies and describes an
+       installed patch which has made incremental changes to a software
+       component installed on a computing device.
 
-      1.  Primary Tag - A SWID tag that identifies and describes a
-          software component is installed on a computing device.
+   3.  Corpus Tag - A SWID or CoSWID tag that identifies and describes
+       an installable software component in its pre-installation state.
+       A corpus tag can be used to represent metadata about an
+       installation package or installer for a software component, a
+       software update, or a patch.
 
-      2.  Patch Tag - A SWID tag that identifies and describes an
-          installed patch which has made incremental changes to a
-          software component installed on a computing device.
-
-      3.  Corpus Tag - A SWID tag that identifies and describes an
-          installable software component in its pre-installation state.
-          A corpus tag can be used to represent metadata about an
-          installation package or installer for a software component, a
-          software update, or a patch.
-
-      4.  Supplemental Tag - A SWID tag that allows additional
-          information to be associated with a referenced SWID tag.  This
-          helps to ensure that SWID Primary and Patch Tags provided by a
-          software provider are not modified by software management
-          tools, while allowing these tools to provide their own
-          software metadata.
+   4.  Supplemental Tag - A SWID or CoSWID tag that allows additional
+       information to be associated with a referenced SWID tag.  This
+       helps to ensure that SWID Primary and Patch Tags provided by a
+       software provider are not modified by software management tools,
+       while allowing these tools to provide their own software
+       metadata.
 
       Corpus, primary, and patch tags have similar functions in that
       they describe the existence and/or presence of different types of
@@ -204,28 +218,21 @@ Internet-Draft                   COSWID                       March 2018
       software patches), and, potentially, different states of software
       components.  In contrast, supplemental tags furnish additional
       information not contained in corpus, primary, or patch tags.  All
+
+
+
+Birkholz, et al.       Expires September 22, 2018               [Page 4]
+
+Internet-Draft                   COSWID                       March 2018
+
+
       four tag types come into play at various points in the software
       lifecycle, and support software management processes that depend
       on the ability to accurately determine where each software
       component is in its lifecycle.
 
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018               [Page 4]
-
-Internet-Draft                   COSWID                       March 2018
-
-
+                                    +------------+
+                                    v            |
   Installation     Product       Product      Product       Product
     Media      -> Installed  ->  Patched   -> Upgraded   -> Removed
    Deployed
@@ -237,89 +244,104 @@ Internet-Draft                   COSWID                       March 2018
                                               Supplemental
 
 
-      The figure above illustrates the steps in the software lifecycle
-      and the relationships among those lifecycle events supported by
-      the four types of SWID tags, as follows: - Software Deployment.
-      Before the software component is installed (i.e., pre-
-      installation), and while the product is being deployed, a corpus
-      tag provides information about the installation files and
-      distribution media (e.g., CD/DVD, distribution package).  -
-      Software Installation.  A primary tag will be installed with the
-      software component (or subsequently created) to uniquely identify
-      and describe the software component.  Supplemental tags are
-      created to augment primary tags with additional site-specific or
-      extended information.  While not illustrated in the figure, patch
-      tags may also be installed during software installation to provide
-      information about software fixes deployed along with the base
-      software installation.  - Software Patching.  When a new patch is
-      applied to the software component, a new patch tag is provided,
-      supplying details about the patch and its dependencies.  While not
-      illustrated in the figure, a corpus tag can also provide
-      information about the patch installer, and patching dependencies
-      that need to be installed before the patch.  - Software Upgrading.
-      As a software component is upgraded to a new version, new primary
-      and supplemental tags replace existing tags, enabling timely and
-      accurate tracking of updates to software inventory.  While not
-      illustrated in the figure, a corpus tag can also provide
-      information about the upgrade installer, and dependencies that
-      need to be installed before the upgrade.  - Software Removal.
-      Upon removal of the software component, relevant SWID tags are
-      removed.  This removal event can trigger timely updates to
-      software inventory reflecting the removal of the product and any
-      associated patch or supplemental tags.
+           Figure 1: Use of Tag Types in the Software Lifecycle
+
+      Figure 1 illustrates the steps in the software lifecycle and the
+      relationships among those lifecycle events supported by the four
+      types of SWID and CoSWID tags, as follows:
+
+
+
+      *  Software Deployment.  Before the software component is
+         installed (i.e., pre-installation), and while the product is
+         being deployed, a corpus tag provides information about the
+         installation files and distribution media (e.g., CD/DVD,
+         distribution package).
+
+      *  Software Installation.  A primary tag will be installed with
+         the software component (or subsequently created) to uniquely
+         identify and describe the software component.  Supplemental
+         tags are created to augment primary tags with additional site-
+         specific or extended information.  While not illustrated in the
+         figure, patch tags may also be installed during software
+         installation to provide information about software fixes
+         deployed along with the base software installation.
+
+      *  Software Patching.  When a new patch is applied to the software
+         component, a new patch tag is provided, supplying details about
+         the patch and its dependencies.  While not illustrated in the
+         figure, a corpus tag can also provide information about the
+         patch installer, and patching dependencies that need to be
+         installed before the patch.
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018               [Page 5]
+
+Internet-Draft                   COSWID                       March 2018
+
+
+      *  Software Upgrading.  As a software component is upgraded to a
+         new version, new primary and supplemental tags replace existing
+         tags, enabling timely and accurate tracking of updates to
+         software inventory.  While not illustrated in the figure, a
+         corpus tag can also provide information about the upgrade
+         installer, and dependencies that need to be installed before
+         the upgrade.
+
+      *  Software Removal.  Upon removal of the software component,
+         relevant SWID tags are removed.  This removal event can trigger
+         timely updates to software inventory reflecting the removal of
+         the product and any associated patch or supplemental tags.
 
    Note: While not fully illustrated in the figure, supplemental tags
    can be associated with any corpus, primary, or patch tag to provide
    additional metadata about an installer, installed software, or
    installed patch respectively.
 
+   Each of the different SWID and CoSWID tag types provide different
+   sets of information.  For example, a "corpus tag" is used to describe
+   a software component's installation image on an installation media,
+   while a "patch tag" is meant to describe a patch that modifies some
+   other software component.
+
+1.2.  Concise SWID Extensions
+
+   This document defines the CoSWID format, a more concise
+   representation of SWID information in the Concise Binary Object
+   Representation (CBOR) [RFC7049].  This is described via the Concise
+   Data Definition Language (CDDL) [I-D.ietf-cbor-cddl].  The resulting
+   CoSWID data definition is interoperable with the XML schema
+   definition of ISO-19770-2:2015 [SWID].  The vocabulary, i.e., the
+   CDDL names of the types and members used in the CoSWID data
+   definition, are mapped to more concise labels represented as small
+   integer values.  The names used in the CDDL data definition and the
+   mapping to the CBOR representation using integer labels is based on
+   the vocabulary of the XML attribute and element names defined in ISO/
+   IEC 19770-2:2015.
+
+   The corresponding CoSWID data definition includes two kinds of
+   augmentation.
+
+   o  The explicit definition of types for attributes that are typically
+      stored in the "any attribute" of an ISO-19770-2:2015 in XML
+      representation.  These are covered in Section 2.2 and Section 2.3
+      of this document.
 
 
 
 
-Birkholz, et al.       Expires September 21, 2018               [Page 5]
+
+Birkholz, et al.       Expires September 22, 2018               [Page 6]
 
 Internet-Draft                   COSWID                       March 2018
 
 
-   Each of the different SWID tag types of SWID tags provide different
-   types of information.  For example, a "corpus tag" is used to
-   describe an application's installation image on an installation
-   media, while a "patch tag" is meant to describe a patch that modifies
-   some other application.  While there are very few required fields in
-   SWID tags, there are many optional fields that support different uses
-   of these different types of tags.  While a SWID tag that consisted
-   only of required fields could be a few hundred bytes in size, a tag
-   containing many of the optional fields could be many orders of
-   magnitude larger.
-
-1.2.  Concise SWID Extensions
-
-   This document defines a more concise representation of SWID tags in
-   the Concise Binary Object Representation (CBOR) [RFC7049].  This is
-   described via the Concise Data Definition Language (CDDL)
-   [I-D.ietf-cbor-cddl].  The resulting Concise SWID data definition is
-   interoperable with the XML schema definition of ISO-19770-2:2015
-   [SWID].  The vocabulary, i.e., the CDDL names of the types and
-   members used in the CoSWID data definition, is mapped to more concise
-   labels represented as small integers.  The names used in the CDDL
-   data definition and the mapping to the CBOR representation using
-   integer labels is based on the vocabulary of the XML attribute and
-   element names defined in ISO/IEC 19770-2:2015.
-
-   This document specifies a standardized equivalent to the ISO-
-   19770-2:2015 standard.  The corresponding CoSWID data definition
-   includes two kinds of augmentation.
-
-   o  the explicit definition of types for attributes that are typically
-      stored in the "any attribute" of an ISO-19770-2:2015 in XML
-      representation.  These are covered in the main body of this
-      document.
-
-   o  the inclusion of extension points in the CoSWID data definition
+   o  The inclusion of extension points in the CoSWID data definition
       that allow for additional uses of CoSWID tags that go beyond the
       original scope of ISO-19770-2:2015 tags.  These are covered in
-      appendices to this document.
+      Section 2.7.3 and Section 2.7.4.
 
 1.3.  Requirements Notation
 
@@ -328,32 +350,24 @@ Internet-Draft                   COSWID                       March 2018
    "OPTIONAL" in this document are to be interpreted as described in RFC
    2119, BCP 14 [RFC2119].
 
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018               [Page 6]
-
-Internet-Draft                   COSWID                       March 2018
-
-
 2.  Concise SWID Data Definition
 
-   The following is a CDDL representation of the ISO/IEC 19770-2:2015
-   [SWID] XML schema definition of SWID tags.  This representation
-   includes every SWID tag field and attribute and thus supports all
-   SWID tag use cases.  The CamelCase notation used in the XML schema
-   definition is changed to a hyphen-separated notation (e.g.
-   ResourceCollection is named resource-collection in the CoSWID data
-   definition).  This deviation from the original notation used in the
-   XML representation reduces ambiguity when referencing certain
-   attributes in corresponding textual descriptions.  An attribute
-   referred by its name in CamelCase notation explicitly relates to XML
-   SWID tags, an attribute referred by its name in hyphen-separated
-   notation explicitly relates to CoSWID tags.  This approach simplifies
-   the composition of further work that reference both XML SWID and
-   CoSWID documents.
+   The following is a CDDL representation for a CoSWID tag.  This CDDL
+   represetation is intended to be parallel to the XML schema definition
+   in the ISO/IEC 19770-2:2015 [SWID] specification, allowing both SWID
+   and CoSWID tags to represent a common set of SWID information and to
+   support all SWID tag use cases.  To achieve this end, the CDDL
+   representation includes every SWID tag field and attribute.  The
+   CamelCase notation used in the XML schema definition is changed to a
+   hyphen-separated notation (e.g.  ResourceCollection is named
+   resource-collection in the CoSWID data definition).  This deviation
+   from the original notation used in the XML representation reduces
+   ambiguity when referencing certain attributes in corresponding
+   textual descriptions.  An attribute referred by its name in CamelCase
+   notation explicitly relates to XML SWID tags, an attribute referred
+   by its name in hyphen-separated notation explicitly relates to CoSWID
+   tags.  This approach simplifies the composition of further work that
+   reference both XML SWID and CoSWID documents.
 
    Human-readable names of members in the CDDL data definition are
    mapped to integer indices via a block of rules at the bottom of the
@@ -361,16 +375,24 @@ Internet-Draft                   COSWID                       March 2018
    would have to be stored or transported in full if using the original
    vocabulary are replaced.
 
-   Concise Software Identifiers are tailored to be used in the domain of
-   constrained-node networks.  A typical endpoint is capable of storing
-   the CoSWID tag of installed software, a constrained-node might lack
-   that capability.  CoSWID address these constraints and the
-   corresponding specification is augmented to retain their usefulness
-   in the thing-2-thing domain.  Specific examples include, but are not
-   limited to limiting the scope of hash algorithms to the IANA Named
-   Information tables or including firmware attributes addressing
-   devices that do not necessarily provide a file-system to store a
-   CoSWID tag in.
+   In CBOR, an array is encoded using bytes that identify the array, and
+   the array's length or stop point (see [RFC7049]).  To make items that
+   support 1 or more values, the following CDDL notion is used.
+
+   _name_ = (_label_: _data_ / [ 2* _data_ ])
+
+   The CDDL above allows for a more effecient CBOR encoding of the data
+   when a single value is used by avoiding the need to first encode the
+   array.  An array is used for two or more values.  This modeling
+   pattern is used frequently in the CoSWID CDDL data definition in such
+   cases.
+
+
+
+Birkholz, et al.       Expires September 22, 2018               [Page 7]
+
+Internet-Draft                   COSWID                       March 2018
+
 
    The following subsections describe the different parts of the CoSWID
    model.
@@ -379,22 +401,6 @@ Internet-Draft                   COSWID                       March 2018
 
    The CDDL for the main concise-software-identity object is as follows:
 
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018               [Page 7]
-
-Internet-Draft                   COSWID                       March 2018
-
-
-   <CODE BEGINS>
    concise-software-identity = {
      global-attributes,
      tag-id,
@@ -427,15 +433,9 @@ Internet-Draft                   COSWID                       March 2018
    tag-version = (12: integer)
    software-version = (13: text)
    version-scheme = (14: text)
-   <CODE ENDS>
 
-   The items are ordered ensure that tag metadata appears first,
-   followed by general software metadata, entity information, link
-   relations, and finally payload or evidence data.  This ordering
-   attempts to provide the most significant metadata that a parser may
-   need first, followed by metadata that may support more specific use-
-   applications.  The following describes each child item of the
-   concise-software-identity model.
+   The following describes each child item of the concise-software-
+   identity object model.
 
    o  global-attributes: A list of items including an optional language
       definition to support the processing of text-string values and an
@@ -445,36 +445,36 @@ Internet-Draft                   COSWID                       March 2018
 
 
 
-Birkholz, et al.       Expires September 21, 2018               [Page 8]
+Birkholz, et al.       Expires September 22, 2018               [Page 8]
 
 Internet-Draft                   COSWID                       March 2018
 
 
    o  tag-id (label 0): An textual identifier uniquely referencing a
-      (composite) software component.  The tag identifier is intended to
-      be globally unique.  There are no strict guidelines on how this
+      (composite) software component.  The tag identifier MUST be
+      globally unique.  There are no strict guidelines on how this
       identifier is structured, but examples include a 16 byte GUID
-      (e.g.  class 4 UUID).
+      (e.g.  class 4 UUID) [RFC4122].
 
    o  tag-version (label 12): An integer value that indicates if a
       specific release of a software component has more than one tag
-      that can represent that specific release.  A typical use of this
-      field may be to set an initial value to 0 and to monotonically
-      increase the value for subsequent tags produced for the specific
-      release.  A change in the value of this field may be the case if a
-      CoSWID tag producer creates and releases an incorrect tag that
-      they subsequently want to fix, but with no underlying changes to
-      the product the CoSWID tag represents.  This could happen if, for
-      example, a patch is distributed that has a link reference that
-      does not cover all the various software releases it can patch.  A
-      newer CoSWID tag for that patch can be generated and the tag-
-      version value incremented to indicate that the data is updated.
+      that can represent that specific release.  Typically, the initial
+      value of this field is set to 0, and the value is monotonically
+      increased for subsequent tags produced for the same software
+      component release.  This item is used when a CoSWID tag producer
+      creates and releases an incorrect tag that they subsequently want
+      to fix, but no underlying changes have been made to the product
+      the CoSWID tag represents.  This could happen if, for example, a
+      patch is distributed that has a link reference that does not cover
+      all the various software releases it can patch.  A newer CoSWID
+      tag for that patch can be generated and the tag-version value
+      incremented to indicate that the data is updated.
 
    o  corpus (label 8): A boolean value that indicates if the tag
       identifies and describes an installable software component in its
       pre-installation state.  Installable software includes a
       installation package or installer for a software component, a
-      software update, or a patch.  If the Concise SWID tag represents
+      software update, or a patch.  If the CoSWID tag represents
       installable software, the corpus item MUST be set to "true".  If
       not provided the default value MUST be considered "false".
 
@@ -484,24 +484,24 @@ Internet-Draft                   COSWID                       March 2018
       computing device.  Typically, an installed patch has made a set of
       file modifications to pre-installed software, and does not alter
       the version number or the descriptive metadata of an installed
-      software product.  If a Concise SWID tag is for a patch, it MUST
+      software component.  If a CoSWID tag is for a patch, it MUST
       contain the patch item and its value MUST be set to "true".  If
       not provided the default value MUST be considered "false".
 
    o  supplemental (label 11): A boolean value that indicates if the tag
       is providing additional information to be associated with another
-      referenced SWID tag.  Tags using this item help to ensure that
-      primary and patch tags provided by a software provider are not
-      modified by software management tools, while allowing these tools
-      to provide their own software metadata for a software component.
-      If a Concise SWID tag is a supplemntal tag, it MUST contain the
-      supplemental item and its value MUST be set to "true".  If not
+      referenced SWID or CoSWID tag.  Tags using this item help to
+      ensure that primary and patch tags provided by a software provider
+      are not modified by software management tools, while allowing
+      these tools to provide their own software metadata for a software
+      component.  If a CoSWID tag is a supplemntal tag, it MUST contain
+      the supplemental item and its value MUST be set to "true".  If not
       provided the default value MUST be considered "false".
 
 
 
 
-Birkholz, et al.       Expires September 21, 2018               [Page 9]
+Birkholz, et al.       Expires September 22, 2018               [Page 9]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -523,31 +523,31 @@ Internet-Draft                   COSWID                       March 2018
       range: 32768-65,535.
 
    o  media (label 10): This text value is a hint to the tag consumer to
-      understand what this SWID tag applies to.  This item can also be
-      included in the link item to represent a attributes defined by the
-      W3C Media Queries Recommendation (see http://www.w3.org/TR/
-      css3-mediaqueries/).  A hint to the consumer of the link to what
-      the target item is applicable for.
+      understand what this tag applies to.  This item represents a query
+      as defined by the W3C Media Queries Recommendation (see
+      http://www.w3.org/TR/css3-mediaqueries/).  A hint to the consumer
+      of the link to what the target item is applicable for.
 
    o  software-meta-entry (label 5): An open-ended collection of key/
-      value data related to this CoSWID.  The attributes included in
-      this Element are predefined attributes to ensure common usage
-      across the industry.  The schema allows for any additional
-      attribute to be included in a CoSWID tag, though it is recommended
-      that industry norms for new attributes are defined and followed to
-      the degree possible.  Described in Section 2.6.
+      value data related to this CoSWID.  A number of predefined
+      attributes can be used within this item providing for common usage
+      and semantics across the industry.  The data definition of this
+      entry allows for any additional attribute to be included, though
+      it is recommended that industry norms for new attributes are
+      defined and followed to the degree possible.  Described in
+      Section 2.6.
 
    o  entity-entry (label 2): Specifies the organizations related to the
       software component referenced by this CoSWID tag.  Described in
       Section 2.4.
 
-   o  link-entry (label 4): A reference to any another item (can include
-      details that are related to the CoSWID tag such as details on
-      where specific resources can be found, e.g.  vulnerability
-      database associations, ROLIE feeds, MUD files, etc).  This is
-      modeled directly to match the HTML "link" element; it is critical
-      for streamlining software discovery scenarios to ensure their
-      consistency.  Described in Section 2.5.
+   o  link-entry (label 4): Provides a means to establish a relationship
+      arc between the tag and another item.  A link can be used to
+      establish relationships between tags and to reference other
+      resources that are related to the CoSWID tag, e.g.  vulnerability
+      database associations, ROLIE feeds, MUD files, software download
+      location, etc).  This is modeled after the HTML "link" element.
+      Described in Section 2.5.
 
    o  payload-entry (label 6): The items that may be installed on a
       system entity when the software component is installed.  Note that
@@ -557,7 +557,7 @@ Internet-Draft                   COSWID                       March 2018
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 10]
+Birkholz, et al.       Expires September 22, 2018              [Page 10]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -580,40 +580,40 @@ Internet-Draft                   COSWID                       March 2018
       Described in Section 2.7.4.
 
    o  any-element-entry (label 7): A default map that can contain
-      arbitrary map members and even nested maps (which would be also
+      arbitrary map members and even nested maps (which would also be
       any-elements).  In essence, the any-element allows items not
       defined in this CDDL data definition to be included in a Concise
       Software Identifier.  Described in Section 2.3.
 
 2.1.1.  Determining the tag type
 
-   o  Primary Tag: A CoSWID tag MUST be considered a primary tag if the
-      corpus, patch, and supplemental items are "false".
-
-   o  Patch Tag: A CoSWID tag MUST be considered a patch tag if the
-      patch item is "true".
+   The operational model for SWID and CoSWID tags introduced in
+   Section 1.1.  The following rules can be used to determine the type
+   of a CoSWID tag.
 
    o  Corpus Tag: A CoSWID tag MUST be considered a corpus tag if the
       corpus item is "true".
 
+   o  Primary Tag: A CoSWID tag MUST be considered a primary tag if the
+      corpus, patch, and supplemental items are "false".
+
+   o  Patch Tag: A CoSWID tag MUST be considered a patch tag if the
+      patch item is "true" and the corpus item is "false".
+
    o  Supplemental Tag: A CoSWID tag MUST be considered a supplemental
       tag if the supplemental item is set to "true".
 
-   If multiple of the corpus, patch, and supplemental items are "true",
-   then the containing tag MUST be considered an unsupported tag type.
+   A tag that does not match one of the above rules MUST be considered
+   an invalid, unsupported tag type.
 
-   If the patch does modify the version number or the descriptive
-   metadata of the software, then a new tag representing these details
-   SHOULD be installed, and the old tag SHOULD be removed.
-
-
+   If a patch modifies the version number or the descriptive metadata of
+   the software, then a new tag representing these details SHOULD be
+   installed, and the old tag SHOULD be removed.
 
 
 
 
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 11]
+Birkholz, et al.       Expires September 22, 2018              [Page 11]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -631,14 +631,14 @@ Internet-Draft                   COSWID                       March 2018
 
    o  If the supplemental item is set to "true", the the tag SHOULD
       contain at least one link with the rel(ation) item value of
-      "suplements" and an href item specifying an association with the
+      "supplements" and an href item specifying an association with the
       software that is supplemented.
 
    o  If all of the corpus, patch, and supplemental items are "false",
       or if the corpus item is set to "true", then a software-version
       item MUST be included with a value set to the version of the
-      software component.  This ensure that primary and corpus tags have
-      an identifiable software version.
+      software component.  This ensures that primary and corpus tags
+      have an identifiable software version.
 
 2.2.  The global-attributes Group
 
@@ -650,7 +650,6 @@ Internet-Draft                   COSWID                       March 2018
 
    The CDDL for the global-attributes is as follows:
 
-   <CODE BEGINS>
    global-attributes = (
      ? lang,
      * any-attribute,
@@ -663,13 +662,14 @@ Internet-Draft                   COSWID                       March 2018
    )
 
    lang = (15: text)
-   <CODE ENDS>
 
    The following describes each child item of this object.
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 12]
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 12]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -683,17 +683,15 @@ Internet-Draft                   COSWID                       March 2018
       keys and values can be either a single integer or text string, or
       an array of integers or text strings.
 
-2.3.  The any-element-entry
+2.3.  The any-element-map Entry
 
    The CDDL for the any-element-entry object is as follows:
 
-   <CODE BEGINS>
    any-element-map = {
      global-attributes,
      * label => any-element-map / [ 2* any-element-map ],
    }
    any-element-entry = (7: any-element-map / [ 2* any-element-map ])
-   <CODE ENDS>
 
    The following describes each child item of this object.
 
@@ -706,31 +704,6 @@ Internet-Draft                   COSWID                       March 2018
 
    The CDDL for the entity object is as follows:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 13]
-
-Internet-Draft                   COSWID                       March 2018
-
-
-   <CODE BEGINS>
    entity = {
      global-attributes,
      entity-name,
@@ -746,10 +719,16 @@ Internet-Draft                   COSWID                       March 2018
    entity-name = (31: text)
    reg-id = (32: any-uri)
    role = (33: text / [2* text])
-   thumbprint = (34: text)
-   <CODE ENDS>
+   thumbprint = (34: hash-entry)
 
    The following describes each child item of this object.
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 13]
+
+Internet-Draft                   COSWID                       March 2018
+
 
    o  global-attributes: The global-attributes group described in
       Section 2.2.
@@ -768,23 +747,21 @@ Internet-Draft                   COSWID                       March 2018
    o  role (index 33): The relationship(s) between this organization and
       this tag.  The role of tag creator is required for every CoSWID
       tag.  The role of an entity may include any role value, but the
-      per-defined roles include: "aggregator", "distributor",
-      "licensor", "software-creator", "tag-creator".  The enumerations
-      of this will include a request to IANA in order to be reference-
-      able via an integer index.
+      pre-defined roles include: "aggregator", "distributor",
+      "licensor", "software-creator", and "tag-creator".  These pre-
+      defined role index and text values are defined in Section 3.2.
+      Use of index values instead of text for these pre-defined roles
+      allows a CoSWID to be more concise.
 
-   o  thumbprint (index 34): This value provides a hexadecimal string
-      that contains a hash (i.e. the thumbprint) of the signing entities
-      certificate(s). .
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 14]
-
-Internet-Draft                   COSWID                       March 2018
-
+   o  thumbprint (index 34): The value of the thmbprint item provides an
+      integer-based hash algorithm identifier (hash-alg-id) and a byte
+      string string value (hash-value) that contains the corresponding
+      hash value (i.e. the thumbprint) of the signing entities
+      certificate(s).  If the hash-alg-id is not known, then the integer
+      value "0" MUST be used.  This ensures parity between the SWID tag
+      specification [SWID], which does not allow an algorithm to be
+      identified for this field.  See Section 2.7.1 for more details on
+      the use of the hash-entry data structure.
 
    o  extended-data (index 30): An open-ended collection of elements
       that can be used to attach arbitrary metadata to an entity item.
@@ -793,7 +770,22 @@ Internet-Draft                   COSWID                       March 2018
 
    The CDDL for the link object is as follows:
 
-   <CODE BEGINS>
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 14]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    link = {
      global-attributes,
      ? artifact,
@@ -811,7 +803,6 @@ Internet-Draft                   COSWID                       March 2018
    rel = (40: text)
    media-type = (41: text)
    use = (42: "optional" / "required" / "recommended")
-   <CODE ENDS>
 
    The following describes each child item of this object.
 
@@ -819,48 +810,50 @@ Internet-Draft                   COSWID                       March 2018
       Section 2.2.
 
    o  artifact (index: 37): For installation media (rel="installation-
-      media") - dictates the canonical name for the file.  Items with
-      the same artifact name should be considered mirrors of each other
-      (so download from wherever works).
+      media"), this item value indicates the path of the installer
+      executable or script that can be run to launch the referenced
+      installation.  Items with the same artifact name should be
+      considered mirrors of each other, allowing the installation media
+      to be downloaded from any of the described sources.
 
-   o  href (index 38): The link to the item being referenced.  The href
-      can point to several different things, and can be any of the
-      following:
+   o  href (index 38): The link to the item being referenced.  The
+      "href" item's value can point to several different things, and can
+      be any of the following:
 
-      *  a relative uri (no scheme), which is interpreted depending on
-         context (for example, "./folder/supplemental.coswid")
+      *  If no URI scheme is provided, then the URI is to be interpreted
+         as being relative to the URI of the CoSWID tag.  For example,
+         "./folder/supplemental.coswid".
 
-      *  a physical file location with any system-acceptable URI scheme
-         (e.g., file:// http:// https:// ftp://)
+      *  a physical resource location with any system-acceptable URI
+         scheme (e.g., file:// http:// https:// ftp://)
+
+      *  a URI with "coswid:" as the scheme, which refers to another
+         CoSWID by tag-id.  This URI would need to be resolved in the
+         context of the system by software that can lookup other CoSWID
+         tags.  For example, "coswid:2df9de35-0aff-
+         4a86-ace6-f7dddd1ade4c" references the tag with the tag-id
+         value "2df9de35-0aff-4a86-ace6-f7dddd1ade4c".
 
 
 
 
-
-Birkholz, et al.       Expires September 21, 2018              [Page 15]
+Birkholz, et al.       Expires September 22, 2018              [Page 15]
 
 Internet-Draft                   COSWID                       March 2018
 
 
-      *  an URI with "coswid:" as the scheme, which refers to another
-         CoSWID by tag-id.  This URI would need to be resolved in the
-         context of the system by software that can lookup other CoSWID
-         tags (for example,
-
-      *  "coswid:2df9de35-0aff-4a86-ace6-f7dddd1ade4c").  an URI with
-         "swidpath:" as the scheme, which refers to another CoSIWD via
-         an XPATH query.  This URI would need to be resolved in the
-         context of the system entity via dedicated software components
-         that can lookup other CoSWID tags and select the appropriate
-         tag based on an XPATH query.  Examples include:
+      *  a URI with "swidpath:" as the scheme, which refers to another
+         CoSIWD via an XPATH query.  This URI would need to be resolved
+         in the context of the system entity via dedicated software
+         components that can lookup other CoSWID tags and select the
+         appropriate tag based on an XPATH query.  Examples include:
 
       *  swidpath://SoftwareIdentity[Entity/@regid='http://contoso.com']
          would retrieve all CoSWID tags that include an entity where the
-         regid was "Contoso".
-
-      *  swidpath://SoftwareIdentity[Meta/@persistentId='b0c55172-38e9-4
-         e36-be86-92206ad8eddb'] would retrieve CoSWID tags that matched
-         the persistent-id.
+         regid is "Contoso" or swidpath://SoftwareIdentity[Meta/@persist
+         entId='b0c55172-38e9-4e36-be86-92206ad8eddb'] would match
+         CoSWID tags with the persistent-id value
+         "b0c55172-38e9-4e36-be86-92206ad8eddb".
 
       *  See XPATH query standard : http://www.w3.org/TR/xpath20/
 
@@ -893,12 +886,17 @@ Internet-Draft                   COSWID                       March 2018
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 16]
+
+
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 16]
 
 Internet-Draft                   COSWID                       March 2018
 
-
-   <CODE BEGINS>
 
    software-meta = {
      global-attributes,
@@ -933,7 +931,6 @@ Internet-Draft                   COSWID                       March 2018
    summary = (55: text)
    unspsc-code = (56: text)
    unspsc-version = (57: text)
-   <CODE ENDS>
 
    The following describes each child item of this object.
 
@@ -944,19 +941,18 @@ Internet-Draft                   COSWID                       March 2018
       status of this software title (e.g.  Trial, Serialized, Licensed,
       Unlicensed, etc).  Typically, this is used in supplemental tags.
 
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 17]
-
-Internet-Draft                   COSWID                       March 2018
-
-
    o  channel-type (index 44): Provides information on which channel
       this particular software was targeted for (e.g.  Volume, Retail,
       OEM, Academic, etc).  Typically used in supplemental tags.
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 17]
+
+Internet-Draft                   COSWID                       March 2018
+
 
    o  colloquial-version (index 45): The informal or colloquial version
       of the product (i.e. 2013).  Note that this version may be the
@@ -991,10 +987,8 @@ Internet-Draft                   COSWID                       March 2018
       computing device.
 
    o  persistent-id (index 51): A GUID used to represent products
-      installed where the product are related, but may be different
-      versions.  For example, an "upgradeCode" (see
-      http://msdn.microsoft.com/en-us/library/aa372375(v=vs.85).aspx as
-      an reference for this example).
+      installed where the products are related, but may be different
+      versions.
 
    o  product (index 52): The base name of the product (e.g. ).
 
@@ -1002,19 +996,20 @@ Internet-Draft                   COSWID                       March 2018
       software belongs to.  Product family is not used to identify that
       a product is part of a suite, but is instead used when a set of
       products that are all related may be installed on multiple
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 18]
-
-Internet-Draft                   COSWID                       March 2018
-
-
       different devices.  For example, an enterprise backup system may
       consist of a backup services, multiple different backup services
       that support mail services, databases and ERP systems, as well as
       individual software components that backup client system entities.
       In such an usage scenario, all software components that are part
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 18]
+
+Internet-Draft                   COSWID                       March 2018
+
+
       of the backup system would have the same product-family name so
       they can be grouped together in respect to reporting systems.
 
@@ -1053,15 +1048,20 @@ Internet-Draft                   COSWID                       March 2018
 
    hash-entry = (58: [ hash-alg-id: int, hash-value: bstr ] )
 
-   The number used as a value for hash-alg-id MUST refer the ID in the
-   Named Information Hash Algorithm table; other hash algorithms MUST
+   The number used as a value for hash-alg-id MUST refer an ID in the
+   Named Information Hash Algorithm Registry; other hash algorithms MUST
    NOT be used.  The hash-value MUST represent the raw hash value of the
    hashed resource generated using the hash algorithm indicated by the
    hash-alg-id.
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 19]
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 19]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -1076,7 +1076,6 @@ Internet-Draft                   COSWID                       March 2018
 
    The CDDL for the resource-collection group is as follows:
 
-   <CODE BEGINS>
    resource-collection = (
      ? directory-entry,
      ? file-entry,
@@ -1117,7 +1116,8 @@ Internet-Draft                   COSWID                       March 2018
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 20]
+
+Birkholz, et al.       Expires September 22, 2018              [Page 20]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -1139,7 +1139,6 @@ Internet-Draft                   COSWID                       March 2018
    process-name = (27: text)
    pid = (28: integer)
    type = (29: text)
-   <CODE ENDS>
 
    The following describes each child item or group for these groups.
 
@@ -1173,7 +1172,8 @@ Internet-Draft                   COSWID                       March 2018
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 21]
+
+Birkholz, et al.       Expires September 22, 2018              [Page 21]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -1223,13 +1223,13 @@ Internet-Draft                   COSWID                       March 2018
      resource-collection,
      * $$payload-extension
    }
-   <CODE ENDS>
 
    The following describes each child item of this object.
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 22]
+
+Birkholz, et al.       Expires September 22, 2018              [Page 22]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -1240,13 +1240,15 @@ Internet-Draft                   COSWID                       March 2018
    o  resource-collection: The resource-collection group described in
       Section 2.7.2.
 
-   o  $$payload-extension:
+   o  $$payload-extension: This CDDL socket (see [I-D.ietf-cbor-cddl]
+      section 3.9) can be used to extend the payload model, allowing
+      well-formed extensions to be defined in additional CDDL
+      descriptions.
 
 2.7.4.  The evidence Object
 
    The CDDL for the evidence object is as follows:
 
-   <CODE BEGINS>
    evidence = {
      global-attributes,
      resource-collection,
@@ -1256,7 +1258,6 @@ Internet-Draft                   COSWID                       March 2018
    }
    date = (35: time)
    device-id = (36: text)
-   <CODE ENDS>
 
    The following describes each child item of this object.
 
@@ -1272,7 +1273,22 @@ Internet-Draft                   COSWID                       March 2018
    o  device-id (index 36): A text-string identifier for a device
       evidence was gathered from.
 
-   o  $$evidence-extension:
+   o  $$evidence-extension: This CDDL socket (see [I-D.ietf-cbor-cddl]
+      section 3.9) can be used to extend the evidence model, allowing
+      well-formed extensions to be defined in additional CDDL
+      descriptions.
+
+
+
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 23]
+
+Internet-Draft                   COSWID                       March 2018
+
 
 2.8.  Full CDDL Definition
 
@@ -1280,16 +1296,7 @@ Internet-Draft                   COSWID                       March 2018
    corresponding CBOR message MUST adhere to the following CDDL data
    definition.
 
-   <CODE BEGINS>
    concise-software-identity = {
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 23]
-
-Internet-Draft                   COSWID                       March 2018
-
-
      global-attributes,
      tag-id,
      tag-version,
@@ -1331,20 +1338,20 @@ Internet-Draft                   COSWID                       March 2018
      ? resource-entry
    )
 
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 24]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    file = {
      filesystem-item,
      ? size,
      ? file-version,
      ? hash-entry,
    }
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 24]
-
-Internet-Draft                   COSWID                       March 2018
-
 
    filesystem-item = (
      global-attributes,
@@ -1387,6 +1394,14 @@ Internet-Draft                   COSWID                       March 2018
      * $$evidence-extension
    }
 
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 25]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    link = {
      global-attributes,
      ? artifact,
@@ -1394,14 +1409,6 @@ Internet-Draft                   COSWID                       March 2018
      ? media
      ? ownership,
      rel,
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 25]
-
-Internet-Draft                   COSWID                       March 2018
-
-
      ? media-type,
      ? use,
    }
@@ -1443,6 +1450,14 @@ Internet-Draft                   COSWID                       March 2018
    patch = (9: bool)
    media = (10: text)
    supplemental = (11: bool)
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 26]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    tag-version = (12: integer)
    software-version = (13: text)
    version-scheme = (14: text / int)
@@ -1450,14 +1465,6 @@ Internet-Draft                   COSWID                       March 2018
    directory-entry = (16: directory / [ 2* directory ])
    file-entry = (17: file / [ 2* file ])
    process-entry = (18: process / [ 2* process ])
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 26]
-
-Internet-Draft                   COSWID                       March 2018
-
-
    resource-entry = (19: resource / [ 2* resource ])
    size = (20: integer)
    file-version = (21: text)
@@ -1476,7 +1483,7 @@ Internet-Draft                   COSWID                       March 2018
    entity-name = (31: text)
    reg-id = (32: any-uri)
    role = (33: text / [2* text])
-   thumbprint = (34: text)
+   thumbprint = (34: hash-entry)
    date = (35: time)
    device-id = (36: text)
    artifact = (37: text)
@@ -1499,20 +1506,19 @@ Internet-Draft                   COSWID                       March 2018
    revision = (54: text)
    summary = (55: text)
    unspsc-code = (56: text)
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 27]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    unspsc-version = (57: text)
    hash-entry = (58: [ hash-alg-id: int,
                       hash-value: bstr,
                     ]
                )
-   <CODE ENDS>
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 27]
-
-Internet-Draft                   COSWID                       March 2018
-
 
 3.  CoSWID Indexed Label Values
 
@@ -1523,21 +1529,21 @@ Internet-Draft                   COSWID                       March 2018
    19770-2:2015 [SWID] specification.  Index value in parens indicates
    the index value to use in the version-scheme item.
 
-   o  multipartnumeric (index 0): Numbers separated by dots, where the
+   o  multipartnumeric (index 1): Numbers separated by dots, where the
       numbers are interpreted as integers (e.g.,1.2.3, 1.4.5,
       1.2.3.4.5.6.7)
 
-   o  multipartnumeric+suffix (index 1): Numbers separated by dots,
+   o  multipartnumeric+suffix (index 2): Numbers separated by dots,
       where the numbers are interpreted as integers with an additional
       string suffix(e.g., 1.2.3a)
 
-   o  alphanumeric (index 2): Strictly a string, sorting is done
+   o  alphanumeric (index 3): Strictly a string, sorting is done
       alphanumerically
 
-   o  decimal (index 3): A floating point number (e.g., 1.25 is less
+   o  decimal (index 4): A floating point number (e.g., 1.25 is less
       than 1.3)
 
-   o  semver (index 4): Follows the [SEMVER] specification
+   o  semver (index 16384): Follows the [SEMVER] specification
 
    The values above are registered in the "SWID/CoSWID Version Schema
    Values" registry defined in section Section 4.1.  Additional valid
@@ -1548,27 +1554,42 @@ Internet-Draft                   COSWID                       March 2018
    The following table indicates the index value to use for the entity
    roles defined in the ISO/IEC 19770-2:2015 [SWID] specification.
 
-   | Index | Role Name                |
-   |-------+--------------------------+
-   | 0     | tagCreator               |
-   | 1     | softwareCreator          |
-   | 2     | aggregator               |
-   | 3     | distributor              |
-   | 4     | licensor                 |
 
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 28]
+
+Internet-Draft                   COSWID                       March 2018
+
+
+                        +-------+-----------------+
+                        | Index | Role Name       |
+                        +-------+-----------------+
+                        | 0     | Reserved        |
+                        |       |                 |
+                        | 1     | tagCreator      |
+                        |       |                 |
+                        | 2     | softwareCreator |
+                        |       |                 |
+                        | 3     | aggregator      |
+                        |       |                 |
+                        | 4     | distributor     |
+                        |       |                 |
+                        | 5     | licensor        |
+                        +-------+-----------------+
 
    The values above are registered in the "SWID/CoSWID Entity Role
    Values" registry defined in section Section 4.2.  Additional valid
    values will likely be registered over time.  Additionally, the index
    values 226 through 255 have been reserved for private use.
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 28]
-
-Internet-Draft                   COSWID                       March 2018
-
 
 4.  IANA Considerations
 
@@ -1593,38 +1614,52 @@ Internet-Draft                   COSWID                       March 2018
    Version Schema Values".  Future registrations for this registry are
    to be made based on [RFC8126] as follows:
 
-   | Range        | Registration Procedures  |
-   |--------------+--------------------------+
-   | 0-16383      | Standards Action         |
-   | 16384-32767  | Specification Required   |
-   | 32768-65535  | Reserved for Private Use |
 
+
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 29]
+
+Internet-Draft                   COSWID                       March 2018
+
+
+                +-------------+--------------------------+
+                | Range       | Registration Procedures  |
+                +-------------+--------------------------+
+                | 0-16383     | Standards Action         |
+                |             |                          |
+                | 16384-32767 | Specification Required   |
+                |             |                          |
+                | 32768-65535 | Reserved for Private Use |
+                +-------------+--------------------------+
 
    Initial registrations for the SWID/CoSWID Version Schema Values
    registry are provided below.
 
-   | Index       | Role Name                | Specification   |
-   |-------------+--------------------------+-----------------|
-   | 0           | multipartnumeric         | See section 3.1 |
-   | 1           | multipartnumeric+suffix  | See section 3.1 |
-   | 2           | alphanumeric             | See section 3.1 |
-   | 3           | decimal                  | See section 3.1 |
-   | 4-16383     | Unassigned               |                 |
-   | 16384       | semver                   | {{SEMVER}}      |
-   | 16385-32767 | Unassigned               |                 |
-   | 32768-65535 | Reserved for Private Use |                 |
-
-
-
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 29]
-
-Internet-Draft                   COSWID                       March 2018
-
+       +-------------+--------------------------+-----------------+
+       | Index       | Role Name                | Specification   |
+       +-------------+--------------------------+-----------------+
+       | 0           | Reserved                 |                 |
+       |             |                          |                 |
+       | 1           | multipartnumeric         | See Section 3.1 |
+       |             |                          |                 |
+       | 2           | multipartnumeric+suffix  | See Section 3.1 |
+       |             |                          |                 |
+       | 3           | alphanumeric             | See Section 3.1 |
+       |             |                          |                 |
+       | 4           | decimal                  | See Section 3.1 |
+       |             |                          |                 |
+       | 5-16383     | Unassigned               |                 |
+       |             |                          |                 |
+       | 16384       | semver                   | [SEMVER]        |
+       |             |                          |                 |
+       | 16385-32767 | Unassigned               |                 |
+       |             |                          |                 |
+       | 32768-65535 | Reserved for Private Use |                 |
+       +-------------+--------------------------+-----------------+
 
 4.2.  SWID/CoSWID Entity Role Values Registry
 
@@ -1637,57 +1672,84 @@ Internet-Draft                   COSWID                       March 2018
    Entity Role Values".  Future registrations for this registry are to
    be made based on [RFC8126] as follows:
 
-   | Range   | Registration Procedures    |
-   |---------+----------------------------+
-   | 0-31    | Standards Action           |
-   | 32-127  | Specification Required     |
-   | 128-255 | Reserved for Private Use   |
-
-
-   Initial registrations for the SWID/CoSWID Entity Role Values registry
-   are provided below.
-
-   | Index   | Role Name                | Specification   |
-   |---------+--------------------------+-----------------|
-   | 0       | tagCreator               | See section 3.2 |
-   | 1       | softwareCreator          | See section 3.2 |
-   | 2       | aggregator               | See section 3.2 |
-   | 3       | distributor              | See section 3.2 |
-   | 4       | licensor                 | See section 3.2 |
-   | 5-49    | Unassigned               |                 |
-   | 50-225  | Unassigned               |                 |
-   | 225-255 | Reserved for Private Use |                 |
-
-
-5.  Security Considerations
-
-   SWID tags contain public information about software components and,
-   as such, do not need to be protected against disclosure on an
-   endpoint.  Similarly, SWID tags are intended to be easily
-   discoverable by applications and users on an endpoint in order to
-   make it easy to identify and collect all of an endpoint's SWID tags.
-   As such, any security considerations regarding SWID tags focus on the
-   application of SWID tags to address security challenges, and the
-   possible disclosure of the results of those applications.
-
-   A signed SWID tag whose signature is intact can be relied upon to be
-   unchanged since it was signed.  If the SWID tag was created by the
-   software author, this generally means that it has undergone no change
-   since the software application with which the tag is associated was
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 30]
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 30]
 
 Internet-Draft                   COSWID                       March 2018
 
 
-   installed.  By implication, this means that the signed tag reflects
-   the software author's understanding of the details of that software
-   product.  This can be useful assurance when the information in the
-   tag needs to be trusted, such as when the tag is being used to convey
-   golden measurements.  By contrast, the data contained in unsigned
-   tags cannot be trusted to be unmodified.
+                  +---------+--------------------------+
+                  | Range   | Registration Procedures  |
+                  +---------+--------------------------+
+                  | 0-31    | Standards Action         |
+                  |         |                          |
+                  | 32-127  | Specification Required   |
+                  |         |                          |
+                  | 128-255 | Reserved for Private Use |
+                  +---------+--------------------------+
+
+   Initial registrations for the SWID/CoSWID Entity Role Values registry
+   are provided below.
+
+         +---------+--------------------------+-----------------+
+         | Index   | Role Name                | Specification   |
+         +---------+--------------------------+-----------------+
+         | 0       | Reserved                 |                 |
+         |         |                          |                 |
+         | 1       | tagCreator               | See Section 3.2 |
+         |         |                          |                 |
+         | 2       | softwareCreator          | See Section 3.2 |
+         |         |                          |                 |
+         | 3       | aggregator               | See Section 3.2 |
+         |         |                          |                 |
+         | 4       | distributor              | See Section 3.2 |
+         |         |                          |                 |
+         | 5       | licensor                 | See Section 3.2 |
+         |         |                          |                 |
+         | 6-49    | Unassigned               |                 |
+         |         |                          |                 |
+         | 50-225  | Unassigned               |                 |
+         |         |                          |                 |
+         | 225-255 | Reserved for Private Use |                 |
+         +---------+--------------------------+-----------------+
+
+5.  Security Considerations
+
+   SWID and CoSWID tags contain public information about software
+   components and, as such, do not need to be protected against
+   disclosure on an endpoint.  Similarly, SWID tags are intended to be
+   easily discoverable by applications and users on an endpoint in order
+   to make it easy to identify and collect all of an endpoint's SWID
+   tags.  As such, any security considerations regarding SWID tags focus
+   on the application of SWID tags to address security challenges, and
+   the possible disclosure of the results of those applications.
+
+   A signed SWID tag whose signature has been validated can be relied
+   upon to be unchanged since it was signed.  If the SWID tag was
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 31]
+
+Internet-Draft                   COSWID                       March 2018
+
+
+   created by the software provider, is signed, and the software
+   provider can be authenticated as the originator of the signature,
+   then the tag can be considered authoritative.  In this way, an
+   authoritative SWID tag contains information about a software product
+   provided by the maintainer of the product, who is expected to be an
+   expert in their own product.  Thus, authoritative SWID tags can be
+   trusted to represent authoritative information about the software
+   product.  Having an authoritative SWID tag can be useful when the
+   information in the tag needs to be trusted, such as when the tag is
+   being used to convey reference integrity measurements for software
+   components.  By contrast, the data contained in unsigned tags cannot
+   be trusted to be unmodified.
 
    SWID tags are designed to be easily added and removed from an
    endpoint along with the installation or removal of software
@@ -1723,21 +1785,22 @@ Internet-Draft                   COSWID                       March 2018
    to protect the confidentiality of SWID tag information that has been
    collected from an endpoint, not because those tags individually
    contain sensitive information, but because the collection of SWID
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 32]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    tags and their association with an endpoint reveals information about
    that endpoint's attack surface.
 
    Finally, both the ISO-19770-2:2015 XML schema definition and the
    Concise SWID data definition allow for the construction of "infinite"
-   SWID tags or SWID tags that contain malicious content with the intend
+   SWID tags or SWID tags that contain malicious content with the intent
    if creating non-deterministic states during validation or processing
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 31]
-
-Internet-Draft                   COSWID                       March 2018
-
-
    of SWID tags.  While software product vendors are unlikely to do
    this, SWID tags can be created by any party and the SWID tags
    collected from an endpoint could contain a mixture of vendor and non-
@@ -1748,6 +1811,23 @@ Internet-Draft                   COSWID                       March 2018
 6.  Acknowledgments
 
 7.  Change Log
+
+   Changes from version 04 to version 05:
+
+   o  Clarified language around SWID and CoSWID to make more consistant
+      use of these terms.
+
+   o  Added language describing CBOR optimizations for single vs. arrays
+      in the model front matter.
+
+   o  Fixed a number of gramatical, spelling, and wording issues.
+
+   o  Documented extension points that use CDDL sockets.
+
+   o  Converted IANA registration tables to markdown tables, reserving
+      the 0 value for use when a value is not known.
+
+   o  Updated a number of references to their current versions.
 
    Changes from version 03 to version 04:
 
@@ -1762,6 +1842,13 @@ Internet-Draft                   COSWID                       March 2018
    o  Updated CDDL to allow for a choice between a payload or evidence
 
    o  Re-index label values in the CDDL.
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 33]
+
+Internet-Draft                   COSWID                       March 2018
+
 
    o  Added item definitions
 
@@ -1785,14 +1872,6 @@ Internet-Draft                   COSWID                       March 2018
    o  Fixed cardinality of type-choices including arrays
 
    o  Included first iteration of firmware resource-collection
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 32]
-
-Internet-Draft                   COSWID                       March 2018
-
 
    Changes since adopted as a WG I-D -00:
 
@@ -1819,6 +1898,14 @@ Internet-Draft                   COSWID                       March 2018
 
    o  allowing for "empty" SWID tags)
 
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 34]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    o  Added a relatively restrictive COSE envelope using cose_sign1 to
       define signed CoSWID (single signer only, at the moment)
 
@@ -1841,14 +1928,6 @@ Internet-Draft                   COSWID                       March 2018
 
    o  Added a first extension point to address requested flexibility for
       extensions beyond the any-element
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 33]
-
-Internet-Draft                   COSWID                       March 2018
-
 
 8.  Contributors
 
@@ -1875,6 +1954,14 @@ Internet-Draft                   COSWID                       March 2018
               Languages", BCP 47, RFC 5646, DOI 10.17487/RFC5646,
               September 2009, <https://www.rfc-editor.org/info/rfc5646>.
 
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 35]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
@@ -1899,13 +1986,6 @@ Internet-Draft                   COSWID                       March 2018
               2: Software identification tag", ISO/IEC 19770-2:2015,
               October 2015.
 
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 34]
-
-Internet-Draft                   COSWID                       March 2018
-
-
    [SWID-GUIDANCE]
               Waltermire, D., Cheikes, B., Feldman, L., and G. Witte,
               "Guidelines for the Creation of Interoperable Software
@@ -1916,11 +1996,6 @@ Internet-Draft                   COSWID                       March 2018
               vulnerabilities and exposures", April 2011.
 
 9.2.  Informative References
-
-   [I-D.banghart-sacm-rolie-softwaredescriptor]
-              Waltermire, D. and S. Banghart, "Definition of the ROLIE
-              Software Descriptor Extension", draft-banghart-sacm-rolie-
-              softwaredescriptor-01 (work in progress), May 2017.
 
    [I-D.birkholz-tuda]
               Fuchs, A., Birkholz, H., McDonald, I., and C. Bormann,
@@ -1933,11 +2008,31 @@ Internet-Draft                   COSWID                       March 2018
               express CBOR data structures", draft-ietf-cbor-cddl-02
               (work in progress), February 2018.
 
+
+
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 36]
+
+Internet-Draft                   COSWID                       March 2018
+
+
+   [I-D.ietf-sacm-rolie-softwaredescriptor]
+              Waltermire, D. and S. Banghart, "Definition of the ROLIE
+              Software Descriptor Extension", draft-ietf-sacm-rolie-
+              softwaredescriptor-01 (work in progress), March 2018.
+
    [I-D.ietf-sacm-terminology]
               Birkholz, H., Lu, J., Strassner, J., Cam-Winget, N., and
               A. Montville, "Security Automation and Continuous
               Monitoring (SACM) Terminology", draft-ietf-sacm-
               terminology-14 (work in progress), December 2017.
+
+   [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
+              Unique IDentifier (UUID) URN Namespace", RFC 4122,
+              DOI 10.17487/RFC4122, July 2005,
+              <https://www.rfc-editor.org/info/rfc4122>.
 
    [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
               FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
@@ -1954,14 +2049,6 @@ Appendix A.  CoSWID Attributes for Firmware (label 60)
    of a file system a software component is installed and stored in.  In
    the case of constrained-node networks [RFC7228] or network equipment
    this assumption might not apply.  Concise software instances in the
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 35]
-
-Internet-Draft                   COSWID                       March 2018
-
-
    form of (modular) firmware are often stored directly on a block
    device that is a hardware component of the constrained-node or
    network equipment.  Multiple differentiable block devices or
@@ -1979,6 +2066,14 @@ Internet-Draft                   COSWID                       March 2018
    things require a set of attributes to address the identification of
    the correct component in a composite thing for each individual piece
    of firmware.  A single component also potentially requires a number
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 37]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    of distinct firmware parts that might depend on each other
    (versions).  These dependencies can be limited to the scope of the
    component itself or extend to the scope of a larger composite device.
@@ -1993,30 +2088,6 @@ Internet-Draft                   COSWID                       March 2018
    CoSWID.  The optional use of the extension points "$$payload-
    extension" and "$$evidence-extension" in respect to firmware MUST
    adhere to the following CDDL data definition.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 36]
-
-Internet-Draft                   COSWID                       March 2018
-
 
 <CODE BEGINS>
 $$payload-extension  //= (firmware-entry,)
@@ -2051,6 +2122,14 @@ dependency = (69: { ? firmware-name,
              )
 <CODE ENDS>
 
+
+
+
+Birkholz, et al.       Expires September 22, 2018              [Page 38]
+
+Internet-Draft                   COSWID                       March 2018
+
+
    The members of the firmware group that constitutes the content of the
    firmware-entry is based on the metadata about firmware Described in
    [RFC4108].  As with every semantic differentiation that is supported
@@ -2066,14 +2145,6 @@ dependency = (69: { ? firmware-name,
    a single document (which again can be signed, encrypted and/or
    compressed).  In consequence, a CoSWID tag about firmware can be
    conveyed as an identifying document across endpoints or used as a
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 37]
-
-Internet-Draft                   COSWID                       March 2018
-
-
    reference integrity measurement as usual.  Alternatively, it can also
    convey an actual piece of firmware, serve its intended purpose as a
    SWID tag and then - due to the lack of a location to store it - be
@@ -2110,22 +2181,7 @@ Appendix B.  Signed Concise SWID Tags using COSE
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.       Expires September 21, 2018              [Page 38]
+Birkholz, et al.       Expires September 22, 2018              [Page 39]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -2166,7 +2222,7 @@ Appendix C.  CoSWID used as Reference Integrity Measurements (CoSWID
    attestation based on an attestation via hardware rooted trust, a
    verifier can appraise the integrity of the conveyed measurements of
    software components using a CoSWID RIM provided by a source, such as
-   [I-D.banghart-sacm-rolie-softwaredescriptor].
+   [I-D.ietf-sacm-rolie-softwaredescriptor].
 
    RIM Manifests (RIMM):  A group of SWID tags about the same
       (sub-)system, system entity, or (sub-)component (compare
@@ -2181,7 +2237,7 @@ Appendix C.  CoSWID used as Reference Integrity Measurements (CoSWID
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 39]
+Birkholz, et al.       Expires September 22, 2018              [Page 40]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -2237,7 +2293,7 @@ Authors' Addresses
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 40]
+Birkholz, et al.       Expires September 22, 2018              [Page 41]
 
 Internet-Draft                   COSWID                       March 2018
 
@@ -2293,4 +2349,4 @@ Internet-Draft                   COSWID                       March 2018
 
 
 
-Birkholz, et al.       Expires September 21, 2018              [Page 41]
+Birkholz, et al.       Expires September 22, 2018              [Page 42]
