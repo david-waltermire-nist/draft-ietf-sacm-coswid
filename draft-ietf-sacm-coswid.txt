@@ -5,12 +5,12 @@
 SACM Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                     J. Fitzgerald-McKay
-Expires: December 10, 2018                         Department of Defense
+Expires: December 13, 2018                         Department of Defense
                                                               C. Schmidt
                                                    The MITRE Corporation
                                                            D. Waltermire
                                                                     NIST
-                                                           June 08, 2018
+                                                           June 11, 2018
 
 
                       Concise Software Identifiers
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 10, 2018.
+   This Internet-Draft will expire on December 13, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 1]
+Birkholz, et al.        Expires December 13, 2018               [Page 1]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -89,10 +89,10 @@ Table of Contents
        2.7.3.  The payload Object  . . . . . . . . . . . . . . . . .  22
        2.7.4.  The evidence Object . . . . . . . . . . . . . . . . .  23
      2.8.  Full CDDL Definition  . . . . . . . . . . . . . . . . . .  24
-   3.  CoSWID Indexed Label Values . . . . . . . . . . . . . . . . .  28
-     3.1.  Version Scheme  . . . . . . . . . . . . . . . . . . . . .  28
+   3.  CoSWID Indexed Label Values . . . . . . . . . . . . . . . . .  29
+     3.1.  Version Scheme  . . . . . . . . . . . . . . . . . . . . .  29
      3.2.  Entity Role Values  . . . . . . . . . . . . . . . . . . .  29
-   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  29
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  30
      4.1.  SWID/CoSWID Version Schema Values Registry  . . . . . . .  30
      4.2.  SWID/CoSWID Entity Role Values Registry . . . . . . . . .  31
    5.  Security Considerations . . . . . . . . . . . . . . . . . . .  32
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 2]
+Birkholz, et al.        Expires December 13, 2018               [Page 2]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 3]
+Birkholz, et al.        Expires December 13, 2018               [Page 3]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -221,7 +221,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 4]
+Birkholz, et al.        Expires December 13, 2018               [Page 4]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -277,7 +277,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 5]
+Birkholz, et al.        Expires December 13, 2018               [Page 5]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -333,7 +333,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 6]
+Birkholz, et al.        Expires December 13, 2018               [Page 6]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -389,7 +389,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 7]
+Birkholz, et al.        Expires December 13, 2018               [Page 7]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -445,7 +445,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 8]
+Birkholz, et al.        Expires December 13, 2018               [Page 8]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -501,7 +501,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018               [Page 9]
+Birkholz, et al.        Expires December 13, 2018               [Page 9]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 10]
+Birkholz, et al.        Expires December 13, 2018              [Page 10]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -613,7 +613,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 11]
+Birkholz, et al.        Expires December 13, 2018              [Page 11]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 12]
+Birkholz, et al.        Expires December 13, 2018              [Page 12]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -725,7 +725,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 13]
+Birkholz, et al.        Expires December 13, 2018              [Page 13]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -781,7 +781,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 14]
+Birkholz, et al.        Expires December 13, 2018              [Page 14]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -837,7 +837,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 15]
+Birkholz, et al.        Expires December 13, 2018              [Page 15]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -893,7 +893,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 16]
+Birkholz, et al.        Expires December 13, 2018              [Page 16]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -949,7 +949,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 17]
+Birkholz, et al.        Expires December 13, 2018              [Page 17]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 18]
+Birkholz, et al.        Expires December 13, 2018              [Page 18]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1061,7 +1061,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 19]
+Birkholz, et al.        Expires December 13, 2018              [Page 19]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 20]
+Birkholz, et al.        Expires December 13, 2018              [Page 20]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 21]
+Birkholz, et al.        Expires December 13, 2018              [Page 21]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 22]
+Birkholz, et al.        Expires December 13, 2018              [Page 22]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1285,7 +1285,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 23]
+Birkholz, et al.        Expires December 13, 2018              [Page 23]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1341,7 +1341,7 @@ resource-collection = (
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 24]
+Birkholz, et al.        Expires December 13, 2018              [Page 24]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1397,7 +1397,7 @@ evidence = {
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 25]
+Birkholz, et al.        Expires December 13, 2018              [Page 25]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1448,16 +1448,31 @@ payload-entry = (6: payload)
 any-element-entry = (7: any-element-map / [ 2* any-element-map ])
 corpus = (8: bool)
 patch = (9: bool)
-media = (10: text)
-supplemental = (11: bool)
+media = (10: [ + [ media-expression,
+                     ? [ media-operation,
 
 
 
-Birkholz, et al.        Expires December 10, 2018              [Page 26]
+Birkholz, et al.        Expires December 13, 2018              [Page 26]
 
 Internet-Draft                   COSWID                        June 2018
 
 
+                         media-expression,
+                       ]
+                 ]
+             ])
+media-operation = text
+media-expression = media-environment / [ media-prefix,
+                                         media-environment,
+                                         media-attribute,
+                                         media-value,
+                                       ]
+media-prefix = text
+media-environment = text
+media-attribute = text
+media-value = text
+supplemental = (11: bool)
 tag-version = (12: integer)
 software-version = (13: text)
 version-scheme = (14: text / int)
@@ -1491,6 +1506,14 @@ software-creator=3
 tag-creator=4
 thumbprint = (34: [ hash-alg-id: int,
                     hash-value: bstr,
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 27]
+
+Internet-Draft                   COSWID                        June 2018
+
+
                   ]
              )
 date = (35: time)
@@ -1506,14 +1529,6 @@ rels = ancestor / component / feature / installationmedia / packageinstaller / p
 ancestor=0
 component=1
 feature=2
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 27]
-
-Internet-Draft                   COSWID                        June 2018
-
-
 installationmedia=3
 packageinstaller=4
 parent=5
@@ -1547,6 +1562,14 @@ hash-entry = (58: [ hash-alg-id: int,
                   ]
              )
 
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 28]
+
+Internet-Draft                   COSWID                        June 2018
+
+
 3.  CoSWID Indexed Label Values
 
 3.1.  Version Scheme
@@ -1559,16 +1582,6 @@ hash-entry = (58: [ hash-alg-id: int,
    o  multipartnumeric (index 1): Numbers separated by dots, where the
       numbers are interpreted as integers (e.g.,1.2.3, 1.4.5,
       1.2.3.4.5.6.7)
-
-
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 28]
-
-Internet-Draft                   COSWID                        June 2018
-
 
    o  multipartnumeric+suffix (index 2): Numbers separated by dots,
       where the numbers are interpreted as integers with an additional
@@ -1590,6 +1603,28 @@ Internet-Draft                   COSWID                        June 2018
 
    The following table indicates the index value to use for the entity
    roles defined in the ISO/IEC 19770-2:2015 [SWID] specification.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 29]
+
+Internet-Draft                   COSWID                        June 2018
+
 
                         +-------+-----------------+
                         | Index | Role Name       |
@@ -1619,13 +1654,6 @@ Internet-Draft                   COSWID                        June 2018
    o  Integer indices for SWID content attributes and information
       elements.
 
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 29]
-
-Internet-Draft                   COSWID                        June 2018
-
-
    o  Content-Type for CoAP to be used in COSE.
 
    This document has a number of IANA considerations, as described in
@@ -1642,6 +1670,18 @@ Internet-Draft                   COSWID                        June 2018
    Version Schema Values".  Future registrations for this registry are
    to be made based on [RFC8126] as follows:
 
+
+
+
+
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 30]
+
+Internet-Draft                   COSWID                        June 2018
+
+
                 +-------------+--------------------------+
                 | Range       | Registration Procedures  |
                 +-------------+--------------------------+
@@ -1654,33 +1694,6 @@ Internet-Draft                   COSWID                        June 2018
 
    Initial registrations for the SWID/CoSWID Version Schema Values
    registry are provided below.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 30]
-
-Internet-Draft                   COSWID                        June 2018
-
 
        +-------------+--------------------------+-----------------+
        | Index       | Role Name                | Specification   |
@@ -1715,6 +1728,16 @@ Internet-Draft                   COSWID                        June 2018
    Entity Role Values".  Future registrations for this registry are to
    be made based on [RFC8126] as follows:
 
+
+
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 31]
+
+Internet-Draft                   COSWID                        June 2018
+
+
                   +---------+--------------------------+
                   | Range   | Registration Procedures  |
                   +---------+--------------------------+
@@ -1727,16 +1750,6 @@ Internet-Draft                   COSWID                        June 2018
 
    Initial registrations for the SWID/CoSWID Entity Role Values registry
    are provided below.
-
-
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 31]
-
-Internet-Draft                   COSWID                        June 2018
-
 
          +---------+--------------------------+-----------------+
          | Index   | Role Name                | Specification   |
@@ -1773,6 +1786,14 @@ Internet-Draft                   COSWID                        June 2018
 
    A signed SWID tag whose signature has been validated can be relied
    upon to be unchanged since it was signed.  If the SWID tag was
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 32]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    created by the software provider, is signed, and the software
    provider can be authenticated as the originator of the signature,
    then the tag can be considered authoritative.  In this way, an
@@ -1785,14 +1806,6 @@ Internet-Draft                   COSWID                        June 2018
    being used to convey reference integrity measurements for software
    components.  By contrast, the data contained in unsigned tags cannot
    be trusted to be unmodified.
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 32]
-
-Internet-Draft                   COSWID                        June 2018
-
 
    SWID tags are designed to be easily added and removed from an
    endpoint along with the installation or removal of software
@@ -1828,6 +1841,15 @@ Internet-Draft                   COSWID                        June 2018
    to protect the confidentiality of SWID tag information that has been
    collected from an endpoint, not because those tags individually
    contain sensitive information, but because the collection of SWID
+
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 33]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    tags and their association with an endpoint reveals information about
    that endpoint's attack surface.
 
@@ -1841,14 +1863,6 @@ Internet-Draft                   COSWID                        June 2018
    vendor created tags.  For this reason, tools that consume SWID tags
    ought to treat the tag contents as potentially malicious and should
    employ input sanitizing on the tags they ingest.
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 33]
-
-Internet-Draft                   COSWID                        June 2018
-
 
 6.  Acknowledgments
 
@@ -1885,6 +1899,13 @@ Internet-Draft                   COSWID                        June 2018
 
    o  Re-index label values in the CDDL.
 
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 34]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    o  Added item definitions
 
    o  Updated references for COSE, CBOR Web Token, and CDDL.
@@ -1896,15 +1917,6 @@ Internet-Draft                   COSWID                        June 2018
 
    o  Changes meta handling in CDDL from use of an explicit use of items
       to a more flexible unconstrained collection of items.
-
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 34]
-
-Internet-Draft                   COSWID                        June 2018
-
 
    o  Added sections discussing use of COSE Signatures and CBOR Web
       Tokens
@@ -1942,6 +1954,14 @@ Internet-Draft                   COSWID                        June 2018
 
    o  allowing for "empty" SWID tags)
 
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 35]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    o  Added a relatively restrictive COSE envelope using cose_sign1 to
       define signed CoSWID (single signer only, at the moment)
 
@@ -1953,14 +1973,6 @@ Internet-Draft                   COSWID                        June 2018
    o  Enforced a more strict separation between the core CoSWID
       definition and additional usage by moving content to corresponding
       appendices.
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 35]
-
-Internet-Draft                   COSWID                        June 2018
-
 
    o  Removed artifacts inherited from the reference schema provided by
       ISO (e.g.  NMTOKEN(S))
@@ -1998,6 +2010,14 @@ Internet-Draft                   COSWID                        June 2018
               Languages", BCP 47, RFC 5646, DOI 10.17487/RFC5646,
               September 2009, <https://www.rfc-editor.org/info/rfc5646>.
 
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 36]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
@@ -2010,13 +2030,6 @@ Internet-Draft                   COSWID                        June 2018
    [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
               RFC 8152, DOI 10.17487/RFC8152, July 2017,
               <https://www.rfc-editor.org/info/rfc8152>.
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 36]
-
-Internet-Draft                   COSWID                        June 2018
-
 
    [SAM]      "Information technology - Software asset management - Part
               5: Overview and vocabulary", ISO/IEC 19770-5:2013,
@@ -2051,6 +2064,16 @@ Internet-Draft                   COSWID                        June 2018
               express CBOR data structures", draft-ietf-cbor-cddl-02
               (work in progress), February 2018.
 
+
+
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 37]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    [I-D.ietf-sacm-rolie-softwaredescriptor]
               Waltermire, D. and S. Banghart, "Definition of the ROLIE
               Software Descriptor Extension", draft-ietf-sacm-rolie-
@@ -2066,13 +2089,6 @@ Internet-Draft                   COSWID                        June 2018
               Unique IDentifier (UUID) URN Namespace", RFC 4122,
               DOI 10.17487/RFC4122, July 2005,
               <https://www.rfc-editor.org/info/rfc4122>.
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 37]
-
-Internet-Draft                   COSWID                        June 2018
-
 
    [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
               FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
@@ -2106,6 +2122,14 @@ Appendix A.  CoSWID Attributes for Firmware (label 60)
    things require a set of attributes to address the identification of
    the correct component in a composite thing for each individual piece
    of firmware.  A single component also potentially requires a number
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 38]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    of distinct firmware parts that might depend on each other
    (versions).  These dependencies can be limited to the scope of the
    component itself or extend to the scope of a larger composite device.
@@ -2122,14 +2146,6 @@ Appendix A.  CoSWID Attributes for Firmware (label 60)
    adhere to the following CDDL data definition.
 
 <CODE BEGINS>
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 38]
-
-Internet-Draft                   COSWID                        June 2018
-
-
 $$payload-extension  //= (firmware-entry,)
 $$evidence-extension  //= (firmware-entry,)
 
@@ -2162,6 +2178,14 @@ firmware-payload = {
   ? firmware-payload-directives,
   ? firmware-target-dependency,
   ? firmware-target-minimal-version,
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 39]
+
+Internet-Draft                   COSWID                        June 2018
+
+
   ? firmware-payload-relationships,
   firmware-payload-package,
   ? simple-firmware-payload-extensions,
@@ -2178,14 +2202,6 @@ firmware-manifest-version = (65: uint)
 firmware-manifest-description = (66: text)
 firmware-manifest-nonce = (67: bytes)
 firmware-manifest-dependencies = (68: resource-reference)
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 39]
-
-Internet-Draft                   COSWID                        June 2018
-
-
 firmware-manifest-aliases = (69: resource-reference)
 resource-reference = [ + [ resource-reference-uri: uri,
                            resource-reference-digest: bytes,
@@ -2218,6 +2234,14 @@ firmware-target-dependency = (81: [ ? { firmware-target-major-version,
                                         required-version,
                                       },
                                     ? { firmware-target-revision-version,
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 40]
+
+Internet-Draft                   COSWID                        June 2018
+
+
                                         version-comparison,
                                         required-version,
                                       },
@@ -2234,14 +2258,6 @@ firmware-payload-relationships = (82: [ + { firmware-payload-relationship-type,
                                 )
 firmware-payload-ids = (83: [ + ( bytes / text / int )])
 firmware-payload-relationship-type = (84: $firmware-payload-relationship-types)
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 40]
-
-Internet-Draft                   COSWID                        June 2018
-
-
 $firmware-payload-relationship-types /= patches-firmware
 $firmware-payload-relationship-types /= requires-firmware
 $firmware-payload-relationship-types /= supersedes-firmware
@@ -2274,6 +2290,14 @@ firmware-target-major-version = (93: uint)
 firmware-target-minor-version = (94: uint)
 firmware-target-revision-version = (95: uint)
 firmware-target-build-version = (96: uint)
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 41]
+
+Internet-Draft                   COSWID                        June 2018
+
+
 firmware-payload-digests = (97: [ + { firmware-digest-type,
                                       ? firmware-digest-config-guidance,
                                       firmware-digest,
@@ -2290,14 +2314,6 @@ installed-payload-digest = 2
 ciphertext-digest = 3
 pre-image-digest = 4
 firmware-digest-config-guidance = (99: bytes)
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 41]
-
-Internet-Draft                   COSWID                        June 2018
-
-
 firmware-digest = (100: bytes)
 firmware-payload-conditions = (101: [ + { firmware-payload-condition-type,
                                           firmware-payload-condition-parameters,
@@ -2330,6 +2346,14 @@ firmware-payload-version = (108: { firmware-payload-major-version,
                                    firmware-payload-minor-version,
                                    ? firmware-payload-revision-version,
                                    ? firmware-payload-build-version,
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 42]
+
+Internet-Draft                   COSWID                        June 2018
+
+
                                  }
                            )
 firmware-payload-major-version = (109: uint)
@@ -2346,14 +2370,6 @@ lt = 2
 le = 3
 gt = 4
 ge = 5
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 42]
-
-Internet-Draft                   COSWID                        June 2018
-
-
 <CODE ENDS>
 
    The members of the firmware group that constitutes the content of the
@@ -2387,6 +2403,13 @@ Appendix B.  Signed Concise SWID Tags using COSE
    of the tag is important, such as when the tag is providing reference
    integrity measurements for files.
 
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 43]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    The ISO-19770-2:2015 XML schema uses XML DSIG to support
    cryptographic signatures.  CoSWID tags require a different signature
    scheme than this.  COSE (CBOR Object Signing and Encryption) provides
@@ -2395,20 +2418,6 @@ Appendix B.  Signed Concise SWID Tags using COSE
    signature.  The following CDDL defines a more restrictive subset of
    header attributes allowed by COSE tailored to suit the requirements
    of Concise SWID.
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 43]
-
-Internet-Draft                   COSWID                        June 2018
-
 
 <CODE BEGINS>
 signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
@@ -2448,6 +2457,15 @@ Appendix C.  CoSWID used as Reference Integrity Measurements (CoSWID
    software components using a CoSWID RIM provided by a source, such as
    [I-D.ietf-sacm-rolie-softwaredescriptor].
 
+
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 44]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    RIM Manifests (RIMM):  A group of SWID tags about the same
       (sub-)system, system entity, or (sub-)component (compare
       [RFC4949]).  A RIMM manifest is a distinct document that is
@@ -2457,14 +2475,6 @@ Appendix C.  CoSWID used as Reference Integrity Measurements (CoSWID
 
    If multiple CoSWID compose a RIMM, the following CDDL data definition
    SHOULD be used.
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 44]
-
-Internet-Draft                   COSWID                        June 2018
-
 
    RIMM = [ + concise-software-identity / signed-coswid ]
 
@@ -2504,6 +2514,14 @@ Authors' Addresses
    Email: jmfitz2@nsa.gov
 
 
+
+
+
+Birkholz, et al.        Expires December 13, 2018              [Page 45]
+
+Internet-Draft                   COSWID                        June 2018
+
+
    Charles Schmidt
    The MITRE Corporation
    202 Burlington Road
@@ -2511,15 +2529,6 @@ Authors' Addresses
    USA
 
    Email: cmschmidt@mitre.org
-
-
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 45]
-
-Internet-Draft                   COSWID                        June 2018
 
 
    David Waltermire
@@ -2564,13 +2573,4 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-
-
-
-
-
-
-
-
-
-Birkholz, et al.        Expires December 10, 2018              [Page 46]
+Birkholz, et al.        Expires December 13, 2018              [Page 46]
