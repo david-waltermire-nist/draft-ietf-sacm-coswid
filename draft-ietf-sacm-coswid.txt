@@ -5,16 +5,16 @@
 SACM Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                     J. Fitzgerald-McKay
-Expires: December 13, 2018                         Department of Defense
+Expires: December 17, 2018                         Department of Defense
                                                               C. Schmidt
                                                    The MITRE Corporation
                                                            D. Waltermire
                                                                     NIST
-                                                           June 11, 2018
+                                                           June 15, 2018
 
 
                       Concise Software Identifiers
-                       draft-ietf-sacm-coswid-05
+                     draft-ietf-sacm-coswid-latest
 
 Abstract
 
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 13, 2018.
+   This Internet-Draft will expire on December 17, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 1]
+Birkholz, et al.        Expires December 17, 2018               [Page 1]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 2]
+Birkholz, et al.        Expires December 17, 2018               [Page 2]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 3]
+Birkholz, et al.        Expires December 17, 2018               [Page 3]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -221,7 +221,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 4]
+Birkholz, et al.        Expires December 17, 2018               [Page 4]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -277,7 +277,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 5]
+Birkholz, et al.        Expires December 17, 2018               [Page 5]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -333,7 +333,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 6]
+Birkholz, et al.        Expires December 17, 2018               [Page 6]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -389,7 +389,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 7]
+Birkholz, et al.        Expires December 17, 2018               [Page 7]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -445,7 +445,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 8]
+Birkholz, et al.        Expires December 17, 2018               [Page 8]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -501,7 +501,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018               [Page 9]
+Birkholz, et al.        Expires December 17, 2018               [Page 9]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 10]
+Birkholz, et al.        Expires December 17, 2018              [Page 10]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -613,7 +613,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 11]
+Birkholz, et al.        Expires December 17, 2018              [Page 11]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 12]
+Birkholz, et al.        Expires December 17, 2018              [Page 12]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -725,7 +725,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 13]
+Birkholz, et al.        Expires December 17, 2018              [Page 13]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -781,7 +781,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 14]
+Birkholz, et al.        Expires December 17, 2018              [Page 14]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -837,7 +837,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 15]
+Birkholz, et al.        Expires December 17, 2018              [Page 15]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -893,7 +893,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 16]
+Birkholz, et al.        Expires December 17, 2018              [Page 16]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -949,7 +949,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 17]
+Birkholz, et al.        Expires December 17, 2018              [Page 17]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 18]
+Birkholz, et al.        Expires December 17, 2018              [Page 18]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1061,7 +1061,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 19]
+Birkholz, et al.        Expires December 17, 2018              [Page 19]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 20]
+Birkholz, et al.        Expires December 17, 2018              [Page 20]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 21]
+Birkholz, et al.        Expires December 17, 2018              [Page 21]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 22]
+Birkholz, et al.        Expires December 17, 2018              [Page 22]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1285,7 +1285,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 23]
+Birkholz, et al.        Expires December 17, 2018              [Page 23]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1341,7 +1341,7 @@ resource-collection = (
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 24]
+Birkholz, et al.        Expires December 17, 2018              [Page 24]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1397,7 +1397,7 @@ evidence = {
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 25]
+Birkholz, et al.        Expires December 17, 2018              [Page 25]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1453,7 +1453,7 @@ media = (10: [ + [ media-expression,
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 26]
+Birkholz, et al.        Expires December 17, 2018              [Page 26]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1509,7 +1509,7 @@ thumbprint = (34: [ hash-alg-id: int,
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 27]
+Birkholz, et al.        Expires December 17, 2018              [Page 27]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1565,7 +1565,7 @@ hash-entry = (58: [ hash-alg-id: int,
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 28]
+Birkholz, et al.        Expires December 17, 2018              [Page 28]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 29]
+Birkholz, et al.        Expires December 17, 2018              [Page 29]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1677,7 +1677,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 30]
+Birkholz, et al.        Expires December 17, 2018              [Page 30]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1733,7 +1733,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 31]
+Birkholz, et al.        Expires December 17, 2018              [Page 31]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 32]
+Birkholz, et al.        Expires December 17, 2018              [Page 32]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 33]
+Birkholz, et al.        Expires December 17, 2018              [Page 33]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 34]
+Birkholz, et al.        Expires December 17, 2018              [Page 34]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 35]
+Birkholz, et al.        Expires December 17, 2018              [Page 35]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 36]
+Birkholz, et al.        Expires December 17, 2018              [Page 36]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 37]
+Birkholz, et al.        Expires December 17, 2018              [Page 37]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2083,7 +2083,7 @@ Internet-Draft                   COSWID                        June 2018
               Birkholz, H., Lu, J., Strassner, J., Cam-Winget, N., and
               A. Montville, "Security Automation and Continuous
               Monitoring (SACM) Terminology", draft-ietf-sacm-
-              terminology-14 (work in progress), December 2017.
+              terminology-15 (work in progress), June 2018.
 
    [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
               Unique IDentifier (UUID) URN Namespace", RFC 4122,
@@ -2125,7 +2125,7 @@ Appendix A.  CoSWID Attributes for Firmware (label 60)
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 38]
+Birkholz, et al.        Expires December 17, 2018              [Page 38]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2181,7 +2181,7 @@ firmware-payload = {
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 39]
+Birkholz, et al.        Expires December 17, 2018              [Page 39]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2237,7 +2237,7 @@ firmware-target-dependency = (81: [ ? { firmware-target-major-version,
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 40]
+Birkholz, et al.        Expires December 17, 2018              [Page 40]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2293,7 +2293,7 @@ firmware-target-build-version = (96: uint)
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 41]
+Birkholz, et al.        Expires December 17, 2018              [Page 41]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2349,7 +2349,7 @@ firmware-payload-version = (108: { firmware-payload-major-version,
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 42]
+Birkholz, et al.        Expires December 17, 2018              [Page 42]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2405,7 +2405,7 @@ Appendix B.  Signed Concise SWID Tags using COSE
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 43]
+Birkholz, et al.        Expires December 17, 2018              [Page 43]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2461,7 +2461,7 @@ Appendix C.  CoSWID used as Reference Integrity Measurements (CoSWID
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 44]
+Birkholz, et al.        Expires December 17, 2018              [Page 44]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2517,7 +2517,7 @@ Authors' Addresses
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 45]
+Birkholz, et al.        Expires December 17, 2018              [Page 45]
 
 Internet-Draft                   COSWID                        June 2018
 
@@ -2573,4 +2573,4 @@ Internet-Draft                   COSWID                        June 2018
 
 
 
-Birkholz, et al.        Expires December 13, 2018              [Page 46]
+Birkholz, et al.        Expires December 17, 2018              [Page 46]
