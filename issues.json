@@ -141,7 +141,7 @@
     "created_at": "2018-05-30T13:45:24Z",
     "updated_at": "2018-06-08T15:34:52Z",
     "closed_at": null,
-    "author_association": "MEMBER",
+    "author_association": "CONTRIBUTOR",
     "body": "Some cardinalities are out-of-sync. These need to be reviewed and synced up."
   },
   {
@@ -189,7 +189,7 @@
     "created_at": "2018-03-21T18:44:20Z",
     "updated_at": "2018-03-21T18:44:33Z",
     "closed_at": "2018-03-21T18:44:33Z",
-    "author_association": "MEMBER",
+    "author_association": "CONTRIBUTOR",
     "pull_request": {
       "url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/pulls/3",
       "html_url": "https://github.com/sacmwg/draft-ietf-sacm-coswid/pull/3",
@@ -243,7 +243,7 @@
     "created_at": "2018-03-05T22:23:28Z",
     "updated_at": "2018-03-05T22:23:40Z",
     "closed_at": "2018-03-05T22:23:40Z",
-    "author_association": "MEMBER",
+    "author_association": "CONTRIBUTOR",
     "pull_request": {
       "url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/pulls/2",
       "html_url": "https://github.com/sacmwg/draft-ietf-sacm-coswid/pull/2",
