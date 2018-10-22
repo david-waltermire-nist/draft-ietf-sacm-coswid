@@ -306,6 +306,10 @@ ul.toc li {
 <link href="#rfc.section.4" rel="Chapter" title="4 IANA Considerations">
 <link href="#rfc.section.4.1" rel="Chapter" title="4.1 SWID/CoSWID Version Schema Values Registry">
 <link href="#rfc.section.4.2" rel="Chapter" title="4.2 SWID/CoSWID Entity Role Values Registry">
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Media Type Registration">
+<link href="#rfc.section.4.3.1" rel="Chapter" title="4.3.1 swid+cbor Media Type Registration">
+<link href="#rfc.section.4.4" rel="Chapter" title="4.4 CoAP Content-Format Registration">
+<link href="#rfc.section.4.5" rel="Chapter" title="4.5 CBOR Tag Registration">
 <link href="#rfc.section.5" rel="Chapter" title="5 Security Considerations">
 <link href="#rfc.section.6" rel="Chapter" title="6 Acknowledgments">
 <link href="#rfc.section.7" rel="Chapter" title="7 Change Log">
@@ -320,12 +324,12 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.9.9 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.11.1 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D. Waltermire" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-sacm-coswid-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-07-17" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-10-22" />
   <meta name="dct.abstract" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
   <meta name="description" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
 
@@ -349,7 +353,7 @@ ul.toc li {
 <td class="right">J. Fitzgerald-McKay</td>
 </tr>
 <tr>
-<td class="left">Expires: January 18, 2019</td>
+<td class="left">Expires: April 25, 2019</td>
 <td class="right">Department of Defense</td>
 </tr>
 <tr>
@@ -370,7 +374,7 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">July 17, 2018</td>
+<td class="right">October 22, 2018</td>
 </tr>
 
     	
@@ -386,7 +390,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on January 18, 2019.</p>
+<p>This Internet-Draft will expire on April 25, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -445,6 +449,14 @@ ul.toc li {
 <ul><li>4.1.   <a href="#rfc.section.4.1">SWID/CoSWID Version Schema Values Registry</a>
 </li>
 <li>4.2.   <a href="#rfc.section.4.2">SWID/CoSWID Entity Role Values Registry</a>
+</li>
+<li>4.3.   <a href="#rfc.section.4.3">Media Type Registration</a>
+</li>
+<ul><li>4.3.1.   <a href="#rfc.section.4.3.1">swid+cbor Media Type Registration</a>
+</li>
+</ul><li>4.4.   <a href="#rfc.section.4.4">CoAP Content-Format Registration</a>
+</li>
+<li>4.5.   <a href="#rfc.section.4.5">CBOR Tag Registration</a>
 </li>
 </ul><li>5.   <a href="#rfc.section.5">Security Considerations</a>
 </li>
@@ -991,7 +1003,7 @@ concise-software-identity = {
   entity-entry,
   ? link-entry,
   ? ( payload-entry // evidence-entry ),
-  ? any-element-entry,
+  * $$coswid-extension 
 }
 
 any-uri = text
@@ -1000,11 +1012,6 @@ label = text / int
 any-attribute = (
   label =&gt; text / int / [ 2* text ] / [ 2* int ]
 )
-
-any-element-map = {
-  global-attributes,
-  * label =&gt; any-element-map / [ 2* any-element-map ],
-} 
 
 global-attributes = (
   ? lang,
@@ -1055,7 +1062,7 @@ entity = {
   ? reg-id,
   role,
   ? thumbprint,
-  extended-data,
+  * $$entity-extension,
 }
 
 evidence = {
@@ -1109,7 +1116,6 @@ evidence-entry = (3: evidence)
 link-entry = (4: link / [ 2* link ])
 software-meta-entry = (5: software-meta / [ 2* software-meta ])
 payload-entry = (6: payload)
-any-element-entry = (7: any-element-map / [ 2* any-element-map ])
 corpus = (8: bool)
 patch = (9: bool)
 media = (10: [ + [ media-expression,
@@ -1131,7 +1137,13 @@ media-value = text
 supplemental = (11: bool)
 tag-version = (12: integer)
 software-version = (13: text)
-version-scheme = (14: text / int)
+version-scheme = (14: version-schemes  / extended-value)
+version-schemes = multipartnumeric / multipartnumeric-suffix / alphanumeric / decimal / semver
+multipartnumeric = 1
+multipartnumeric-suffix = 2
+alphanumeric = 3
+decimal = 4
+semver = 16384
 lang = (15: text)
 directory-entry = (16: directory / [ 2* directory ])
 file-entry = (17: file / [ 2* file ])
@@ -1150,10 +1162,10 @@ path-elements = (26: { * file-entry,
 process-name = (27: text)
 pid = (28: integer)
 type = (29: text)
-extended-data = (30: any-element-map / [ 2* any-element-map ])
 entity-name = (31: text)
 reg-id = (32: any-uri)
-role = (33: roles / [ 2* roles ] / text / [ 2* text ])
+role = (33: roles / extended-value / [ 2* roles / extended-value ] )
+extended-value = text / uint
 roles= aggregator / distributor / licensor / software-creator / tag-creator
 aggregator=0
 distributor=1
@@ -1168,11 +1180,11 @@ date = (35: time)
 device-id = (36: text)
 artifact = (37: text)
 href = (38: any-uri)
-ownership = (39: shared / private / abandon)
+ownership = (39: shared / private / abandon / extended-value )
 shared=0
 private=1
 abandon=2
-rel = (40: rels / [ 2* rels ])
+rel = (40: rels / extended-value )
 rels = ancestor / component / feature / installationmedia / packageinstaller / parent / patches / requires / see-also / supersedes / rel-supplemental
 ancestor=0
 component=1
@@ -1186,7 +1198,7 @@ see-also=8
 supersedes=9
 rel-supplemental=10
 media-type = (41: text)
-use = (42: optional / required / recommended)
+use = (42: optional / required / recommended / extended-value )
 optional=0
 required=1
 recommended=2
@@ -1444,8 +1456,71 @@ hash-entry = (58: [ hash-alg-id: int,
 </tr>
 </tbody>
 </table>
+<h1 id="rfc.section.4.3">
+<a href="#rfc.section.4.3">4.3.</a> <a href="#media-type-registration" id="media-type-registration">Media Type Registration</a>
+</h1>
+<h1 id="rfc.section.4.3.1">
+<a href="#rfc.section.4.3.1">4.3.1.</a> <a href="#swidcbor-media-type-registration" id="swidcbor-media-type-registration">swid+cbor Media Type Registration</a>
+</h1>
+<p id="rfc.section.4.3.1.p.1">Type name: application</p>
+<p id="rfc.section.4.3.1.p.2">Subtype name: swid+cbor</p>
+<p id="rfc.section.4.3.1.p.3">Required parameters: none</p>
+<p id="rfc.section.4.3.1.p.4">Optional parameters: none</p>
+<p id="rfc.section.4.3.1.p.5">Encoding considerations: Must be encoded as using <a href="#RFC7049" class="xref">[RFC7049]</a>. See RFC-AAAA for details.</p>
+<p id="rfc.section.4.3.1.p.6">Security considerations: See <a href="#sec-sec" class="xref">Section 5</a> of RFC-AAAA.</p>
+<p id="rfc.section.4.3.1.p.7">Interoperability considerations: Applications MAY ignore any key value pairs that they do not understand. This allows backwards compatible extensions to this specification.</p>
+<p id="rfc.section.4.3.1.p.8">Published specification: RFC-AAAA</p>
+<p id="rfc.section.4.3.1.p.9">Applications that use this media type: The type is used by Software asset management systems, Vulnerability assessment systems, and in applications that use remote integrity verification.</p>
+<p id="rfc.section.4.3.1.p.10">Fragment identifier considerations: Fragment identification for application/swid+cbor is supported by using fragment identifiers as specified by RFC-AAAA. [Section to be defined]</p>
+<p id="rfc.section.4.3.1.p.11">Additional information:</p>
+<p id="rfc.section.4.3.1.p.12">Magic number(s): first five bytes in hex: da 53 57 49 44</p>
+<p id="rfc.section.4.3.1.p.13">File extension(s): coswid</p>
+<p id="rfc.section.4.3.1.p.14">Macintosh file type code(s): none</p>
+<p id="rfc.section.4.3.1.p.15">Macintosh Universal Type Identifier code: org.ietf.coswid conforms to public.data</p>
+<p id="rfc.section.4.3.1.p.16">Person &amp; email address to contact for further information: Henk Birkholz &lt;henk.birkholz@sit.fraunhofer.de&gt;</p>
+<p id="rfc.section.4.3.1.p.17">Intended usage: COMMON</p>
+<p id="rfc.section.4.3.1.p.18">Restrictions on usage: None</p>
+<p id="rfc.section.4.3.1.p.19">Author: Henk Birkholz &lt;henk.birkholz@sit.fraunhofer.de&gt;</p>
+<p id="rfc.section.4.3.1.p.20">Change controller: IESG</p>
+<h1 id="rfc.section.4.4">
+<a href="#rfc.section.4.4">4.4.</a> <a href="#coap-content-format-registration" id="coap-content-format-registration">CoAP Content-Format Registration</a>
+</h1>
+<p id="rfc.section.4.4.p.1">IANA is requested to assign a CoAP Content-Format ID for the CoSWID media type in the &#8220;CoAP Content-Formats&#8221; sub-registry, from the &#8220;IETF Review or IESG Approval&#8221; space (256..999), within the &#8220;CoRE Parameters&#8221; registry <a href="#RFC7252" class="xref">[RFC7252]</a>:</p>
+<div id="rfc.table.1"></div>
+<div id="tbl-coap-content-formats"></div>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<caption>CoAP Content-Format IDs</caption>
+<thead><tr>
+<th class="left">Media type</th>
+<th class="left">Encoding</th>
+<th class="left">ID</th>
+<th class="left">Reference</th>
+</tr></thead>
+<tbody><tr>
+<td class="left">application/swid+cbor</td>
+<td class="left">-</td>
+<td class="left">TBDcf</td>
+<td class="left">RFC-AAAA</td>
+</tr></tbody>
+</table>
+<h1 id="rfc.section.4.5">
+<a href="#rfc.section.4.5">4.5.</a> <a href="#cbor-tag-registration" id="cbor-tag-registration">CBOR Tag Registration</a>
+</h1>
+<p id="rfc.section.4.5.p.1">IANA is requested to allocate a tag in the CBOR Tags Registry, preferably with the specific value requested:</p>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<thead><tr>
+<th class="left">Tag</th>
+<th class="left">Data Item</th>
+<th class="left">Semantics</th>
+</tr></thead>
+<tbody><tr>
+<td class="left">1398229316</td>
+<td class="left">map</td>
+<td class="left">Concise Software Identifier (CoSWID) [RFC-AAAA]</td>
+</tr></tbody>
+</table>
 <h1 id="rfc.section.5">
-<a href="#rfc.section.5">5.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
+<a href="#rfc.section.5">5.</a> <a href="#sec-sec" id="sec-sec">Security Considerations</a>
 </h1>
 <p id="rfc.section.5.p.1">SWID and CoSWID tags contain public information about software components and, as such, do not need to be protected against disclosure on an endpoint.  Similarly, SWID tags are intended to be easily discoverable by applications and users on an endpoint in order to make it easy to identify and collect all of an endpoint&#8217;s SWID tags.  As such, any security considerations regarding SWID tags focus on the application of SWID tags to address security challenges, and the possible disclosure of the results of those applications.</p>
 <p id="rfc.section.5.p.2">A signed SWID tag whose signature has been validated can be relied upon to be unchanged since it was signed.  If the SWID tag was created by the software provider, is signed, and the software provider can be authenticated as the originator of the signature, then the tag can be considered authoritative.  In this way, an authoritative SWID tag contains information about a software product provided by the maintainer of the product, who is expected to be an expert in their own product. Thus, authoritative SWID tags can be trusted to represent authoritative information about the software product.  Having an authoritative SWID tag can be useful when the information in the tag needs to be trusted, such as when the tag is being used to convey reference integrity measurements for software components.  By contrast, the data contained in unsigned tags cannot be trusted to be unmodified.</p>
@@ -1575,6 +1650,11 @@ hash-entry = (58: [ hash-alg-id: int,
 <a>Bormann, C.</a> and <a>P. Hoffman</a>, "<a href="https://tools.ietf.org/html/rfc7049">Concise Binary Object Representation (CBOR)</a>", RFC 7049, DOI 10.17487/RFC7049, October 2013.</td>
 </tr>
 <tr>
+<td class="reference"><b id="RFC7252">[RFC7252]</b></td>
+<td class="top">
+<a>Shelby, Z.</a>, <a>Hartke, K.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/rfc7252">The Constrained Application Protocol (CoAP)</a>", RFC 7252, DOI 10.17487/RFC7252, June 2014.</td>
+</tr>
+<tr>
 <td class="reference"><b id="RFC8126">[RFC8126]</b></td>
 <td class="top">
 <a>Cotton, M.</a>, <a>Leiba, B.</a> and <a>T. Narten</a>, "<a href="https://tools.ietf.org/html/rfc8126">Guidelines for Writing an IANA Considerations Section in RFCs</a>", BCP 26, RFC 8126, DOI 10.17487/RFC8126, June 2017.</td>
@@ -1618,12 +1698,12 @@ hash-entry = (58: [ hash-alg-id: int,
 <tr>
 <td class="reference"><b id="I-D.ietf-cbor-cddl">[I-D.ietf-cbor-cddl]</b></td>
 <td class="top">
-<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-ietf-cbor-cddl-02">Concise data definition language (CDDL): a notational convention to express CBOR data structures</a>", Internet-Draft draft-ietf-cbor-cddl-02, February 2018.</td>
+<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-ietf-cbor-cddl-05">Concise data definition language (CDDL): a notational convention to express CBOR and JSON data structures</a>", Internet-Draft draft-ietf-cbor-cddl-05, August 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-sacm-rolie-softwaredescriptor">[I-D.ietf-sacm-rolie-softwaredescriptor]</b></td>
 <td class="top">
-<a>Waltermire, D.</a> and <a>S. Banghart</a>, "<a href="https://tools.ietf.org/html/draft-ietf-sacm-rolie-softwaredescriptor-02">Definition of the ROLIE Software Descriptor Extension</a>", Internet-Draft draft-ietf-sacm-rolie-softwaredescriptor-02, March 2018.</td>
+<a>Banghart, S.</a> and <a>D. Waltermire</a>, "<a href="https://tools.ietf.org/html/draft-ietf-sacm-rolie-softwaredescriptor-03">Definition of the ROLIE Software Descriptor Extension</a>", Internet-Draft draft-ietf-sacm-rolie-softwaredescriptor-03, July 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-sacm-terminology">[I-D.ietf-sacm-terminology]</b></td>
@@ -1654,198 +1734,110 @@ hash-entry = (58: [ hash-alg-id: int,
 <p id="rfc.section.A.p.3">To address the specific characteristics of firmware, the extension points <samp>$$payload-extension</samp> and <samp>$$evidence-extension</samp> are used to allow for an additional type of resource description&#8212;firmware-entry&#8212;thereby increasing the self-descriptiveness and flexibility of CoSWID. The optional use of the extension points <samp>$$payload-extension</samp> and <samp>$$evidence-extension</samp> in respect to firmware MUST adhere to the following CDDL data definition.</p>
 <pre>
 &lt;CODE BEGINS&gt;
-$$payload-extension  //= (firmware-entry,)
-$$evidence-extension  //= (firmware-entry,)
+$$payload-extension  //= (suit.manifest-entry,)
+$$evidence-extension  //= (suit.manifest-entry,)
 
-firmware-manifest = {
-  firmware-manifest-id,
-  firmware-manifest-creation-timestamp,
-  firmware-manifest-version,
-  firmware-manifest-description,
-  firmware-manifest-nonce,
-  ? firmware-manifest-aliases,
-  ? firmware-manifest-dependencies,
-  firmware-target-device-identifier,
-  firmware-payload-entry,
-  ? simple-firmware-manifest-extensions,
-  $$firmware-manifest-extensions,
+suit-manifest = {
+  suit.manifest-version,
+  suit.digest-info,
+  suit.text-reference,
+  suit.nonce,
+  suit.sequence-number,
+  ? suit.pre-condition,
+  ? suit.post-condition,
+  ? suit.directives,
+  ? suit.resources,
+  ? suit.processors,
+  ? suit.targets,
+  ? suit.extensions,
 }
 
-firmware-payload = {
-  firmware-payload-id,
-  ? firmware-package-identifier,
-  firmware-payload-description,
-  firmware-payload-format,
-  firmware-payload-size,
-  ? firmware-payload-simple-version,
-  ? firmware-payload-version,
-  firmware-payload-digests,
-  ? firmware-target-component-index,
-  firmware-target-storage-identifier,
-  firmware-payload-conditions,
-  ? firmware-payload-directives,
-  ? firmware-target-dependency,
-  ? firmware-target-minimal-version,
-  ? firmware-payload-relationships,
-  firmware-payload-package,
-  ? simple-firmware-payload-extensions,
-  $$firmware-payload-extensions,
-}
-
-firmware-entry = (59: firmware-manifest / [ 2* firmware-manifest ])
-firmware-payload-entry = (60: firmware-payload / [ 2* firmware-payload ])
-firmware-payload-id = (61: bytes / text / uint)
-firmware-package-identifier = (62: text)
-firmware-manifest-id = (63: bytes / text / int)
-firmware-manifest-creation-timestamp = (64: time)
-firmware-manifest-version = (65: uint)
-firmware-manifest-description = (66: text)
-firmware-manifest-nonce = (67: bytes)
-firmware-manifest-dependencies = (68: resource-reference)
-firmware-manifest-aliases = (69: resource-reference)
-resource-reference = [ + [ resource-reference-uri: uri,
-                           resource-reference-digest: bytes,
-                         ],
-                     ]
-firmware-payload-description = (70: text)
-firmware-payload-format = (71: { firmware-payload-format-type,
-                                 ? firmware-payload-format-guidance,
-                               }
-                          )
-firmware-payload-format-type = (72: int)
-firmware-payload-format-guidance = (73: bytes)
-firmware-payload-size = (74: uint)
-firmware-payload-package = (75: { ? firmware-package-compression-type,
-                                  ? firmware-package-compression-guidance,
-                                  firmware-package,
-                                }
-                           )
-firmware-package-compression-type = (76: text / int)
-firmware-package-compression-guidance = (77: bytes)
-firmware-package = (78: bytes)
-firmware-target-component-index = (79: text)
-firmware-target-storage-identifier = (80: bytes / text / int)
-firmware-target-dependency = (81: [ ? { firmware-target-major-version,
-                                        version-comparison,
-                                        required-version,
-                                      },
-                                    ? { firmware-target-minor-version,
-                                        version-comparison,
-                                        required-version,
-                                      },
-                                    ? { firmware-target-revision-version,
-                                        version-comparison,
-                                        required-version,
-                                      },
-                                    ? { firmware-target-build-version,
-                                        version-comparison,
-                                        required-version,
-                                      },
-                                  ]
-                             )
-firmware-payload-relationships = (82: [ + { firmware-payload-relationship-type,
-                                            firmware-payload-ids,
-                                          },
-                                      ]
-                                )
-firmware-payload-ids = (83: [ + ( bytes / text / int )])
-firmware-payload-relationship-type = (84: $firmware-payload-relationship-types)
-$firmware-payload-relationship-types /= patches-firmware
-$firmware-payload-relationship-types /= requires-firmware
-$firmware-payload-relationship-types /= supersedes-firmware
-patches-firmware = 1
-requires-firmware = 2
-supersedes-firmware = 3
-firmware-target-device-identifier = (85: { firmware-target-vendor-identifier,
-                                           ? firmware-target-type-identifier,
-                                           firmware-target-model-identifier,
-                                           ? firmware-target-class-identifier,
-                                           ? firmware-target-rfc4122-identifier,
-                                           ? firmware-target-8021AR-identifier,
-                                           $$firmware-target-identifier-extensions,
-                                         }
-                                    )
-firmware-target-vendor-identifier = (86: text)
-firmware-target-type-identifier = (87: text)
-firmware-target-model-identifier = (88: text)
-firmware-target-class-identifier = (89: text)
-firmware-target-rfc4122-identifier = (90: text)
-firmware-target-8021AR-identifier = (91: bytes)
-firmware-target-minimal-version  = (92: { firmware-target-major-version,
-                                          firmware-target-minor-version,
-                                          ? firmware-target-revision-version,
-                                          ? firmware-target-build-version,
-                                          ? firmware-target-storage-identifier,
-                                        },
-                                   )
-firmware-target-major-version = (93: uint)
-firmware-target-minor-version = (94: uint)
-firmware-target-revision-version = (95: uint)
-firmware-target-build-version = (96: uint)
-firmware-payload-digests = (97: [ + { firmware-digest-type,
-                                      ? firmware-digest-config-guidance,
-                                      firmware-digest,
-                                    },
+suit.manifest-entry = (59: suit-manifest / [ 2* suit-manifest ] )
+suit.manifest-version = (60: 1)
+suit.digest-info = (61: [ suit.digest-algorithm,
+                          ? suit.digest-parameters,
+                        ]
+                   )
+suit.digest-algorithm = uint
+suit.digest-parameters = bytes
+suit.text-reference = (62: bytes)
+suit.nonce = (63: bytes)
+suit.sequence-number = (64: uint)
+suit.pre-condition = (suit.id-condition // suit.time-condition // suit.image-condition // suit.custom-condition)
+suit.post-condition = (suit.image-condition // suit.custom-condition)
+suit.id-condition = (65: [ + [ suit.vendor / suit.class / suit.device,
+                               suit.uuid,
+                             ]
+                         ]
+                    ) 
+suit.vendor = 0
+suit.class = 1
+suit.device = 2
+suit.uuid = bstr .size 16
+suit.time-condition = (66: [ + [ suit.install-after / suit.best-before,
+                                 suit.timestamp,
+                               ]
+                           ]
+                      )
+suit.install-after = 0
+suit.best-before = 1
+suit.timestamp = uint .size 8
+suit.image-condition = (67: [ + [ suit.current-content / suit.not-current-content,
+                                  suit.storage-identifier,
+                                  ? suit.digest,
                                 ]
-                           )
-firmware-digest-type = (98: $firmware-digest-types) 
-$firmware-digest-types /= raw-payload-digest
-$firmware-digest-types /= installed-payload-digest
-$firmware-digest-types /= ciphertext-digest
-$firmware-digest-types /= pre-image-digest
-raw-payload-digest = 1
-installed-payload-digest = 2
-ciphertext-digest = 3
-pre-image-digest = 4
-firmware-digest-config-guidance = (99: bytes)
-firmware-digest = (100: bytes)
-firmware-payload-conditions = (101: [ + { firmware-payload-condition-type,
-                                          firmware-payload-condition-parameters,
-                                        },
-                                    ]
-                              )
-firmware-payload-condition-parameters = (102: bytes)
-firmware-payload-condition-type = (103: $firmware-payload-condition-types)
-$firmware-payload-condition-types /= vendor-id-condition 
-$firmware-payload-condition-types /= class-id-condition 
-$firmware-payload-condition-types /= device-id-condition
-$firmware-payload-condition-types /= best-before-condition
-vendor-id-condition = 1
-class-id-condition = 2
-device-id-condition = 3
-best-before-condition = 4
-firmware-payload-directives = (104: [ + { firmware-payload-directive-type,
-                                          firmware-payload-directive-parameters,
-                                        },
-                                    ]
-                              )
-firmware-payload-directive-parameters = (105: bytes)
-firmware-payload-directive-type = (106: $firmware-payload-directive-types)
-$firmware-payload-directive-types /= apply-immediately-directive
-$firmware-payload-directive-types /= apply-after-directive
-apply-immediately-directive = 1
-apply-after-directive = 2
-firmware-payload-simple-version = (107: uint)
-firmware-payload-version = (108: { firmware-payload-major-version,
-                                   firmware-payload-minor-version,
-                                   ? firmware-payload-revision-version,
-                                   ? firmware-payload-build-version,
-                                 }
-                           )
-firmware-payload-major-version = (109: uint)
-firmware-payload-minor-version = (110: uint)
-firmware-payload-revision-version = (111: uint)
-firmware-payload-build-version = (112: uint)
-version-comparison = (113: eq / ne / lt / le / gt / ge)
-required-version = (114: uint)
-simple-firmware-manifest-extensions = (115: { + int =&gt; bytes })
-simple-firmware-payload-extensions = (116: { + int =&gt; bytes })
-eq = 0
-ne = 1
-lt = 2
-le = 3
-gt = 4
-ge = 5
+                            ]
+                       )
+suit.current-content = 0
+suit.not-current-content = 1
+suit.digest = bytes
+suit.storage-identifier = bytes
+suit.custom-condition = (68: [ nint,
+                               suit.condition-parameters,
+                             ]
+                        )
+suit.condition-parameters = bytes
+suit.directives = (69: { + int =&gt; bytes } )
+suit.resources = (70: [ + [ suit.resource-type,
+                            suit.uri-list,
+                            suit.digest,
+                            suit.onode,
+                            ? suit.size,
+                          ]
+                      ] 
+                 )
+suit.resource-type = suit.payload / suit.dependency / suit.key / suit.alias
+suit.payload = 0
+suit.dependency = 1
+suit.key = 2
+suit.alias = 3
+suit.uri-list = { + int =&gt; text }
+suit.size = uint
+suit.onode = bytes
+suit.processors = (71: [ + [ suit.decrypt / suit.decompress / suit.undiff / suit.relocate / suit.unrelocate,
+                             suit.parameters,
+                             suit.inode,
+                             suit.onode,
+                           ]
+                       ]
+                  )
+suit.decrypt = 0
+suit.decompress = 1
+suit.undiff = 2
+suit.relocate = 3
+suit.unrelocate = 4
+suit.parameters = bytes
+suit.inode = bytes
+suit.targets = (72: [ + [ suit.component-id,
+                          suit.storage-identifier,
+                          suit.inode,
+                          ? suit.encoding,
+                        ]
+                    ]
+                )
+suit.component-id = [ + bytes ]
+suit.encoding = bytes
+suit.extensions = (73: { + int =&gt; bytes } )
 &lt;CODE ENDS&gt;
 </pre>
 <p id="rfc.section.A.p.4">The members of the firmware group that constitutes the content of the firmware-entry is based on the metadata about firmware Described in <a href="#RFC4108" class="xref">[RFC4108]</a>. As with every semantic differentiation that is supported by the resource-collection type, the use of firmware-entry is optional. It is REQUIRED not to instantiate more than one firmware-entry, as the firmware group is used in a map and therefore only allows for unique labels.</p>
