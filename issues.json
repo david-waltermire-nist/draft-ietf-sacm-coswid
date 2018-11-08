@@ -1,6 +1,60 @@
 [
 
   {
+    "url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/issues/7",
+    "repository_url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid",
+    "labels_url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/issues/7/labels{/name}",
+    "comments_url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/issues/7/comments",
+    "events_url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/issues/7/events",
+    "html_url": "https://github.com/sacmwg/draft-ietf-sacm-coswid/pull/7",
+    "id": 377105092,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjI4MTQ4Mjc1",
+    "number": 7,
+    "title": "Additional edits to address remaining changes ",
+    "user": {
+      "login": "david-waltermire-nist",
+      "id": 9871976,
+      "node_id": "MDQ6VXNlcjk4NzE5NzY=",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9871976?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/david-waltermire-nist",
+      "html_url": "https://github.com/david-waltermire-nist",
+      "followers_url": "https://api.github.com/users/david-waltermire-nist/followers",
+      "following_url": "https://api.github.com/users/david-waltermire-nist/following{/other_user}",
+      "gists_url": "https://api.github.com/users/david-waltermire-nist/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/david-waltermire-nist/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/david-waltermire-nist/subscriptions",
+      "organizations_url": "https://api.github.com/users/david-waltermire-nist/orgs",
+      "repos_url": "https://api.github.com/users/david-waltermire-nist/repos",
+      "events_url": "https://api.github.com/users/david-waltermire-nist/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/david-waltermire-nist/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-11-03T23:52:14Z",
+    "updated_at": "2018-11-03T23:53:28Z",
+    "closed_at": "2018-11-03T23:53:27Z",
+    "author_association": "CONTRIBUTOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/pulls/7",
+      "html_url": "https://github.com/sacmwg/draft-ietf-sacm-coswid/pull/7",
+      "diff_url": "https://github.com/sacmwg/draft-ietf-sacm-coswid/pull/7.diff",
+      "patch_url": "https://github.com/sacmwg/draft-ietf-sacm-coswid/pull/7.patch"
+    },
+    "body": "- Flagged firmware resource colletion appendix for revision\r\n- Made use of terminology more consistent\r\n- Better defined use of extension points in the CDDL\r\n- Added definitions for indexed values\r\n- Added IANA registry for Link use indexed values"
+  },
+  {
     "url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/issues/6",
     "repository_url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid",
     "labels_url": "https://api.github.com/repos/sacmwg/draft-ietf-sacm-coswid/issues/6/labels{/name}",
