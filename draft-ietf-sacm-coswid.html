@@ -5,7 +5,7 @@
 <head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
 
-  <title>Concise Software Identifiers</title>
+  <title>Concise Software Identification Tags</title>
 
   
 <style type="text/css">/*<![CDATA[*/
@@ -83,7 +83,7 @@ table.header td, table#rfc\.headerblock td {
   line-height: 28px;
 }
 
-samp, tt, code, pre {
+samp, tt, code, pre, span.tt {
   font: 13.5px Consolas, monospace;
   font-size-adjust: none;
 }
@@ -319,19 +319,19 @@ ul.toc li {
 <link href="#rfc.references" rel="Chapter" title="9 References">
 <link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References">
 <link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References">
-<link href="#rfc.appendix.A" rel="Chapter" title="A CoSWID Attributes for Firmware (label 60)">
-<link href="#rfc.appendix.B" rel="Chapter" title="B Signed Concise SWID Tags using COSE">
+<link href="#rfc.appendix.A" rel="Chapter" title="A Signed Concise SWID Tags using COSE">
+<link href="#rfc.appendix.B" rel="Chapter" title="B JSON SWID Tags">
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.12.3 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.17.2 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D. Waltermire" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-sacm-coswid-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-11-08" />
-  <meta name="dct.abstract" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
-  <meta name="description" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-02-12" />
+  <meta name="dct.abstract" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015.  Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
+  <meta name="description" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015.  Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
 
 </head>
 
@@ -353,7 +353,7 @@ ul.toc li {
 <td class="right">J. Fitzgerald-McKay</td>
 </tr>
 <tr>
-<td class="left">Expires: May 12, 2019</td>
+<td class="left">Expires: August 16, 2019</td>
 <td class="right">Department of Defense</td>
 </tr>
 <tr>
@@ -374,25 +374,25 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">November 08, 2018</td>
+<td class="right">February 12, 2019</td>
 </tr>
 
     	
     </tbody>
   </table>
 
-  <p class="title">Concise Software Identifiers<br />
+  <p class="title">Concise Software Identification Tags<br />
   <span class="filename">draft-ietf-sacm-coswid-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015 and augmented for application in Constrained-Node Networks. Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points.</p>
+<p>This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015.  Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on May 12, 2019.</p>
+<p>This Internet-Draft will expire on August 16, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
-<p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
@@ -476,9 +476,9 @@ ul.toc li {
 </li>
 <li>9.2.   <a href="#rfc.references.2">Informative References</a>
 </li>
-</ul><li>Appendix A.   <a href="#rfc.appendix.A">CoSWID Attributes for Firmware (label 60)</a>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Signed Concise SWID Tags using COSE</a>
 </li>
-<li>Appendix B.   <a href="#rfc.appendix.B">Signed Concise SWID Tags using COSE</a>
+<li>Appendix B.   <a href="#rfc.appendix.B">JSON SWID Tags</a>
 </li>
 <li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
@@ -586,9 +586,9 @@ _name_ = (_label_: _data_ / [ 2* _data_ ])
 <h1 id="rfc.section.2.1">
 <a href="#rfc.section.2.1">2.1.</a> <a href="#model-concise-software-identity" id="model-concise-software-identity">The concise-software-identity Object</a>
 </h1>
-<p id="rfc.section.2.1.p.1">The CDDL for the main concise-software-identity object is as follows:</p>
+<p id="rfc.section.2.1.p.1">The CDDL for the main concise-swid-tag map is as follows:</p>
 <pre>
-concise-software-identity = {
+concise-swid-tag = {
   global-attributes,
   tag-id,
   tag-version,
@@ -939,143 +939,48 @@ device-id = (36: text)
 </h1>
 <p id="rfc.section.2.8.p.1">In order to create a valid CoSWID document the structure of the corresponding CBOR message MUST adhere to the following CDDL data definition.</p>
 <pre>
-concise-software-identity = {
+concise-swid-tag = {
   global-attributes,
-  tag-id,
-  tag-version,
-  ? corpus,
-  ? patch,
-  ? supplemental,
-  swid-name,
-  ? software-version,
-  ? version-scheme,
-  ? media,
-  ? software-meta-entry,
-  entity-entry,
-  ? link-entry,
-  ? ( payload-entry // evidence-entry ),
+  tag-id =&gt; text,
+  tag-version =&gt; integer,
+  ? corpus =&gt; bool,
+  ? patch =&gt; bool,
+  ? supplemental =&gt; bool,
+  swid-name =&gt; text,
+  ? software-version =&gt; text,
+  ? version-scheme =&gt; $version-scheme,
+  ? media =&gt; media-entry,
+  ? software-meta =&gt;  software-meta-entry / [ 2* software-meta-entry ],
+  entity =&gt; entity-entry / [ 2* entity-entry ],
+  ? link =&gt; link-entry / [ 2* link-entry ],
+  ? (( payload =&gt; payload-entry ) // ( evidence =&gt; evidence-entry )),
   * $$coswid-extension 
 }
 
 any-uri = text
 label = text / int
 
+$version-scheme /= multipartnumeric
+$version-scheme /= multipartnumeric-suffix
+$version-scheme /= alphanumeric
+$version-scheme /= decimal
+$version-scheme /= semver
+$version-scheme /= uint / text
+multipartnumeric = 0
+multipartnumeric-suffix = 1
+alphanumeric = 2
+decimal = 3
+semver = 16384
+
 any-attribute = (
   label =&gt; text / int / [ 2* text ] / [ 2* int ]
 )
 
 global-attributes = (
-  ? lang,
+  ? lang =&gt; text,
   * any-attribute,
 )
 
-resource-collection = (
-  ? directory-entry,
-  ? file-entry,
-  ? process-entry,
-  ? resource-entry
-)
-
-file = {
-  filesystem-item,
-  ? size,
-  ? file-version,
-  ? hash-entry,
-}
-
-filesystem-item = (
-  global-attributes,
-  ? key,
-  ? location,
-  fs-name,
-  ? root,
-)
-
-directory = {
-  filesystem-item,
-  path-elements,
-}
-
-process = {
-  global-attributes,
-  process-name,
-  ? pid,
-}
-
-resource = {
-  global-attributes,
-  type,
-}
-
-entity = {
-  global-attributes,
-  entity-name,
-  ? reg-id,
-  role,
-  ? thumbprint,
-  * $$entity-extension,
-}
-
-evidence = {
-  global-attributes,
-  resource-collection,
-  ? date,
-  ? device-id,
-  * $$evidence-extension 
-}
-
-link = {
-  global-attributes,
-  ? artifact,
-  href,
-  ? media
-  ? ownership,
-  rel,
-  ? media-type,
-  ? use,
-}
-
-software-meta = {
-  global-attributes,
-  ? activation-status,
-  ? channel-type,
-  ? colloquial-version,
-  ? description,
-  ? edition,
-  ? entitlement-data-required,
-  ? entitlement-key,
-  ? generator,
-  ? persistent-id,
-  ? product,
-  ? product-family,
-  ? revision,
-  ? summary,
-  ? unspsc-code,
-  ? unspsc-version,
-}
-
-payload = {
-  global-attributes,
-  resource-collection,
-  * $$payload-extension 
-}
-
-tag-id = (0: text)
-swid-name = (1: text)
-entity-entry = (2: entity / [ 2* entity ])
-evidence-entry = (3: evidence)
-link-entry = (4: link / [ 2* link ])
-software-meta-entry = (5: software-meta / [ 2* software-meta ])
-payload-entry = (6: payload)
-corpus = (8: bool)
-patch = (9: bool)
-media = (10: [ + [ media-expression,
-                     ? [ media-operation,
-                         media-expression,
-                       ]
-                 ]
-             ])
-media-operation = text
 media-expression = media-environment / [ media-prefix,
                                          media-environment,
                                          media-attribute,
@@ -1085,58 +990,121 @@ media-prefix = text
 media-environment = text
 media-attribute = text
 media-value = text
-supplemental = (11: bool)
-tag-version = (12: integer)
-software-version = (13: text)
-version-scheme = (14: version-schemes  / extended-value)
-version-schemes = multipartnumeric / multipartnumeric-suffix / alphanumeric / decimal / semver
-multipartnumeric = 1
-multipartnumeric-suffix = 2
-alphanumeric = 3
-decimal = 4
-semver = 16384
-lang = (15: text)
-directory-entry = (16: directory / [ 2* directory ])
-file-entry = (17: file / [ 2* file ])
-process-entry = (18: process / [ 2* process ])
-resource-entry = (19: resource / [ 2* resource ])
-size = (20: integer)
-file-version = (21: text)
-key = (22: bool)
-location = (23: text)
-fs-name = (24: text)
-root = (25: text)
-path-elements = (26: { * file-entry,
-                       * directory-entry,
-                     }
-                )
-process-name = (27: text)
-pid = (28: integer)
-type = (29: text)
-entity-name = (31: text)
-reg-id = (32: any-uri)
-role = (33: roles / extended-value / [ 2* roles / extended-value ] )
-extended-value = text / uint
-roles= aggregator / distributor / licensor / software-creator / tag-creator
+media-operation = text
+
+media-entry = [ + [ media-expression,
+                     ? [ media-operation,
+                         media-expression,
+                       ]
+                  ]
+              ]
+
+resource-collection = (
+  ? directory =&gt; directory-entry,
+  ? file =&gt; file-entry,
+  ? process =&gt; process-entry,
+  ? resource =&gt; resource-entry,
+  * $$resource-collection-extension
+)
+
+file-entry = {
+  filesystem-item,
+  ? size =&gt; integer,
+  ? file-version =&gt; text,
+  ? hash =&gt; hash-entry,
+}
+
+hash-entry = [ hash-alg-id: int,
+               hash-value: bytes,
+             ]
+
+path-elements-entry = [ [ * file-entry ],
+                        [ * directory-entry ],
+                      ]
+
+directory-entry = {
+  filesystem-item,
+  path-elements =&gt; path-elements-entry,
+}
+
+process-entry = {
+  global-attributes,
+  process-name =&gt; text,
+  ? pid =&gt; integer,
+}
+
+resource-entry = {
+  global-attributes,
+  type =&gt; text,
+}
+
+filesystem-item = (
+  global-attributes,
+  ? key =&gt; bool,
+  ? location =&gt; text,
+  fs-name =&gt; text,
+  ? root =&gt; text,
+)
+entity-entry = {
+  global-attributes,
+  entity-name =&gt; text,
+  ? reg-id =&gt; any-uri,
+  role =&gt; $role / [ 2* $role ],
+  ? thumbprint =&gt; hash-entry,
+  * $$entity-extension,
+}
+
+$role /= aggregator
+$role /= distributor
+$role /= licensor
+$role /= software-creator
+$role /= tag-creator
+$role /= uint / text
 aggregator=0
 distributor=1
 licensor=2
 software-creator=3
 tag-creator=4
-thumbprint = (34: [ hash-alg-id: int,
-                    hash-value: bstr,
-                  ]
-             )
-date = (35: time)
-device-id = (36: text)
-artifact = (37: text)
-href = (38: any-uri)
-ownership = (39: shared / private / abandon / extended-value )
+
+evidence-entry = {
+  global-attributes,
+  resource-collection,
+  ? date =&gt; time,
+  ? device-id =&gt; text,
+  * $$evidence-extension 
+}
+
+link-entry = {
+  global-attributes,
+  ? artifact =&gt; text,
+  href =&gt; any-uri,
+  ? media =&gt; media-entry,
+  ? ownership =&gt; $ownership,
+  rel =&gt; $rel,
+  ? media-type =&gt; text,
+  ? use =&gt; $use,
+}
+
+$ownership /= shared
+$ownership /= private
+$ownership /= abandon
+$ownership /= uint / text
 shared=0
 private=1
 abandon=2
-rel = (40: rels / extended-value )
-rels = ancestor / component / feature / installationmedia / packageinstaller / parent / patches / requires / see-also / supersedes / rel-supplemental
+
+$rel /= ancestor 
+$rel /= component
+$rel /= feature
+$rel /= installationmedia
+$rel /= packageinstaller
+$rel /= parent
+$rel /= patches
+$rel /= requires
+$rel /= see-also
+$rel /= supersedes
+$rel /= rel-supplemental
+$rel /= uint / text
 ancestor=0
 component=1
 feature=2
@@ -1148,30 +1116,98 @@ requires=7
 see-also=8
 supersedes=9
 rel-supplemental=10
-media-type = (41: text)
-use = (42: optional / required / recommended / extended-value )
-optional=1
-required=2
-recommended=3
-activation-status = (43: text)
-channel-type = (44: text)
-colloquial-version = (45: text)
-description = (46: text)
-edition = (47: text)
-entitlement-data-required = (48: bool)
-entitlement-key = (49: text)
-generator = (50: text)
-persistent-id = (51: text)
-product = (52: text)
-product-family = (53: text)
-revision = (54: text)
-summary = (55: text)
-unspsc-code = (56: text)
-unspsc-version = (57: text)
-hash-entry = (58: [ hash-alg-id: int,
-                    hash-value: bstr,
-                  ]
-             )
+
+$use /= optional
+$use /= required
+$use /= recommended
+$use /= uint / text
+optional=0
+required=1
+recommended=2
+
+software-meta-entry = {
+  global-attributes,
+  ? activation-status =&gt; text,
+  ? channel-type =&gt; text,
+  ? colloquial-version =&gt; text,
+  ? description =&gt; text,
+  ? edition =&gt; text,
+  ? entitlement-data-required =&gt; bool,
+  ? entitlement-key =&gt; text,
+  ? generator =&gt; text,
+  ? persistent-id =&gt; text,
+  ? product =&gt; text,
+  ? product-family =&gt; text,
+  ? revision =&gt; text,
+  ? summary =&gt; text,
+  ? unspsc-code =&gt; text,
+  ? unspsc-version =&gt; text,
+}
+
+payload-entry = {
+  global-attributes,
+  resource-collection,
+  * $$payload-extension 
+}
+
+tag-id = 0
+swid-name = 1
+entity = 2
+evidence = 3
+link = 4
+software-meta = 5
+payload = 6
+;   no 7? also, hash should be in the upper region as anything file
+corpus = 8
+patch = 9
+media = 10
+supplemental = 11
+tag-version = 12
+software-version = 13
+version-scheme = 14
+lang = 15
+directory = 16
+file = 17
+process = 18
+resource = 19
+size = 20
+file-version = 21
+key = 22
+location = 23
+fs-name = 24
+root = 25
+path-elements = 26
+process-name = 27
+pid = 28
+type = 29
+entity-name = 31
+reg-id = 32
+role = 33
+thumbprint = 34
+date = 35
+device-id = 36
+artifact = 37
+href = 38
+ownership = 39
+rel = 40
+media-type = 41
+use = 42
+activation-status = 43
+channel-type = 44
+colloquial-version = 45
+description = 46
+edition = 47
+entitlement-data-required = 48
+entitlement-key = 49
+generator = 50
+persistent-id = 51
+product = 52
+product-family = 53
+revision = 54
+summary = 55
+unspsc-code = 56
+unspsc-version = 57
+hash = 58
 </pre>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#coswid-indexed-label-values" id="coswid-indexed-label-values">CoSWID Indexed Label Values</a>
@@ -1772,7 +1808,7 @@ hash-entry = (58: [ hash-alg-id: int,
 <tr>
 <td class="reference"><b id="I-D.ietf-cbor-cddl">[I-D.ietf-cbor-cddl]</b></td>
 <td class="top">
-<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-ietf-cbor-cddl-05">Concise data definition language (CDDL): a notational convention to express CBOR and JSON data structures</a>", Internet-Draft draft-ietf-cbor-cddl-05, August 2018.</td>
+<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-ietf-cbor-cddl-06">Concise data definition language (CDDL): a notational convention to express CBOR and JSON data structures</a>", Internet-Draft draft-ietf-cbor-cddl-06, November 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-sacm-rolie-softwaredescriptor">[I-D.ietf-sacm-rolie-softwaredescriptor]</b></td>
@@ -1782,7 +1818,7 @@ hash-entry = (58: [ hash-alg-id: int,
 <tr>
 <td class="reference"><b id="I-D.ietf-sacm-terminology">[I-D.ietf-sacm-terminology]</b></td>
 <td class="top">
-<a>Birkholz, H.</a>, <a>Lu, J.</a>, <a>Strassner, J.</a>, <a>Cam-Winget, N.</a> and <a>A. Montville</a>, "<a href="https://tools.ietf.org/html/draft-ietf-sacm-terminology-15">Security Automation and Continuous Monitoring (SACM) Terminology</a>", Internet-Draft draft-ietf-sacm-terminology-15, June 2018.</td>
+<a>Birkholz, H.</a>, <a>Lu, J.</a>, <a>Strassner, J.</a>, <a>Cam-Winget, N.</a> and <a>A. Montville</a>, "<a href="https://tools.ietf.org/html/draft-ietf-sacm-terminology-16">Security Automation and Continuous Monitoring (SACM) Terminology</a>", Internet-Draft draft-ietf-sacm-terminology-16, December 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC4122">[RFC4122]</b></td>
@@ -1801,133 +1837,10 @@ hash-entry = (58: [ hash-alg-id: int,
 </tr>
 </tbody></table>
 <h1 id="rfc.appendix.A">
-<a href="#rfc.appendix.A">Appendix A.</a> <a href="#coswid-attributes-for-firmware-label-60" id="coswid-attributes-for-firmware-label-60">CoSWID Attributes for Firmware (label 60)</a>
+<a href="#rfc.appendix.A">Appendix A.</a> <a href="#signed-concise-swid-tags-using-cose" id="signed-concise-swid-tags-using-cose">Signed Concise SWID Tags using COSE</a>
 </h1>
-<p id="rfc.section.A.p.1">NOTE: this appendix is subject to revision or removal based on potential convergence of:</p>
-<p></p>
-
-<ul>
-<li>draft-moran-suit-manifest, and</li>
-<li>draft-birkholz-suit-coswid-manifest</li>
-</ul>
-<p id="rfc.section.A.p.3">The ISO-19770-2:2015 specification of SWID tags assumes the existence of a file system a software component is installed and stored in. In the case of constrained-node networks <a href="#RFC7228" class="xref">[RFC7228]</a> or network equipment this assumption might not apply. Concise software instances in the form of (modular) firmware are often stored directly on a block device that is a hardware component of the constrained-node or network equipment. Multiple differentiable block devices or segmented block devices that contain parts of modular firmware components (potentially each with their own instance version) are already common at the time of this writing.</p>
-<p id="rfc.section.A.p.4">The optional attributes that annotate a firmware package address specific characteristics of pieces of firmware stored directly on a block-device in contrast to software deployed in a file-system.  In essence, trees of relative path-elements expressed by the directory and file structure in CoSWID tags are typically unable to represent the location of a firmware on a constrained-node (small thing). The composite nature of firmware and also the actual composition of small things require a set of attributes to address the identification of the correct component in a composite thing for each individual piece of firmware. A single component also potentially requires a number of distinct firmware parts that might depend on each other (versions). These dependencies can be limited to the scope of the component itself or extend to the scope of a larger composite device. In addition, it might not be possible (or feasible) to store a CoSWID tag document (permanently) on a small thing along with the corresponding piece of firmware.</p>
-<p id="rfc.section.A.p.5">To address the specific characteristics of firmware, the extension points <samp>$$payload-extension</samp> and <samp>$$evidence-extension</samp> are used to allow for an additional type of resource description&#8212;firmware-entry&#8212;thereby increasing the self-descriptiveness and flexibility of CoSWID. The optional use of the extension points <samp>$$payload-extension</samp> and <samp>$$evidence-extension</samp> in respect to firmware MUST adhere to the following CDDL data definition.</p>
-<pre>
-&lt;CODE BEGINS&gt;
-$$payload-extension  //= (suit.manifest-entry,)
-$$evidence-extension  //= (suit.manifest-entry,)
-
-suit-manifest = {
-  suit.manifest-version,
-  suit.digest-info,
-  suit.text-reference,
-  suit.nonce,
-  suit.sequence-number,
-  ? suit.pre-condition,
-  ? suit.post-condition,
-  ? suit.directives,
-  ? suit.resources,
-  ? suit.processors,
-  ? suit.targets,
-  ? suit.extensions,
-}
-
-suit.manifest-entry = (59: suit-manifest / [ 2* suit-manifest ] )
-suit.manifest-version = (60: 1)
-suit.digest-info = (61: [ suit.digest-algorithm,
-                          ? suit.digest-parameters,
-                        ]
-                   )
-suit.digest-algorithm = uint
-suit.digest-parameters = bytes
-suit.text-reference = (62: bytes)
-suit.nonce = (63: bytes)
-suit.sequence-number = (64: uint)
-suit.pre-condition = (suit.id-condition // suit.time-condition // suit.image-condition // suit.custom-condition)
-suit.post-condition = (suit.image-condition // suit.custom-condition)
-suit.id-condition = (65: [ + [ suit.vendor / suit.class / suit.device,
-                               suit.uuid,
-                             ]
-                         ]
-                    ) 
-suit.vendor = 0
-suit.class = 1
-suit.device = 2
-suit.uuid = bstr .size 16
-suit.time-condition = (66: [ + [ suit.install-after / suit.best-before,
-                                 suit.timestamp,
-                               ]
-                           ]
-                      )
-suit.install-after = 0
-suit.best-before = 1
-suit.timestamp = uint .size 8
-suit.image-condition = (67: [ + [ suit.current-content / suit.not-current-content,
-                                  suit.storage-identifier,
-                                  ? suit.digest,
-                                ]
-                            ]
-                       )
-suit.current-content = 0
-suit.not-current-content = 1
-suit.digest = bytes
-suit.storage-identifier = bytes
-suit.custom-condition = (68: [ nint,
-                               suit.condition-parameters,
-                             ]
-                        )
-suit.condition-parameters = bytes
-suit.directives = (69: { + int =&gt; bytes } )
-suit.resources = (70: [ + [ suit.resource-type,
-                            suit.uri-list,
-                            suit.digest,
-                            suit.onode,
-                            ? suit.size,
-                          ]
-                      ] 
-                 )
-suit.resource-type = suit.payload / suit.dependency / suit.key / suit.alias
-suit.payload = 0
-suit.dependency = 1
-suit.key = 2
-suit.alias = 3
-suit.uri-list = { + int =&gt; text }
-suit.size = uint
-suit.onode = bytes
-suit.processors = (71: [ + [ suit.decrypt / suit.decompress / suit.undiff / suit.relocate / suit.unrelocate,
-                             suit.parameters,
-                             suit.inode,
-                             suit.onode,
-                           ]
-                       ]
-                  )
-suit.decrypt = 0
-suit.decompress = 1
-suit.undiff = 2
-suit.relocate = 3
-suit.unrelocate = 4
-suit.parameters = bytes
-suit.inode = bytes
-suit.targets = (72: [ + [ suit.component-id,
-                          suit.storage-identifier,
-                          suit.inode,
-                          ? suit.encoding,
-                        ]
-                    ]
-                )
-suit.component-id = [ + bytes ]
-suit.encoding = bytes
-suit.extensions = (73: { + int =&gt; bytes } )
-&lt;CODE ENDS&gt;
-</pre>
-<p id="rfc.section.A.p.6">The members of the firmware group that constitutes the content of the firmware-entry is based on the metadata about firmware Described in <a href="#RFC4108" class="xref">[RFC4108]</a>. As with every semantic differentiation that is supported by the resource-collection type, the use of firmware-entry is optional. It is REQUIRED not to instantiate more than one firmware-entry, as the firmware group is used in a map and therefore only allows for unique labels.</p>
-<p id="rfc.section.A.p.7">The optional cms-firmware-package member allows to include the actual firmware in the CoSWID tag that also expresses its metadata as a byte-string. This option enables a CoSWID tag to be used as a container or wrapper that composes both firmware and its metadata in a single document (which again can be signed, encrypted and/or compressed). In consequence, a CoSWID tag about firmware can be conveyed as an identifying document across endpoints or used as a reference integrity measurement as usual. Alternatively, it can also convey an actual piece of firmware, serve its intended purpose as a SWID tag and then - due to the lack of a location to store it - be discarded.</p>
-<h1 id="rfc.appendix.B">
-<a href="#rfc.appendix.B">Appendix B.</a> <a href="#signed-concise-swid-tags-using-cose" id="signed-concise-swid-tags-using-cose">Signed Concise SWID Tags using COSE</a>
-</h1>
-<p id="rfc.section.B.p.1">SWID tags, as defined in the ISO-19770-2:2015 XML schema, can include cryptographic signatures to protect the integrity of the SWID tag. In general, tags are signed by the tag creator (typically, although not exclusively, the vendor of the software component that the SWID tag identifies).  Cryptographic signatures can make any modification of the tag detectable, which is especially important if the integrity of the tag is important, such as when the tag is providing reference integrity measurements for files.</p>
-<p id="rfc.section.B.p.2">The ISO-19770-2:2015 XML schema uses XML DSIG to support cryptographic signatures. CoSWID tags require a different signature scheme than this. COSE (CBOR Object Signing and Encryption) provides the required mechanism <a href="#RFC8152" class="xref">[RFC8152]</a>. Concise SWID can be wrapped in a COSE Single Signer Data Object (cose-sign1) that contains a single signature. The following CDDL defines a more restrictive subset of header attributes allowed by COSE tailored to suit the requirements of Concise SWID.</p>
+<p id="rfc.section.A.p.1">SWID tags, as defined in the ISO-19770-2:2015 XML schema, can include cryptographic signatures to protect the integrity of the SWID tag. In general, tags are signed by the tag creator (typically, although not exclusively, the vendor of the software component that the SWID tag identifies).  Cryptographic signatures can make any modification of the tag detectable, which is especially important if the integrity of the tag is important, such as when the tag is providing reference integrity measurements for files.</p>
+<p id="rfc.section.A.p.2">The ISO-19770-2:2015 XML schema uses XML DSIG to support cryptographic signatures. CoSWID tags require a different signature scheme than this. COSE (CBOR Object Signing and Encryption) provides the required mechanism <a href="#RFC8152" class="xref">[RFC8152]</a>. Concise SWID can be wrapped in a COSE Single Signer Data Object (cose-sign1) that contains a single signature. The following CDDL defines a more restrictive subset of header attributes allowed by COSE tailored to suit the requirements of Concise SWID tags.</p>
 <pre>
 &lt;CODE BEGINS&gt;
 signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
@@ -1954,6 +1867,9 @@ COSE-Sign1-coswid = [
 ]
 &lt;CODE ENDS&gt;
 </pre>
+<h1 id="rfc.appendix.B">
+<a href="#rfc.appendix.B">Appendix B.</a> <a href="#json-swid-tags" id="json-swid-tags">JSON SWID Tags</a>
+</h1>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">

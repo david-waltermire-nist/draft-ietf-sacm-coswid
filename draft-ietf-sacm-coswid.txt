@@ -5,27 +5,26 @@
 SACM Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                     J. Fitzgerald-McKay
-Expires: May 12, 2019                              Department of Defense
+Expires: August 16, 2019                           Department of Defense
                                                               C. Schmidt
                                                    The MITRE Corporation
                                                            D. Waltermire
                                                                     NIST
-                                                       November 08, 2018
+                                                       February 12, 2019
 
 
-                      Concise Software Identifiers
+                  Concise Software Identification Tags
                      draft-ietf-sacm-coswid-latest
 
 Abstract
 
    This document defines a concise representation of ISO/IEC
    19770-2:2015 Software Identification (SWID) tags that are
-   interoperable with the XML schema definition of ISO/IEC 19770-2:2015
-   and augmented for application in Constrained-Node Networks.  Next to
-   the inherent capability of SWID tags to express arbitrary context
-   information, Concise SWID (CoSWID) tags support the definition of
-   additional semantics via well-defined data definitions incorporated
-   by extension points.
+   interoperable with the XML schema definition of ISO/IEC 19770-2:2015.
+   Next to the inherent capability of SWID tags to express arbitrary
+   context information, Concise SWID (CoSWID) tags support the
+   definition of additional semantics via well-defined data definitions
+   incorporated by extension points.
 
 Status of This Memo
 
@@ -42,24 +41,23 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 12, 2019.
+   This Internet-Draft will expire on August 16, 2019.
 
 Copyright Notice
 
-   Copyright (c) 2018 IETF Trust and the persons identified as the
+   Copyright (c) 2019 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
-
-
-
-
-
-Birkholz, et al.          Expires May 12, 2019                  [Page 1]
-
-Internet-Draft                   COSWID                    November 2018
-
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
+
+
+
+Birkholz, et al.         Expires August 16, 2019                [Page 1]
+
+Internet-Draft                   COSWID                    February 2019
+
+
    (https://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
@@ -89,36 +87,36 @@ Table of Contents
        2.7.3.  The payload Object  . . . . . . . . . . . . . . . . .  23
        2.7.4.  The evidence Object . . . . . . . . . . . . . . . . .  23
      2.8.  Full CDDL Definition  . . . . . . . . . . . . . . . . . .  24
-   3.  CoSWID Indexed Label Values . . . . . . . . . . . . . . . . .  29
-     3.1.  Version Scheme  . . . . . . . . . . . . . . . . . . . . .  29
-     3.2.  Entity Role Values  . . . . . . . . . . . . . . . . . . .  30
-     3.3.  Use Values  . . . . . . . . . . . . . . . . . . . . . . .  30
-   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  31
-     4.1.  SWID/CoSWID Version Schema Values Registry  . . . . . . .  31
-     4.2.  SWID/CoSWID Entity Role Values Registry . . . . . . . . .  32
-     4.3.  SWID/CoSWID Link Use Values Registry  . . . . . . . . . .  33
-     4.4.  Media Type Registration . . . . . . . . . . . . . . . . .  34
-       4.4.1.  swid+cbor Media Type Registration . . . . . . . . . .  34
-     4.5.  CoAP Content-Format Registration  . . . . . . . . . . . .  35
-     4.6.  CBOR Tag Registration . . . . . . . . . . . . . . . . . .  36
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  36
-   6.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  38
-   7.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  38
-   8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  41
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  41
+   3.  CoSWID Indexed Label Values . . . . . . . . . . . . . . . . .  30
+     3.1.  Version Scheme  . . . . . . . . . . . . . . . . . . . . .  30
+     3.2.  Entity Role Values  . . . . . . . . . . . . . . . . . . .  31
+     3.3.  Use Values  . . . . . . . . . . . . . . . . . . . . . . .  31
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
+     4.1.  SWID/CoSWID Version Schema Values Registry  . . . . . . .  32
+     4.2.  SWID/CoSWID Entity Role Values Registry . . . . . . . . .  33
+     4.3.  SWID/CoSWID Link Use Values Registry  . . . . . . . . . .  34
+     4.4.  Media Type Registration . . . . . . . . . . . . . . . . .  35
+       4.4.1.  swid+cbor Media Type Registration . . . . . . . . . .  35
+     4.5.  CoAP Content-Format Registration  . . . . . . . . . . . .  36
+     4.6.  CBOR Tag Registration . . . . . . . . . . . . . . . . . .  37
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  37
+   6.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  39
+   7.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .  39
+   8.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  42
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  42
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  42
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  43
 
 
 
-Birkholz, et al.          Expires May 12, 2019                  [Page 2]
+Birkholz, et al.         Expires August 16, 2019                [Page 2]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  41
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  42
-   Appendix A.  CoSWID Attributes for Firmware (label 60)  . . . . .  43
-   Appendix B.  Signed Concise SWID Tags using COSE  . . . . . . . .  46
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  47
+   Appendix A.  Signed Concise SWID Tags using COSE  . . . . . . . .  44
+   Appendix B.  JSON SWID Tags . . . . . . . . . . . . . . . . . . .  45
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  45
 
 1.  Introduction
 
@@ -165,9 +163,11 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                  [Page 3]
+
+
+Birkholz, et al.         Expires August 16, 2019                [Page 3]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
 1.1.  The SWID Tag Lifecycle
@@ -221,9 +221,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                  [Page 4]
+Birkholz, et al.         Expires August 16, 2019                [Page 4]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    Note: The type of a tag is determined by specific data elements,
@@ -277,9 +277,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                  [Page 5]
+Birkholz, et al.         Expires August 16, 2019                [Page 5]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
          installation to provide information about software fixes
@@ -333,9 +333,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                  [Page 6]
+Birkholz, et al.         Expires August 16, 2019                [Page 6]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    the vocabulary of the XML attribute and element names defined in ISO/
@@ -389,9 +389,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                  [Page 7]
+Birkholz, et al.         Expires August 16, 2019                [Page 7]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    deviation from the original notation used in the XML representation
@@ -426,7 +426,7 @@ Internet-Draft                   COSWID                    November 2018
 
 2.1.  The concise-software-identity Object
 
-   The CDDL for the main concise-software-identity object is as follows:
+   The CDDL for the main concise-swid-tag map is as follows:
 
 
 
@@ -445,12 +445,12 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                  [Page 8]
+Birkholz, et al.         Expires August 16, 2019                [Page 8]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
-   concise-software-identity = {
+   concise-swid-tag = {
      global-attributes,
      tag-id,
      tag-version,
@@ -501,9 +501,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                  [Page 9]
+Birkholz, et al.         Expires August 16, 2019                [Page 9]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
       pre-installation state.  Installable software includes a
@@ -557,9 +557,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 10]
+Birkholz, et al.         Expires August 16, 2019               [Page 10]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  software-meta-entry (label 5): An open-ended map of key/value data
@@ -613,9 +613,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 11]
+Birkholz, et al.         Expires August 16, 2019               [Page 11]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
 2.1.1.  Determining the tag type
@@ -669,9 +669,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 12]
+Birkholz, et al.         Expires August 16, 2019               [Page 12]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
 2.2.  The global-attributes Group
@@ -725,9 +725,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 13]
+Birkholz, et al.         Expires August 16, 2019               [Page 13]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    media = (10: [ + [ media-expression,
@@ -781,9 +781,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 14]
+Birkholz, et al.         Expires August 16, 2019               [Page 14]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
       organization.  In a given scope, the registration id MUST be used
@@ -837,9 +837,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 15]
+Birkholz, et al.         Expires August 16, 2019               [Page 15]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  global-attributes: The global-attributes group described in
@@ -893,9 +893,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 16]
+Birkholz, et al.         Expires August 16, 2019               [Page 16]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  rel (index 40): The relationship between this CoSWID and the
@@ -949,9 +949,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 17]
+Birkholz, et al.         Expires August 16, 2019               [Page 17]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  channel-type (index 44): Provides information on which channel
@@ -1005,9 +1005,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 18]
+Birkholz, et al.         Expires August 16, 2019               [Page 18]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
       different endpoints.  For example, an enterprise backup system may
@@ -1061,9 +1061,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 19]
+Birkholz, et al.         Expires August 16, 2019               [Page 19]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    hashed resource generated using the hash algorithm indicated by the
@@ -1117,9 +1117,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 20]
+Birkholz, et al.         Expires August 16, 2019               [Page 20]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    resource-collection = (
@@ -1173,9 +1173,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 21]
+Birkholz, et al.         Expires August 16, 2019               [Page 21]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  directory-entry (index 16): A directory item allows one or more
@@ -1229,9 +1229,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 22]
+Birkholz, et al.         Expires August 16, 2019               [Page 22]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  pid (index 28): The process ID for the process in execution that
@@ -1285,9 +1285,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 23]
+Birkholz, et al.         Expires August 16, 2019               [Page 23]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  resource-collection: The resource-collection group described in
@@ -1310,278 +1310,323 @@ Internet-Draft                   COSWID                    November 2018
    corresponding CBOR message MUST adhere to the following CDDL data
    definition.
 
-concise-software-identity = {
-  global-attributes,
-  tag-id,
-  tag-version,
-  ? corpus,
-  ? patch,
-  ? supplemental,
-  swid-name,
-  ? software-version,
-  ? version-scheme,
-  ? media,
-  ? software-meta-entry,
-  entity-entry,
-  ? link-entry,
-  ? ( payload-entry // evidence-entry ),
-  * $$coswid-extension
-}
+ concise-swid-tag = {
+   global-attributes,
+   tag-id => text,
+   tag-version => integer,
+   ? corpus => bool,
+   ? patch => bool,
+   ? supplemental => bool,
+   swid-name => text,
+   ? software-version => text,
+   ? version-scheme => $version-scheme,
+   ? media => media-entry,
+   ? software-meta =>  software-meta-entry / [ 2* software-meta-entry ],
+   entity => entity-entry / [ 2* entity-entry ],
+   ? link => link-entry / [ 2* link-entry ],
+   ? (( payload => payload-entry ) // ( evidence => evidence-entry )),
+   * $$coswid-extension
+ }
 
-any-uri = text
-label = text / int
+ any-uri = text
+ label = text / int
 
-any-attribute = (
-  label => text / int / [ 2* text ] / [ 2* int ]
-)
+ $version-scheme /= multipartnumeric
+ $version-scheme /= multipartnumeric-suffix
+ $version-scheme /= alphanumeric
+ $version-scheme /= decimal
+ $version-scheme /= semver
+ $version-scheme /= uint / text
+ multipartnumeric = 0
 
-global-attributes = (
-  ? lang,
-  * any-attribute,
 
 
-
-Birkholz, et al.          Expires May 12, 2019                 [Page 24]
+Birkholz, et al.         Expires August 16, 2019               [Page 24]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
-)
+ multipartnumeric-suffix = 1
+ alphanumeric = 2
+ decimal = 3
+ semver = 16384
 
-resource-collection = (
-  ? directory-entry,
-  ? file-entry,
-  ? process-entry,
-  ? resource-entry
-)
+ any-attribute = (
+   label => text / int / [ 2* text ] / [ 2* int ]
+ )
 
-file = {
-  filesystem-item,
-  ? size,
-  ? file-version,
-  ? hash-entry,
-}
+ global-attributes = (
+   ? lang => text,
+   * any-attribute,
+ )
 
-filesystem-item = (
-  global-attributes,
-  ? key,
-  ? location,
-  fs-name,
-  ? root,
-)
+ media-expression = media-environment / [ media-prefix,
+                                          media-environment,
+                                          media-attribute,
+                                          media-value,
+                                        ]
+ media-prefix = text
+ media-environment = text
+ media-attribute = text
+ media-value = text
+ media-operation = text
 
-directory = {
-  filesystem-item,
-  path-elements,
-}
+ media-entry = [ + [ media-expression,
+                      ? [ media-operation,
+                          media-expression,
+                        ]
+                   ]
+               ]
 
-process = {
-  global-attributes,
-  process-name,
-  ? pid,
-}
+ resource-collection = (
+   ? directory => directory-entry,
+   ? file => file-entry,
+   ? process => process-entry,
+   ? resource => resource-entry,
+   * $$resource-collection-extension
+ )
 
-resource = {
-  global-attributes,
-  type,
-}
+ file-entry = {
+   filesystem-item,
+   ? size => integer,
+   ? file-version => text,
+   ? hash => hash-entry,
+ }
 
-entity = {
-  global-attributes,
-  entity-name,
-  ? reg-id,
-  role,
-  ? thumbprint,
-  * $$entity-extension,
-}
+ hash-entry = [ hash-alg-id: int,
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 25]
+Birkholz, et al.         Expires August 16, 2019               [Page 25]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
-evidence = {
-  global-attributes,
-  resource-collection,
-  ? date,
-  ? device-id,
-  * $$evidence-extension
-}
+                hash-value: bytes,
+              ]
 
-link = {
-  global-attributes,
-  ? artifact,
-  href,
-  ? media
-  ? ownership,
-  rel,
-  ? media-type,
-  ? use,
-}
-
-software-meta = {
-  global-attributes,
-  ? activation-status,
-  ? channel-type,
-  ? colloquial-version,
-  ? description,
-  ? edition,
-  ? entitlement-data-required,
-  ? entitlement-key,
-  ? generator,
-  ? persistent-id,
-  ? product,
-  ? product-family,
-  ? revision,
-  ? summary,
-  ? unspsc-code,
-  ? unspsc-version,
-}
-
-payload = {
-  global-attributes,
-  resource-collection,
-  * $$payload-extension
-}
-
-tag-id = (0: text)
-swid-name = (1: text)
-entity-entry = (2: entity / [ 2* entity ])
-evidence-entry = (3: evidence)
-
-
-
-Birkholz, et al.          Expires May 12, 2019                 [Page 26]
-
-Internet-Draft                   COSWID                    November 2018
-
-
-link-entry = (4: link / [ 2* link ])
-software-meta-entry = (5: software-meta / [ 2* software-meta ])
-payload-entry = (6: payload)
-corpus = (8: bool)
-patch = (9: bool)
-media = (10: [ + [ media-expression,
-                     ? [ media-operation,
-                         media-expression,
+ path-elements-entry = [ [ * file-entry ],
+                         [ * directory-entry ],
                        ]
-                 ]
-             ])
-media-operation = text
-media-expression = media-environment / [ media-prefix,
-                                         media-environment,
-                                         media-attribute,
-                                         media-value,
-                                       ]
-media-prefix = text
-media-environment = text
-media-attribute = text
-media-value = text
-supplemental = (11: bool)
-tag-version = (12: integer)
-software-version = (13: text)
-version-scheme = (14: version-schemes  / extended-value)
-version-schemes = multipartnumeric / multipartnumeric-suffix / alphanumeric / decimal / semver
-multipartnumeric = 1
-multipartnumeric-suffix = 2
-alphanumeric = 3
-decimal = 4
-semver = 16384
-lang = (15: text)
-directory-entry = (16: directory / [ 2* directory ])
-file-entry = (17: file / [ 2* file ])
-process-entry = (18: process / [ 2* process ])
-resource-entry = (19: resource / [ 2* resource ])
-size = (20: integer)
-file-version = (21: text)
-key = (22: bool)
-location = (23: text)
-fs-name = (24: text)
-root = (25: text)
-path-elements = (26: { * file-entry,
-                       * directory-entry,
-                     }
-                )
-process-name = (27: text)
-pid = (28: integer)
+
+ directory-entry = {
+   filesystem-item,
+   path-elements => path-elements-entry,
+ }
+
+ process-entry = {
+   global-attributes,
+   process-name => text,
+   ? pid => integer,
+ }
+
+ resource-entry = {
+   global-attributes,
+   type => text,
+ }
+
+ filesystem-item = (
+   global-attributes,
+   ? key => bool,
+   ? location => text,
+   fs-name => text,
+   ? root => text,
+ )
+ entity-entry = {
+   global-attributes,
+   entity-name => text,
+   ? reg-id => any-uri,
+   role => $role / [ 2* $role ],
+   ? thumbprint => hash-entry,
+   * $$entity-extension,
+ }
+
+ $role /= aggregator
+ $role /= distributor
+ $role /= licensor
+ $role /= software-creator
+ $role /= tag-creator
+ $role /= uint / text
+ aggregator=0
+ distributor=1
+ licensor=2
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 27]
+Birkholz, et al.         Expires August 16, 2019               [Page 26]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
-type = (29: text)
-entity-name = (31: text)
-reg-id = (32: any-uri)
-role = (33: roles / extended-value / [ 2* roles / extended-value ] )
-extended-value = text / uint
-roles= aggregator / distributor / licensor / software-creator / tag-creator
-aggregator=0
-distributor=1
-licensor=2
-software-creator=3
-tag-creator=4
-thumbprint = (34: [ hash-alg-id: int,
-                    hash-value: bstr,
-                  ]
-             )
-date = (35: time)
-device-id = (36: text)
-artifact = (37: text)
-href = (38: any-uri)
-ownership = (39: shared / private / abandon / extended-value )
-shared=0
-private=1
-abandon=2
-rel = (40: rels / extended-value )
-rels = ancestor / component / feature / installationmedia / packageinstaller / parent / patches / requires / see-also / supersedes / rel-supplemental
-ancestor=0
-component=1
-feature=2
-installationmedia=3
-packageinstaller=4
-parent=5
-patches=6
-requires=7
-see-also=8
-supersedes=9
-rel-supplemental=10
-media-type = (41: text)
-use = (42: optional / required / recommended / extended-value )
-optional=1
-required=2
-recommended=3
-activation-status = (43: text)
-channel-type = (44: text)
-colloquial-version = (45: text)
-description = (46: text)
-edition = (47: text)
-entitlement-data-required = (48: bool)
-entitlement-key = (49: text)
+ software-creator=3
+ tag-creator=4
+
+ evidence-entry = {
+   global-attributes,
+   resource-collection,
+   ? date => time,
+   ? device-id => text,
+   * $$evidence-extension
+ }
+
+ link-entry = {
+   global-attributes,
+   ? artifact => text,
+   href => any-uri,
+   ? media => media-entry,
+   ? ownership => $ownership,
+   rel => $rel,
+   ? media-type => text,
+   ? use => $use,
+ }
+
+ $ownership /= shared
+ $ownership /= private
+ $ownership /= abandon
+ $ownership /= uint / text
+ shared=0
+ private=1
+ abandon=2
+
+ $rel /= ancestor
+ $rel /= component
+ $rel /= feature
+ $rel /= installationmedia
+ $rel /= packageinstaller
+ $rel /= parent
+ $rel /= patches
+ $rel /= requires
+ $rel /= see-also
+ $rel /= supersedes
+ $rel /= rel-supplemental
+ $rel /= uint / text
+ ancestor=0
+ component=1
+ feature=2
+ installationmedia=3
+ packageinstaller=4
+ parent=5
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 28]
+Birkholz, et al.         Expires August 16, 2019               [Page 27]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
-generator = (50: text)
-persistent-id = (51: text)
-product = (52: text)
-product-family = (53: text)
-revision = (54: text)
-summary = (55: text)
-unspsc-code = (56: text)
-unspsc-version = (57: text)
-hash-entry = (58: [ hash-alg-id: int,
-                    hash-value: bstr,
-                  ]
-             )
+ patches=6
+ requires=7
+ see-also=8
+ supersedes=9
+ rel-supplemental=10
+
+ $use /= optional
+ $use /= required
+ $use /= recommended
+ $use /= uint / text
+ optional=0
+ required=1
+ recommended=2
+
+ software-meta-entry = {
+   global-attributes,
+   ? activation-status => text,
+   ? channel-type => text,
+   ? colloquial-version => text,
+   ? description => text,
+   ? edition => text,
+   ? entitlement-data-required => bool,
+   ? entitlement-key => text,
+   ? generator => text,
+   ? persistent-id => text,
+   ? product => text,
+   ? product-family => text,
+   ? revision => text,
+   ? summary => text,
+   ? unspsc-code => text,
+   ? unspsc-version => text,
+ }
+
+ payload-entry = {
+   global-attributes,
+   resource-collection,
+   * $$payload-extension
+ }
+
+ tag-id = 0
+ swid-name = 1
+ entity = 2
+ evidence = 3
+ link = 4
+ software-meta = 5
+ payload = 6
+ ;   no 7? also, hash should be in the upper region as anything file
+ corpus = 8
+
+
+
+Birkholz, et al.         Expires August 16, 2019               [Page 28]
+
+Internet-Draft                   COSWID                    February 2019
+
+
+ patch = 9
+ media = 10
+ supplemental = 11
+ tag-version = 12
+ software-version = 13
+ version-scheme = 14
+ lang = 15
+ directory = 16
+ file = 17
+ process = 18
+ resource = 19
+ size = 20
+ file-version = 21
+ key = 22
+ location = 23
+ fs-name = 24
+ root = 25
+ path-elements = 26
+ process-name = 27
+ pid = 28
+ type = 29
+ entity-name = 31
+ reg-id = 32
+ role = 33
+ thumbprint = 34
+ date = 35
+ device-id = 36
+ artifact = 37
+ href = 38
+ ownership = 39
+ rel = 40
+ media-type = 41
+ use = 42
+ activation-status = 43
+ channel-type = 44
+ colloquial-version = 45
+ description = 46
+ edition = 47
+ entitlement-data-required = 48
+ entitlement-key = 49
+ generator = 50
+ persistent-id = 51
+ product = 52
+ product-family = 53
+ revision = 54
+ summary = 55
+ unspsc-code = 56
+ unspsc-version = 57
+
+
+
+Birkholz, et al.         Expires August 16, 2019               [Page 29]
+
+Internet-Draft                   COSWID                    February 2019
+
+
+ hash = 58
 
 3.  CoSWID Indexed Label Values
 
@@ -1619,18 +1664,23 @@ hash-entry = (58: [ hash-alg-id: int,
    |       |                         | specification                   |
    +-------+-------------------------+---------------------------------+
 
-
-
-Birkholz, et al.          Expires May 12, 2019                 [Page 29]
-
-Internet-Draft                   COSWID                    November 2018
-
-
    The values above are registered in the "SWID/CoSWID Version Schema
    Values" registry defined in section Section 4.1.  Additional valid
    values will likely be registered over time in this registry.
    Additionally, the index values 32768 through 65535 have been reserved
    for private use.
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 16, 2019               [Page 30]
+
+Internet-Draft                   COSWID                    February 2019
+
 
 3.2.  Entity Role Values
 
@@ -1677,9 +1727,15 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 30]
+
+
+
+
+
+
+Birkholz, et al.         Expires August 16, 2019               [Page 31]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    +-------+-------------+---------------------------------------------+
@@ -1733,9 +1789,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 31]
+Birkholz, et al.         Expires August 16, 2019               [Page 32]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
                 +-------------+--------------------------+
@@ -1789,9 +1845,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 32]
+Birkholz, et al.         Expires August 16, 2019               [Page 33]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
                   +---------+--------------------------+
@@ -1845,9 +1901,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 33]
+Birkholz, et al.         Expires August 16, 2019               [Page 34]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
                   +---------+--------------------------+
@@ -1901,9 +1957,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 34]
+Birkholz, et al.         Expires August 16, 2019               [Page 35]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    Interoperability considerations: Applications MAY ignore any key
@@ -1957,9 +2013,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 35]
+Birkholz, et al.         Expires August 16, 2019               [Page 36]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
          +-----------------------+----------+-------+-----------+
@@ -2013,9 +2069,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 36]
+Birkholz, et al.         Expires August 16, 2019               [Page 37]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    SWID tags are designed to be easily added and removed from an
@@ -2069,9 +2125,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 37]
+Birkholz, et al.         Expires August 16, 2019               [Page 38]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
 6.  Acknowledgments
@@ -2125,9 +2181,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 38]
+Birkholz, et al.         Expires August 16, 2019               [Page 39]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  Fixed a number of grammatical, spelling, and wording issues.
@@ -2181,9 +2237,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 39]
+Birkholz, et al.         Expires August 16, 2019               [Page 40]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    o  Removed redundant any-attributes originating from the ISO-
@@ -2237,9 +2293,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 40]
+Birkholz, et al.         Expires August 16, 2019               [Page 41]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
 8.  Contributors
@@ -2293,9 +2349,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 41]
+Birkholz, et al.         Expires August 16, 2019               [Page 42]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    [SEMVER]   Preston-Werner, T., "Semantic Versioning 2.0.0", n.d.,
@@ -2325,7 +2381,7 @@ Internet-Draft                   COSWID                    November 2018
               Birkholz, H., Vigano, C., and C. Bormann, "Concise data
               definition language (CDDL): a notational convention to
               express CBOR and JSON data structures", draft-ietf-cbor-
-              cddl-05 (work in progress), August 2018.
+              cddl-06 (work in progress), November 2018.
 
    [I-D.ietf-sacm-rolie-softwaredescriptor]
               Banghart, S. and D. Waltermire, "Definition of the ROLIE
@@ -2336,7 +2392,7 @@ Internet-Draft                   COSWID                    November 2018
               Birkholz, H., Lu, J., Strassner, J., Cam-Winget, N., and
               A. Montville, "Security Automation and Continuous
               Monitoring (SACM) Terminology", draft-ietf-sacm-
-              terminology-15 (work in progress), June 2018.
+              terminology-16 (work in progress), December 2018.
 
    [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
               Unique IDentifier (UUID) URN Namespace", RFC 4122,
@@ -2349,9 +2405,9 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 42]
+Birkholz, et al.         Expires August 16, 2019               [Page 43]
 
-Internet-Draft                   COSWID                    November 2018
+Internet-Draft                   COSWID                    February 2019
 
 
    [RFC7228]  Bormann, C., Ersue, M., and A. Keranen, "Terminology for
@@ -2359,204 +2415,7 @@ Internet-Draft                   COSWID                    November 2018
               DOI 10.17487/RFC7228, May 2014,
               <https://www.rfc-editor.org/info/rfc7228>.
 
-Appendix A.  CoSWID Attributes for Firmware (label 60)
-
-   NOTE: this appendix is subject to revision or removal based on
-   potential convergence of:
-
-   o  draft-moran-suit-manifest, and
-
-   o  draft-birkholz-suit-coswid-manifest
-
-   The ISO-19770-2:2015 specification of SWID tags assumes the existence
-   of a file system a software component is installed and stored in.  In
-   the case of constrained-node networks [RFC7228] or network equipment
-   this assumption might not apply.  Concise software instances in the
-   form of (modular) firmware are often stored directly on a block
-   device that is a hardware component of the constrained-node or
-   network equipment.  Multiple differentiable block devices or
-   segmented block devices that contain parts of modular firmware
-   components (potentially each with their own instance version) are
-   already common at the time of this writing.
-
-   The optional attributes that annotate a firmware package address
-   specific characteristics of pieces of firmware stored directly on a
-   block-device in contrast to software deployed in a file-system.  In
-   essence, trees of relative path-elements expressed by the directory
-   and file structure in CoSWID tags are typically unable to represent
-   the location of a firmware on a constrained-node (small thing).  The
-   composite nature of firmware and also the actual composition of small
-   things require a set of attributes to address the identification of
-   the correct component in a composite thing for each individual piece
-   of firmware.  A single component also potentially requires a number
-   of distinct firmware parts that might depend on each other
-   (versions).  These dependencies can be limited to the scope of the
-   component itself or extend to the scope of a larger composite device.
-   In addition, it might not be possible (or feasible) to store a CoSWID
-   tag document (permanently) on a small thing along with the
-   corresponding piece of firmware.
-
-   To address the specific characteristics of firmware, the extension
-   points "$$payload-extension" and "$$evidence-extension" are used to
-   allow for an additional type of resource description--firmware-
-   entry--thereby increasing the self-descriptiveness and flexibility of
-   CoSWID.  The optional use of the extension points "$$payload-
-
-
-
-
-Birkholz, et al.          Expires May 12, 2019                 [Page 43]
-
-Internet-Draft                   COSWID                    November 2018
-
-
-   extension" and "$$evidence-extension" in respect to firmware MUST
-   adhere to the following CDDL data definition.
-
-<CODE BEGINS>
-$$payload-extension  //= (suit.manifest-entry,)
-$$evidence-extension  //= (suit.manifest-entry,)
-
-suit-manifest = {
-  suit.manifest-version,
-  suit.digest-info,
-  suit.text-reference,
-  suit.nonce,
-  suit.sequence-number,
-  ? suit.pre-condition,
-  ? suit.post-condition,
-  ? suit.directives,
-  ? suit.resources,
-  ? suit.processors,
-  ? suit.targets,
-  ? suit.extensions,
-}
-
-suit.manifest-entry = (59: suit-manifest / [ 2* suit-manifest ] )
-suit.manifest-version = (60: 1)
-suit.digest-info = (61: [ suit.digest-algorithm,
-                          ? suit.digest-parameters,
-                        ]
-                   )
-suit.digest-algorithm = uint
-suit.digest-parameters = bytes
-suit.text-reference = (62: bytes)
-suit.nonce = (63: bytes)
-suit.sequence-number = (64: uint)
-suit.pre-condition = (suit.id-condition // suit.time-condition // suit.image-condition // suit.custom-condition)
-suit.post-condition = (suit.image-condition // suit.custom-condition)
-suit.id-condition = (65: [ + [ suit.vendor / suit.class / suit.device,
-                               suit.uuid,
-                             ]
-                         ]
-                    )
-suit.vendor = 0
-suit.class = 1
-suit.device = 2
-suit.uuid = bstr .size 16
-suit.time-condition = (66: [ + [ suit.install-after / suit.best-before,
-                                 suit.timestamp,
-                               ]
-                           ]
-
-
-
-Birkholz, et al.          Expires May 12, 2019                 [Page 44]
-
-Internet-Draft                   COSWID                    November 2018
-
-
-                      )
-suit.install-after = 0
-suit.best-before = 1
-suit.timestamp = uint .size 8
-suit.image-condition = (67: [ + [ suit.current-content / suit.not-current-content,
-                                  suit.storage-identifier,
-                                  ? suit.digest,
-                                ]
-                            ]
-                       )
-suit.current-content = 0
-suit.not-current-content = 1
-suit.digest = bytes
-suit.storage-identifier = bytes
-suit.custom-condition = (68: [ nint,
-                               suit.condition-parameters,
-                             ]
-                        )
-suit.condition-parameters = bytes
-suit.directives = (69: { + int => bytes } )
-suit.resources = (70: [ + [ suit.resource-type,
-                            suit.uri-list,
-                            suit.digest,
-                            suit.onode,
-                            ? suit.size,
-                          ]
-                      ]
-                 )
-suit.resource-type = suit.payload / suit.dependency / suit.key / suit.alias
-suit.payload = 0
-suit.dependency = 1
-suit.key = 2
-suit.alias = 3
-suit.uri-list = { + int => text }
-suit.size = uint
-suit.onode = bytes
-suit.processors = (71: [ + [ suit.decrypt / suit.decompress / suit.undiff / suit.relocate / suit.unrelocate,
-                             suit.parameters,
-                             suit.inode,
-                             suit.onode,
-                           ]
-                       ]
-                  )
-suit.decrypt = 0
-suit.decompress = 1
-suit.undiff = 2
-suit.relocate = 3
-suit.unrelocate = 4
-
-
-
-Birkholz, et al.          Expires May 12, 2019                 [Page 45]
-
-Internet-Draft                   COSWID                    November 2018
-
-
-suit.parameters = bytes
-suit.inode = bytes
-suit.targets = (72: [ + [ suit.component-id,
-                          suit.storage-identifier,
-                          suit.inode,
-                          ? suit.encoding,
-                        ]
-                    ]
-                )
-suit.component-id = [ + bytes ]
-suit.encoding = bytes
-suit.extensions = (73: { + int => bytes } )
-<CODE ENDS>
-
-   The members of the firmware group that constitutes the content of the
-   firmware-entry is based on the metadata about firmware Described in
-   [RFC4108].  As with every semantic differentiation that is supported
-   by the resource-collection type, the use of firmware-entry is
-   optional.  It is REQUIRED not to instantiate more than one firmware-
-   entry, as the firmware group is used in a map and therefore only
-   allows for unique labels.
-
-   The optional cms-firmware-package member allows to include the actual
-   firmware in the CoSWID tag that also expresses its metadata as a
-   byte-string.  This option enables a CoSWID tag to be used as a
-   container or wrapper that composes both firmware and its metadata in
-   a single document (which again can be signed, encrypted and/or
-   compressed).  In consequence, a CoSWID tag about firmware can be
-   conveyed as an identifying document across endpoints or used as a
-   reference integrity measurement as usual.  Alternatively, it can also
-   convey an actual piece of firmware, serve its intended purpose as a
-   SWID tag and then - due to the lack of a location to store it - be
-   discarded.
-
-Appendix B.  Signed Concise SWID Tags using COSE
+Appendix A.  Signed Concise SWID Tags using COSE
 
    SWID tags, as defined in the ISO-19770-2:2015 XML schema, can include
    cryptographic signatures to protect the integrity of the SWID tag.
@@ -2570,19 +2429,42 @@ Appendix B.  Signed Concise SWID Tags using COSE
    The ISO-19770-2:2015 XML schema uses XML DSIG to support
    cryptographic signatures.  CoSWID tags require a different signature
    scheme than this.  COSE (CBOR Object Signing and Encryption) provides
-
-
-
-Birkholz, et al.          Expires May 12, 2019                 [Page 46]
-
-Internet-Draft                   COSWID                    November 2018
-
-
    the required mechanism [RFC8152].  Concise SWID can be wrapped in a
    COSE Single Signer Data Object (cose-sign1) that contains a single
    signature.  The following CDDL defines a more restrictive subset of
    header attributes allowed by COSE tailored to suit the requirements
-   of Concise SWID.
+   of Concise SWID tags.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 16, 2019               [Page 44]
+
+Internet-Draft                   COSWID                    February 2019
+
 
 <CODE BEGINS>
 signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
@@ -2609,6 +2491,8 @@ COSE-Sign1-coswid = [
 ]
 <CODE ENDS>
 
+Appendix B.  JSON SWID Tags
+
 Authors' Addresses
 
    Henk Birkholz
@@ -2620,20 +2504,6 @@ Authors' Addresses
    Email: henk.birkholz@sit.fraunhofer.de
 
 
-
-
-
-
-
-
-
-
-
-Birkholz, et al.          Expires May 12, 2019                 [Page 47]
-
-Internet-Draft                   COSWID                    November 2018
-
-
    Jessica Fitzgerald-McKay
    Department of Defense
    9800 Savage Road
@@ -2641,6 +2511,15 @@ Internet-Draft                   COSWID                    November 2018
    USA
 
    Email: jmfitz2@nsa.gov
+
+
+
+
+
+
+Birkholz, et al.         Expires August 16, 2019               [Page 45]
+
+Internet-Draft                   COSWID                    February 2019
 
 
    Charles Schmidt
@@ -2685,4 +2564,13 @@ Internet-Draft                   COSWID                    November 2018
 
 
 
-Birkholz, et al.          Expires May 12, 2019                 [Page 48]
+
+
+
+
+
+
+
+
+
+Birkholz, et al.         Expires August 16, 2019               [Page 46]
