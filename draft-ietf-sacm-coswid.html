@@ -324,12 +324,12 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.17.2 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.19.1 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D. Waltermire" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-sacm-coswid-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-02-12" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-03-24" />
   <meta name="dct.abstract" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015.  Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
   <meta name="description" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015.  Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
 
@@ -353,7 +353,7 @@ ul.toc li {
 <td class="right">J. Fitzgerald-McKay</td>
 </tr>
 <tr>
-<td class="left">Expires: August 16, 2019</td>
+<td class="left">Expires: September 25, 2019</td>
 <td class="right">Department of Defense</td>
 </tr>
 <tr>
@@ -374,7 +374,7 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">February 12, 2019</td>
+<td class="right">March 24, 2019</td>
 </tr>
 
     	
@@ -390,7 +390,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on August 16, 2019.</p>
+<p>This Internet-Draft will expire on September 25, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -809,7 +809,12 @@ software-meta = {
 <li>persistent-id (index 51): A GUID used to represent products installed where the products are related, but may be different versions.</li>
 <li>product (index 52): The base name of the product.</li>
 <li>product-family (index 53): The overall product family this software belongs to.  Product family is not used to identify that a product is part of a suite, but is instead used when a set of products that are all related may be installed on multiple different endpoints.  For example, an enterprise backup system may consist of a backup services, multiple different backup services that support mail services, databases and ERP systems, as well as individual software components that backup client system entities. In such an usage scenario, all software components that are part of the backup system would have the same product-family name so they can be grouped together in respect to reporting systems.</li>
-<li>revision (index 54): The informal or colloquial representation of the sub-version of the given product (ie, SP1, R2, RC1, Beta 2, etc).  Note that the version item will provide very exact version details, while the revision is intended for use in environments where reporting on the informal or colloquial representation of the software is important (for example, if for a certain business process, an organization recognizes that it must have, for example &#8220;ServicePack 1&#8221; or later of a specific product installed on all devices, they can use the revision data value to quickly identify any devices that do not meet this requirement).  <br><br> Depending on how a software organizations distributes revisions, this value could be specified in a primary (if distributed as an upgrade) or supplemental (if distributed as a patch) CoSWID tag.</li>
+<li>revision (index 54): The informal or colloquial representation of the sub-version of the given product (ie, SP1, R2, RC1, Beta 2, etc).  Note that the version item will provide very exact version details, while the revision is intended for use in environments where reporting on the informal or colloquial representation of the software is important (for example, if for a certain business process, an organization recognizes that it must have, for example &#8220;ServicePack 1&#8221; or later of a specific product installed on all devices, they can use the revision data value to quickly identify any devices that do not meet this requirement).</li>
+</ul>
+<p id="rfc.section.2.6.p.4">Depending on how a software organizations distributes revisions, this value could be specified in a primary (if distributed as an upgrade) or supplemental (if distributed as a patch) CoSWID tag.</p>
+<p></p>
+
+<ul>
 <li>summary (index 55): A short (one-sentence) description of the software.</li>
 <li>unspsc-code (index 56): An 8 digit code that provides UNSPSC classification of the software component this SWID tag identifies.  For more information see, http://www.unspsc.org/.</li>
 <li>unspsc-version (index 57): The version of the UNSPSC code used to define the UNSPSC code value. For more information see, http://www.unspsc.org/.</li>
@@ -1260,8 +1265,46 @@ hash = 58
 <a href="#rfc.section.3.2">3.2.</a> <a href="#indexed-entity-role" id="indexed-entity-role">Entity Role Values</a>
 </h1>
 <p id="rfc.section.3.2.p.1">The following table indicates the index value to use for the entity roles defined in the ISO/IEC 19770-2:2015 <a href="#SWID" class="xref">[SWID]</a> specification.</p>
-<p id="rfc.section.3.2.p.2">| Index | Role Name       | Definition |&#8212; | 0     | Reserved        | | 1     | tagCreator      | The person or organization that created the containing SWID or CoSWID tag | 2     | softwareCreator | From <a href="#SAM" class="xref">[SAM]</a>, &#8220;person or organization that creates a software product (3.46) or package&#8221; | 3     | aggregator      | From {{SWID}, &#8220;An organization or system that encapsulates software from their own and/or other organizations into a different distribution process (as in the case of virtualization), or as a completed system to accomplish a specific task (as in the case of a value added reseller).&#8221; | 4     | distributor     | From <a href="#SWID" class="xref">[SWID]</a>, &#8220;An entity that furthers the marketing, selling and/or distribution of software from the original place of manufacture to the ultimate user without modifying the software, its packaging or its labelling.&#8221; | 5     | licensor        | From <a href="#SAM" class="xref">[SAM]</a> as &#8220;software licensor&#8221;, &#8220;person or organization who owns or holds the rights to issue a software license for a specific software package&#8221;</p>
-<p id="rfc.section.3.2.p.3">The values above are registered in the &#8220;SWID/CoSWID Entity Role Values&#8221; registry defined in section <a href="#iana-entity-role" class="xref">Section 4.2</a>. Additional valid values will likely be registered over time. Additionally, the index values 128 through 255 have been reserved for private use.</p>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<thead><tr>
+<th class="left">Index</th>
+<th class="left">Role Name</th>
+<th class="left">Definition</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="left">0</td>
+<td class="left">Reserved</td>
+<td class="left"></td>
+</tr>
+<tr>
+<td class="left">1</td>
+<td class="left">tagCreator</td>
+<td class="left">The person or organization that created the containing SWID or CoSWID tag</td>
+</tr>
+<tr>
+<td class="left">2</td>
+<td class="left">softwareCreator</td>
+<td class="left">From <a href="#SAM" class="xref">[SAM]</a>, &#8220;person or organization that creates a software product (3.46) or package&#8221;</td>
+</tr>
+<tr>
+<td class="left">3</td>
+<td class="left">aggregator</td>
+<td class="left">From {{SWID}, &#8220;An organization or system that encapsulates software from their own and/or other organizations into a different distribution process (as in the case of virtualization), or as a completed system to accomplish a specific task (as in the case of a value added reseller).&#8221;</td>
+</tr>
+<tr>
+<td class="left">4</td>
+<td class="left">distributor</td>
+<td class="left">From <a href="#SWID" class="xref">[SWID]</a>, &#8220;An entity that furthers the marketing, selling and/or distribution of software from the original place of manufacture to the ultimate user without modifying the software, its packaging or its labelling.&#8221;</td>
+</tr>
+<tr>
+<td class="left">5</td>
+<td class="left">licensor</td>
+<td class="left">From <a href="#SAM" class="xref">[SAM]</a> as &#8220;software licensor&#8221;, a &#8220;person or organization who owns or holds the rights to issue a software license for a specific software package&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p id="rfc.section.3.2.p.2">The values above are registered in the &#8220;SWID/CoSWID Entity Role Values&#8221; registry defined in section <a href="#iana-entity-role" class="xref">Section 4.2</a>. Additional valid values will likely be registered over time. Additionally, the index values 128 through 255 have been reserved for private use.</p>
 <h1 id="rfc.section.3.3">
 <a href="#rfc.section.3.3">3.3.</a> <a href="#indexed-link-use" id="indexed-link-use">Use Values</a>
 </h1>
@@ -1726,6 +1769,17 @@ hash = 58
 <li>Minor reordering of map members</li>
 <li>Added a first extension point to address requested flexibility for extensions beyond the any-element</li>
 </ul>
+<p id="rfc.section.7.p.21">Changes from version 02 to version 03:</p>
+<p></p>
+
+<ul><li>Updated core CDDL including the CDDL design pattern according to RFC 8428.</li></ul>
+<p id="rfc.section.7.p.23">Changes from version 03 to version 04:</p>
+<p></p>
+
+<ul>
+<li>Reduced complexity of the media-entry type</li>
+<li>Added signature schemes</li>
+</ul>
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> <a href="#contributors" id="contributors">Contributors</a>
 </h1>
@@ -1808,7 +1862,7 @@ hash = 58
 <tr>
 <td class="reference"><b id="I-D.ietf-cbor-cddl">[I-D.ietf-cbor-cddl]</b></td>
 <td class="top">
-<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-ietf-cbor-cddl-06">Concise data definition language (CDDL): a notational convention to express CBOR and JSON data structures</a>", Internet-Draft draft-ietf-cbor-cddl-06, November 2018.</td>
+<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-ietf-cbor-cddl-07">Concise data definition language (CDDL): a notational convention to express CBOR and JSON data structures</a>", Internet-Draft draft-ietf-cbor-cddl-07, February 2019.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-sacm-rolie-softwaredescriptor">[I-D.ietf-sacm-rolie-softwaredescriptor]</b></td>
@@ -1848,13 +1902,13 @@ signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
 label = int / tstr  ; see COSE I-D 1.4.
 values = any        ; see COSE I-D 1.4.
 
-unprotected-signed-coswid-header = {
+protected-signed-coswid-header = {
     1 =&gt; int,                   ; algorithm identifier
-    3 =&gt; "application/coswid",  ; request for CoAP IANA registry to become an int
+    3 =&gt; "application/swid+cbor",  ; request for CoAP IANA registry to become an int
     * label =&gt; values,
 }
 
-protected-signed-coswid-header = {
+unprotected-signed-coswid-header = {
     4 =&gt; bstr,                  ; key identifier
     * label =&gt; values,
 }
