@@ -87,10 +87,10 @@ Table of Contents
        2.7.3.  The payload Object  . . . . . . . . . . . . . . . . .  23
        2.7.4.  The evidence Object . . . . . . . . . . . . . . . . .  23
      2.8.  Full CDDL Definition  . . . . . . . . . . . . . . . . . .  24
-   3.  CoSWID Indexed Label Values . . . . . . . . . . . . . . . . .  30
-     3.1.  Version Scheme  . . . . . . . . . . . . . . . . . . . . .  30
-     3.2.  Entity Role Values  . . . . . . . . . . . . . . . . . . .  31
-     3.3.  Use Values  . . . . . . . . . . . . . . . . . . . . . . .  32
+   3.  CoSWID Indexed Label Values . . . . . . . . . . . . . . . . .  29
+     3.1.  Version Scheme  . . . . . . . . . . . . . . . . . . . . .  29
+     3.2.  Entity Role Values  . . . . . . . . . . . . . . . . . . .  30
+     3.3.  Use Values  . . . . . . . . . . . . . . . . . . . . . . .  31
    4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
      4.1.  SWID/CoSWID Version Schema Values Registry  . . . . . . .  32
      4.2.  SWID/CoSWID Entity Role Values Registry . . . . . . . . .  33
@@ -115,7 +115,6 @@ Internet-Draft                   COSWID                       March 2019
 
 
    Appendix A.  Signed Concise SWID Tags using COSE  . . . . . . . .  44
-   Appendix B.  JSON SWID Tags . . . . . . . . . . . . . . . . . . .  45
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  45
 
 1.  Introduction
@@ -132,7 +131,7 @@ Internet-Draft                   COSWID                       March 2019
 
    o  Remote Attestation, which requires a link between reference
       integrity measurements (RIM) and security logs of measured
-      software components [I-D.birkholz-tuda].
+      software components [I-D.birkholz-rats-tuda].
 
    SWID tags, as defined in ISO-19770-2:2015 [SWID], provide a
    standardized XML-based record format that identifies and describes a
@@ -158,6 +157,7 @@ Internet-Draft                   COSWID                       March 2019
    information in CoSWID tags allows both CoSWID and SWID tags to be
    part of an enterprise security solution for a wider range of
    endpoints and environments.
+
 
 
 
@@ -372,8 +372,9 @@ Internet-Draft                   COSWID                       March 2019
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in RFC
-   2119, BCP 14 [RFC2119].
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
 
 2.  Concise SWID Data Definition
 
@@ -385,7 +386,6 @@ Internet-Draft                   COSWID                       March 2019
    end, the CDDL representation includes every SWID tag field and
    attribute.  The CamelCase notation used in the XML schema definition
    is changed to a hyphen-separated notation (e.g.  ResourceCollection
-   is named resource-collection) in the CoSWID data definition.  This
 
 
 
@@ -394,6 +394,7 @@ Birkholz, et al.       Expires September 25, 2019               [Page 7]
 Internet-Draft                   COSWID                       March 2019
 
 
+   is named resource-collection) in the CoSWID data definition.  This
    deviation from the original notation used in the XML representation
    reduces ambiguity when referencing certain attributes in
    corresponding textual descriptions.  An attribute referred by its
@@ -426,9 +427,8 @@ Internet-Draft                   COSWID                       March 2019
 
 2.1.  The concise-software-identity Object
 
-   The CDDL for the main concise-swid-tag map is as follows:
-
-
+   The CDDL for the main concise-swid-tag map is as follows and MUST be
+   used to create or validate a CoSWID tag:
 
 
 
@@ -1320,7 +1320,7 @@ Internet-Draft                   COSWID                       March 2019
    swid-name => text,
    ? software-version => text,
    ? version-scheme => $version-scheme,
-   ? media => media-entry,
+   ? media => text,
    ? software-meta =>  software-meta-entry / [ 2* software-meta-entry ],
    entity => entity-entry / [ 2* entity-entry ],
    ? link => link-entry / [ 2* link-entry ],
@@ -1360,24 +1360,6 @@ Internet-Draft                   COSWID                       March 2019
    * any-attribute,
  )
 
- media-expression = media-environment / [ media-prefix,
-                                          media-environment,
-                                          media-attribute,
-                                          media-value,
-                                        ]
- media-prefix = text
- media-environment = text
- media-attribute = text
- media-value = text
- media-operation = text
-
- media-entry = [ + [ media-expression,
-                      ? [ media-operation,
-                          media-expression,
-                        ]
-                   ]
-               ]
-
  resource-collection = (
    ? directory => directory-entry,
    ? file => file-entry,
@@ -1394,14 +1376,6 @@ Internet-Draft                   COSWID                       March 2019
  }
 
  hash-entry = [ hash-alg-id: int,
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 25]
-
-Internet-Draft                   COSWID                       March 2019
-
-
                 hash-value: bytes,
               ]
 
@@ -1420,6 +1394,14 @@ Internet-Draft                   COSWID                       March 2019
    ? pid => integer,
  }
 
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 25]
+
+Internet-Draft                   COSWID                       March 2019
+
+
  resource-entry = {
    global-attributes,
    type => text,
@@ -1432,6 +1414,7 @@ Internet-Draft                   COSWID                       March 2019
    fs-name => text,
    ? root => text,
  )
+
  entity-entry = {
    global-attributes,
    entity-name => text,
@@ -1450,14 +1433,6 @@ Internet-Draft                   COSWID                       March 2019
  aggregator=0
  distributor=1
  licensor=2
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 26]
-
-Internet-Draft                   COSWID                       March 2019
-
-
  software-creator=3
  tag-creator=4
 
@@ -1473,8 +1448,16 @@ Internet-Draft                   COSWID                       March 2019
    global-attributes,
    ? artifact => text,
    href => any-uri,
-   ? media => media-entry,
+   ? media => text,
    ? ownership => $ownership,
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 26]
+
+Internet-Draft                   COSWID                       March 2019
+
+
    rel => $rel,
    ? media-type => text,
    ? use => $use,
@@ -1506,14 +1489,6 @@ Internet-Draft                   COSWID                       March 2019
  installationmedia=3
  packageinstaller=4
  parent=5
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 27]
-
-Internet-Draft                   COSWID                       March 2019
-
-
  patches=6
  requires=7
  see-also=8
@@ -1531,6 +1506,14 @@ Internet-Draft                   COSWID                       March 2019
  software-meta-entry = {
    global-attributes,
    ? activation-status => text,
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 27]
+
+Internet-Draft                   COSWID                       March 2019
+
+
    ? channel-type => text,
    ? colloquial-version => text,
    ? description => text,
@@ -1562,14 +1545,6 @@ Internet-Draft                   COSWID                       March 2019
  payload = 6
  ;   no 7? also, hash should be in the upper region as anything file
  corpus = 8
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 28]
-
-Internet-Draft                   COSWID                       March 2019
-
-
  patch = 9
  media = 10
  supplemental = 11
@@ -1587,6 +1562,14 @@ Internet-Draft                   COSWID                       March 2019
  location = 23
  fs-name = 24
  root = 25
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 28]
+
+Internet-Draft                   COSWID                       March 2019
+
+
  path-elements = 26
  process-name = 27
  pid = 28
@@ -1618,14 +1601,6 @@ Internet-Draft                   COSWID                       March 2019
  summary = 55
  unspsc-code = 56
  unspsc-version = 57
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 29]
-
-Internet-Draft                   COSWID                       March 2019
-
-
  hash = 58
 
 3.  CoSWID Indexed Label Values
@@ -1636,6 +1611,20 @@ Internet-Draft                   COSWID                       March 2019
    version-scheme item for the version schemes defined in the ISO/IEC
    19770-2:2015 [SWID] specification.  Index value in parens indicates
    the index value to use in the version-scheme item.
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 29]
+
+Internet-Draft                   COSWID                       March 2019
+
 
    +-------+-------------------------+---------------------------------+
    | Index | Role Name               | Definition                      |
@@ -1670,6 +1659,17 @@ Internet-Draft                   COSWID                       March 2019
    Additionally, the index values 32768 through 65535 have been reserved
    for private use.
 
+3.2.  Entity Role Values
+
+   The following table indicates the index value to use for the entity
+   roles defined in the ISO/IEC 19770-2:2015 [SWID] specification.
+
+
+
+
+
+
+
 
 
 
@@ -1681,11 +1681,6 @@ Birkholz, et al.       Expires September 25, 2019              [Page 30]
 
 Internet-Draft                   COSWID                       March 2019
 
-
-3.2.  Entity Role Values
-
-   The following table indicates the index value to use for the entity
-   roles defined in the ISO/IEC 19770-2:2015 [SWID] specification.
 
    +-------+-----------------+-----------------------------------------+
    | Index | Role Name       | Definition                              |
@@ -1728,6 +1723,11 @@ Internet-Draft                   COSWID                       March 2019
    values will likely be registered over time.  Additionally, the index
    values 128 through 255 have been reserved for private use.
 
+3.3.  Use Values
+
+   The following table indicates the index value to use for the link use
+   item (see Section 2.5), which is also defined in the ISO/IEC
+   19770-2:2015 [SWID] specification.
 
 
 
@@ -1737,12 +1737,6 @@ Birkholz, et al.       Expires September 25, 2019              [Page 31]
 
 Internet-Draft                   COSWID                       March 2019
 
-
-3.3.  Use Values
-
-   The following table indicates the index value to use for the link use
-   item (see Section 2.5), which is also defined in the ISO/IEC
-   19770-2:2015 [SWID] specification.
 
    +-------+-------------+---------------------------------------------+
    | Index | Use Type    | Definition                                  |
@@ -1786,6 +1780,12 @@ Internet-Draft                   COSWID                       March 2019
    from the textual version scheme names defined in the ISO/IEC
    19770-2:2015 specification [SWID].
 
+   This document defines a new a new registry entitled "SWID/CoSWID
+   Version Schema Values".  Future registrations for this registry are
+   to be made based on [RFC8126] as follows:
+
+
+
 
 
 
@@ -1793,10 +1793,6 @@ Birkholz, et al.       Expires September 25, 2019              [Page 32]
 
 Internet-Draft                   COSWID                       March 2019
 
-
-   This document defines a new a new registry entitled "SWID/CoSWID
-   Version Schema Values".  Future registrations for this registry are
-   to be made based on [RFC8126] as follows:
 
                 +-------------+--------------------------+
                 | Range       | Registration Procedures  |
@@ -1840,6 +1836,10 @@ Internet-Draft                   COSWID                       March 2019
    textual role names defined in the ISO/IEC 19770-2:2015 specification
    [SWID].
 
+   This document defines a new a new registry entitled "SWID/CoSWID
+   Entity Role Values".  Future registrations for this registry are to
+   be made based on [RFC8126] as follows:
+
 
 
 
@@ -1849,10 +1849,6 @@ Birkholz, et al.       Expires September 25, 2019              [Page 33]
 
 Internet-Draft                   COSWID                       March 2019
 
-
-   This document defines a new a new registry entitled "SWID/CoSWID
-   Entity Role Values".  Future registrations for this registry are to
-   be made based on [RFC8126] as follows:
 
                   +---------+--------------------------+
                   | Range   | Registration Procedures  |
@@ -1896,6 +1892,10 @@ Internet-Draft                   COSWID                       March 2019
    textual names defined in the ISO/IEC 19770-2:2015 specification
    [SWID].
 
+   This document defines a new a new registry entitled "SWID/CoSWID Link
+   Use Values".  Future registrations for this registry are to be made
+   based on [RFC8126] as follows:
+
 
 
 
@@ -1905,10 +1905,6 @@ Birkholz, et al.       Expires September 25, 2019              [Page 34]
 
 Internet-Draft                   COSWID                       March 2019
 
-
-   This document defines a new a new registry entitled "SWID/CoSWID Link
-   Use Values".  Future registrations for this registry are to be made
-   based on [RFC8126] as follows:
 
                   +---------+--------------------------+
                   | Range   | Registration Procedures  |
@@ -1953,6 +1949,10 @@ Internet-Draft                   COSWID                       March 2019
 
    Optional parameters: none
 
+   Encoding considerations: Must be encoded as using [RFC7049].  See
+   RFC-AAAA for details.
+
+   Security considerations: See Section 5 of RFC-AAAA.
 
 
 
@@ -1961,11 +1961,6 @@ Birkholz, et al.       Expires September 25, 2019              [Page 35]
 
 Internet-Draft                   COSWID                       March 2019
 
-
-   Encoding considerations: Must be encoded as using [RFC7049].  See
-   RFC-AAAA for details.
-
-   Security considerations: See Section 5 of RFC-AAAA.
 
    Interoperability considerations: Applications MAY ignore any key
    value pairs that they do not understand.  This allows backwards
@@ -2009,6 +2004,11 @@ Internet-Draft                   COSWID                       March 2019
    media type in the "CoAP Content-Formats" sub-registry, from the "IETF
    Review or IESG Approval" space (256..999), within the "CoRE
    Parameters" registry [RFC7252]:
+
+
+
+
+
 
 
 
@@ -2134,6 +2134,79 @@ Internet-Draft                   COSWID                       March 2019
 
 7.  Change Log
 
+   Changes from version 03 to version 04:
+
+   o  Reduced representation complexity of the media-entry type
+
+   o  Added more signature schemes from COSE
+
+   o  Included a minimal required set of normative language
+
+   o  Reordering of attribute name to integer label by priority
+      according to semantics
+
+   Changes from version 02 to version 03:
+
+   o  Updated core CDDL including the CDDL design pattern according to
+      RFC 8428.
+
+   Changes from version 01 to version 02:
+
+   o  Enforced a more strict separation between the core CoSWID
+      definition and additional usage by moving content to corresponding
+      appendices.
+
+   o  Removed artifacts inherited from the reference schema provided by
+      ISO (e.g.  NMTOKEN(S))
+
+   o  Simplified the core data definition by removing group and type
+      choices where possible
+
+   o  Minor reordering of map members
+
+   o  Added a first extension point to address requested flexibility for
+      extensions beyond the any-element
+
+   Changes from version 00 to version 01:
+
+   o  Ambiguity between evidence and payload eliminated by introducing
+      explicit members (while still
+
+   o  allowing for "empty" SWID tags)
+
+   o  Added a relatively restrictive COSE envelope using cose_sign1 to
+      define signed CoSWID (single signer only, at the moment)
+
+
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 39]
+
+Internet-Draft                   COSWID                       March 2019
+
+
+   o  Added a definition how to encode hashes that can be stored in the
+      any-member using existing IANA tables to reference hash-algorithms
+
+   Changes since adopted as a WG I-D -00:
+
+   o  Removed redundant any-attributes originating from the ISO-
+      19770-2:2015 XML schema definition
+
+   o  Fixed broken multi-map members
+
+   o  Introduced a more restrictive item (any-element-map) to represent
+      custom maps, increased restriction on types for the any-attribute,
+      accordingly
+
+   o  Fixed X.1520 reference
+
+   o  Minor type changes of some attributes (e.g.  NMTOKENS)
+
+   o  Added semantic differentiation of various name types (e,g. fs-
+      name)
+
    Changes from version 06 to version 07:
 
    o  Added type choices/enumerations based on textual definitions in
@@ -2161,6 +2234,14 @@ Internet-Draft                   COSWID                       March 2019
 
    o  Added IANA registry for Link use indexed values
 
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 40]
+
+Internet-Draft                   COSWID                       March 2019
+
+
    Changes from version 05 to version 06:
 
    o  Improved quantities
@@ -2178,13 +2259,6 @@ Internet-Draft                   COSWID                       March 2019
 
    o  Added language describing CBOR optimizations for single vs. arrays
       in the model front matter.
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 39]
-
-Internet-Draft                   COSWID                       March 2019
-
 
    o  Fixed a number of grammatical, spelling, and wording issues.
 
@@ -2215,6 +2289,15 @@ Internet-Draft                   COSWID                       March 2019
 
    Changes from version 01 to version 02:
 
+
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 41]
+
+Internet-Draft                   COSWID                       March 2019
+
+
    o  Added extensions for Firmware and CoSWID use as Reference
       Integrity Measurements (CoSWID RIM)
 
@@ -2231,81 +2314,6 @@ Internet-Draft                   COSWID                       March 2019
    o  Fixed cardinality of type-choices including arrays
 
    o  Included first iteration of firmware resource-collection
-
-   Changes since adopted as a WG I-D -00:
-
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 40]
-
-Internet-Draft                   COSWID                       March 2019
-
-
-   o  Removed redundant any-attributes originating from the ISO-
-      19770-2:2015 XML schema definition
-
-   o  Fixed broken multi-map members
-
-   o  Introduced a more restrictive item (any-element-map) to represent
-      custom maps, increased restriction on types for the any-attribute,
-      accordingly
-
-   o  Fixed X.1520 reference
-
-   o  Minor type changes of some attributes (e.g.  NMTOKENS)
-
-   o  Added semantic differentiation of various name types (e,g. fs-
-      name)
-
-   Changes from version 00 to version 01:
-
-   o  Ambiguity between evidence and payload eliminated by introducing
-      explicit members (while still
-
-   o  allowing for "empty" SWID tags)
-
-   o  Added a relatively restrictive COSE envelope using cose_sign1 to
-      define signed CoSWID (single signer only, at the moment)
-
-   o  Added a definition how to encode hashes that can be stored in the
-      any-member using existing IANA tables to reference hash-algorithms
-
-   Changes from version 01 to version 02:
-
-   o  Enforced a more strict separation between the core CoSWID
-      definition and additional usage by moving content to corresponding
-      appendices.
-
-   o  Removed artifacts inherited from the reference schema provided by
-      ISO (e.g.  NMTOKEN(S))
-
-   o  Simplified the core data definition by removing group and type
-      choices where possible
-
-   o  Minor reordering of map members
-
-   o  Added a first extension point to address requested flexibility for
-      extensions beyond the any-element
-
-   Changes from version 02 to version 03:
-
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 41]
-
-Internet-Draft                   COSWID                       March 2019
-
-
-   o  Updated core CDDL including the CDDL design pattern according to
-      RFC 8428.
-
-   Changes from version 03 to version 04:
-
-   o  Reduced complexity of the media-entry type
-
-   o  Added signature schemes
 
 8.  Contributors
 
@@ -2336,6 +2344,16 @@ Internet-Draft                   COSWID                       March 2019
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
 
+
+
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 42]
+
+Internet-Draft                   COSWID                       March 2019
+
+
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
               Application Protocol (CoAP)", RFC 7252,
               DOI 10.17487/RFC7252, June 2014,
@@ -2346,17 +2364,13 @@ Internet-Draft                   COSWID                       March 2019
               RFC 8126, DOI 10.17487/RFC8126, June 2017,
               <https://www.rfc-editor.org/info/rfc8126>.
 
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 42]
-
-Internet-Draft                   COSWID                       March 2019
-
-
    [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
               RFC 8152, DOI 10.17487/RFC8152, July 2017,
               <https://www.rfc-editor.org/info/rfc8152>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
    [SAM]      "Information technology - Software asset management - Part
               5: Overview and vocabulary", ISO/IEC 19770-5:2015,
@@ -2380,10 +2394,21 @@ Internet-Draft                   COSWID                       March 2019
 
 9.2.  Informative References
 
-   [I-D.birkholz-tuda]
+   [I-D.birkholz-rats-tuda]
               Fuchs, A., Birkholz, H., McDonald, I., and C. Bormann,
               "Time-Based Uni-Directional Attestation", draft-birkholz-
-              tuda-04 (work in progress), March 2017.
+              rats-tuda-00 (work in progress), March 2019.
+
+
+
+
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 43]
+
+Internet-Draft                   COSWID                       March 2019
+
 
    [I-D.ietf-cbor-cddl]
               Birkholz, H., Vigano, C., and C. Bormann, "Concise data
@@ -2401,14 +2426,6 @@ Internet-Draft                   COSWID                       March 2019
               A. Montville, "Security Automation and Continuous
               Monitoring (SACM) Terminology", draft-ietf-sacm-
               terminology-16 (work in progress), December 2018.
-
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 43]
-
-Internet-Draft                   COSWID                       March 2019
-
 
    [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
               Unique IDentifier (UUID) URN Namespace", RFC 4122,
@@ -2439,25 +2456,8 @@ Appendix A.  Signed Concise SWID Tags using COSE
    cryptographic signatures.  CoSWID tags require a different signature
    scheme than this.  COSE (CBOR Object Signing and Encryption) provides
    the required mechanism [RFC8152].  Concise SWID can be wrapped in a
-   COSE Single Signer Data Object (cose-sign1) that contains a single
+   COSE Single Signer Data Object (COSE_Sign1) that contains a single
    signature.  The following CDDL defines a more restrictive subset of
-   header attributes allowed by COSE tailored to suit the requirements
-   of Concise SWID tags.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2466,34 +2466,61 @@ Birkholz, et al.       Expires September 25, 2019              [Page 44]
 Internet-Draft                   COSWID                       March 2019
 
 
-<CODE BEGINS>
-signed-coswid = #6.997(COSE-Sign1-coswid) ; see TBS7 in current COSE I-D
+   header attributes allowed by COSE tailored to suit the requirements
+   of Concise SWID tags.
 
-label = int / tstr  ; see COSE I-D 1.4.
-values = any        ; see COSE I-D 1.4.
+   <CODE BEGINS>
+   signed-coswid = #6.18(COSE-Sign1-coswid)
 
-protected-signed-coswid-header = {
-    1 => int,                   ; algorithm identifier
-    3 => "application/swid+cbor",  ; request for CoAP IANA registry to become an int
-    * label => values,
-}
+   cose-label = int / tstr
+   cose-values = any
 
-unprotected-signed-coswid-header = {
-    4 => bstr,                  ; key identifier
-    * label => values,
-}
+   protected-signed-coswid-header = {
+       1 => int,                      ; algorithm identifier
+       3 => "application/swid+cbor",
+       * cose-label => cose-values,
+   }
 
-COSE-Sign1-coswid = [
-    protected: bstr .cbor protected-signed-coswid-header,
-    unprotected: unprotected-signed-coswid-header,
-    payload: bstr .cbor concise-software-identity,
-    signature: bstr,
-]
-<CODE ENDS>
+   unprotected-signed-coswid-header = {
+       4 => bstr,                     ; key identifier
+       * cose-label => cose-values,
+   }
 
-Appendix B.  JSON SWID Tags
+   COSE-Sign1-coswid = [
+       protected: bstr .cbor protected-signed-coswid-header,
+       unprotected: unprotected-signed-coswid-header,
+       payload: bstr .cbor concise-swid-tag,
+       signature: bstr,
+   ]
+   <CODE ENDS>
+
+   Optionally, the COSE_Sign structure that allows for more than one
+   signature to be applied to a CoSWID tag MAY be used.  The
+   corresponding usage scenarios are domain-specific and require well-
+   defined application guidance.  Representation of the corresponding
+   guidance is out-of-scope of this document.
+
+   Additionally, the COSE Header counter signature MAY be used as an
+   attribute in the unprotected header map of the COSE envelope of a
+   CoSWID.  The application of counter signing enables second parties to
+   provide a signature on a signature allowing for a proof that a
+   signature existed at a given time (i.e., a timestamp).
 
 Authors' Addresses
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.       Expires September 25, 2019              [Page 45]
+
+Internet-Draft                   COSWID                       March 2019
+
 
    Henk Birkholz
    Fraunhofer SIT
@@ -2513,15 +2540,6 @@ Authors' Addresses
    Email: jmfitz2@nsa.gov
 
 
-
-
-
-
-Birkholz, et al.       Expires September 25, 2019              [Page 45]
-
-Internet-Draft                   COSWID                       March 2019
-
-
    Charles Schmidt
    The MITRE Corporation
    202 Burlington Road
@@ -2538,24 +2556,6 @@ Internet-Draft                   COSWID                       March 2019
    USA
 
    Email: david.waltermire@nist.gov
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
