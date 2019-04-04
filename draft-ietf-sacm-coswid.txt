@@ -5,12 +5,12 @@
 SACM Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                     J. Fitzgerald-McKay
-Expires: September 25, 2019                        Department of Defense
+Expires: October 6, 2019                           Department of Defense
                                                               C. Schmidt
                                                    The MITRE Corporation
                                                            D. Waltermire
                                                                     NIST
-                                                          March 24, 2019
+                                                          April 04, 2019
 
 
                   Concise Software Identification Tags
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 25, 2019.
+   This Internet-Draft will expire on October 6, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 1]
+Birkholz, et al.         Expires October 6, 2019                [Page 1]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    (https://trustee.ietf.org/license-info) in effect on the date of
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 2]
+Birkholz, et al.         Expires October 6, 2019                [Page 2]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    Appendix A.  Signed Concise SWID Tags using COSE  . . . . . . . .  44
@@ -165,9 +165,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 3]
+Birkholz, et al.         Expires October 6, 2019                [Page 3]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
 1.1.  The SWID Tag Lifecycle
@@ -221,9 +221,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 4]
+Birkholz, et al.         Expires October 6, 2019                [Page 4]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    Note: The type of a tag is determined by specific data elements,
@@ -277,9 +277,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 5]
+Birkholz, et al.         Expires October 6, 2019                [Page 5]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
          installation to provide information about software fixes
@@ -333,9 +333,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 6]
+Birkholz, et al.         Expires October 6, 2019                [Page 6]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    the vocabulary of the XML attribute and element names defined in ISO/
@@ -389,9 +389,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 7]
+Birkholz, et al.         Expires October 6, 2019                [Page 7]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    is named resource-collection) in the CoSWID data definition.  This
@@ -445,9 +445,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 8]
+Birkholz, et al.         Expires October 6, 2019                [Page 8]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    concise-swid-tag = {
@@ -501,9 +501,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019               [Page 9]
+Birkholz, et al.         Expires October 6, 2019                [Page 9]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
       pre-installation state.  Installable software includes a
@@ -557,9 +557,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 10]
+Birkholz, et al.         Expires October 6, 2019               [Page 10]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  software-meta-entry (label 5): An open-ended map of key/value data
@@ -613,9 +613,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 11]
+Birkholz, et al.         Expires October 6, 2019               [Page 11]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
 2.1.1.  Determining the tag type
@@ -669,9 +669,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 12]
+Birkholz, et al.         Expires October 6, 2019               [Page 12]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
 2.2.  The global-attributes Group
@@ -707,7 +707,8 @@ Internet-Draft                   COSWID                       March 2019
 
 2.3.  The media Object
 
-   The CDDL for the entity object is as follows:
+   The CDDL for the entity object is represented as a text string that
+   follows the definition of
 
 
 
@@ -724,10 +725,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-
-Birkholz, et al.       Expires September 25, 2019              [Page 13]
+Birkholz, et al.         Expires October 6, 2019               [Page 13]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    media = (10: [ + [ media-expression,
@@ -781,9 +781,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 14]
+Birkholz, et al.         Expires October 6, 2019               [Page 14]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
       organization.  In a given scope, the registration id MUST be used
@@ -837,9 +837,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 15]
+Birkholz, et al.         Expires October 6, 2019               [Page 15]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  global-attributes: The global-attributes group described in
@@ -893,9 +893,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 16]
+Birkholz, et al.         Expires October 6, 2019               [Page 16]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  rel (index 40): The relationship between this CoSWID and the
@@ -949,9 +949,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 17]
+Birkholz, et al.         Expires October 6, 2019               [Page 17]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  channel-type (index 44): Provides information on which channel
@@ -1005,9 +1005,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 18]
+Birkholz, et al.         Expires October 6, 2019               [Page 18]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
       different endpoints.  For example, an enterprise backup system may
@@ -1061,9 +1061,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 19]
+Birkholz, et al.         Expires October 6, 2019               [Page 19]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    hashed resource generated using the hash algorithm indicated by the
@@ -1117,9 +1117,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 20]
+Birkholz, et al.         Expires October 6, 2019               [Page 20]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    resource-collection = (
@@ -1173,9 +1173,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 21]
+Birkholz, et al.         Expires October 6, 2019               [Page 21]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  directory-entry (index 16): A directory item allows one or more
@@ -1229,9 +1229,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 22]
+Birkholz, et al.         Expires October 6, 2019               [Page 22]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  pid (index 28): The process ID for the process in execution that
@@ -1285,9 +1285,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 23]
+Birkholz, et al.         Expires October 6, 2019               [Page 23]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  resource-collection: The resource-collection group described in
@@ -1341,9 +1341,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 24]
+Birkholz, et al.         Expires October 6, 2019               [Page 24]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
  multipartnumeric-suffix = 1
@@ -1397,9 +1397,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 25]
+Birkholz, et al.         Expires October 6, 2019               [Page 25]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
  resource-entry = {
@@ -1453,9 +1453,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 26]
+Birkholz, et al.         Expires October 6, 2019               [Page 26]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    rel => $rel,
@@ -1509,9 +1509,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 27]
+Birkholz, et al.         Expires October 6, 2019               [Page 27]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    ? channel-type => text,
@@ -1543,7 +1543,7 @@ Internet-Draft                   COSWID                       March 2019
  link = 4
  software-meta = 5
  payload = 6
- ;   no 7? also, hash should be in the upper region as anything file
+ hash = 7
  corpus = 8
  patch = 9
  media = 10
@@ -1565,9 +1565,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 28]
+Birkholz, et al.         Expires October 6, 2019               [Page 28]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
  path-elements = 26
@@ -1601,7 +1601,6 @@ Internet-Draft                   COSWID                       March 2019
  summary = 55
  unspsc-code = 56
  unspsc-version = 57
- hash = 58
 
 3.  CoSWID Indexed Label Values
 
@@ -1621,9 +1620,10 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 29]
+
+Birkholz, et al.         Expires October 6, 2019               [Page 29]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    +-------+-------------------------+---------------------------------+
@@ -1677,9 +1677,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 30]
+Birkholz, et al.         Expires October 6, 2019               [Page 30]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    +-------+-----------------+-----------------------------------------+
@@ -1733,9 +1733,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 31]
+Birkholz, et al.         Expires October 6, 2019               [Page 31]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    +-------+-------------+---------------------------------------------+
@@ -1789,9 +1789,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 32]
+Birkholz, et al.         Expires October 6, 2019               [Page 32]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
                 +-------------+--------------------------+
@@ -1845,9 +1845,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 33]
+Birkholz, et al.         Expires October 6, 2019               [Page 33]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
                   +---------+--------------------------+
@@ -1901,9 +1901,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 34]
+Birkholz, et al.         Expires October 6, 2019               [Page 34]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
                   +---------+--------------------------+
@@ -1957,9 +1957,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 35]
+Birkholz, et al.         Expires October 6, 2019               [Page 35]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    Interoperability considerations: Applications MAY ignore any key
@@ -2013,9 +2013,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 36]
+Birkholz, et al.         Expires October 6, 2019               [Page 36]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
          +-----------------------+----------+-------+-----------+
@@ -2069,9 +2069,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 37]
+Birkholz, et al.         Expires October 6, 2019               [Page 37]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    SWID tags are designed to be easily added and removed from an
@@ -2125,9 +2125,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 38]
+Birkholz, et al.         Expires October 6, 2019               [Page 38]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
 6.  Acknowledgments
@@ -2181,9 +2181,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 39]
+Birkholz, et al.         Expires October 6, 2019               [Page 39]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  Added a definition how to encode hashes that can be stored in the
@@ -2237,9 +2237,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 40]
+Birkholz, et al.         Expires October 6, 2019               [Page 40]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    Changes from version 05 to version 06:
@@ -2293,9 +2293,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 41]
+Birkholz, et al.         Expires October 6, 2019               [Page 41]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    o  Added extensions for Firmware and CoSWID use as Reference
@@ -2349,9 +2349,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 42]
+Birkholz, et al.         Expires October 6, 2019               [Page 42]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
@@ -2405,9 +2405,9 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 43]
+Birkholz, et al.         Expires October 6, 2019               [Page 43]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    [I-D.ietf-cbor-cddl]
@@ -2461,9 +2461,9 @@ Appendix A.  Signed Concise SWID Tags using COSE
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 44]
+Birkholz, et al.         Expires October 6, 2019               [Page 44]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    header attributes allowed by COSE tailored to suit the requirements
@@ -2517,9 +2517,9 @@ Authors' Addresses
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 45]
+Birkholz, et al.         Expires October 6, 2019               [Page 45]
 
-Internet-Draft                   COSWID                       March 2019
+Internet-Draft                   COSWID                       April 2019
 
 
    Henk Birkholz
@@ -2573,4 +2573,4 @@ Internet-Draft                   COSWID                       March 2019
 
 
 
-Birkholz, et al.       Expires September 25, 2019              [Page 46]
+Birkholz, et al.         Expires October 6, 2019               [Page 46]

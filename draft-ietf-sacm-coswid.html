@@ -323,12 +323,12 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.19.1 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.22.2 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D. Waltermire" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-sacm-coswid-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-03-24" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-04-04" />
   <meta name="dct.abstract" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015.  Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
   <meta name="description" content="This document defines a concise representation of ISO/IEC 19770-2:2015 Software Identification (SWID) tags that are interoperable with the XML schema definition of ISO/IEC 19770-2:2015.  Next to the inherent capability of SWID tags to express arbitrary context information, Concise SWID (CoSWID) tags support the definition of additional semantics via well-defined data definitions incorporated by extension points." />
 
@@ -352,7 +352,7 @@ ul.toc li {
 <td class="right">J. Fitzgerald-McKay</td>
 </tr>
 <tr>
-<td class="left">Expires: September 25, 2019</td>
+<td class="left">Expires: October 6, 2019</td>
 <td class="right">Department of Defense</td>
 </tr>
 <tr>
@@ -373,7 +373,7 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">March 24, 2019</td>
+<td class="right">April 04, 2019</td>
 </tr>
 
     	
@@ -389,7 +389,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 25, 2019.</p>
+<p>This Internet-Draft will expire on October 6, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -680,7 +680,7 @@ any-attribute = (
 <h1 id="rfc.section.2.3">
 <a href="#rfc.section.2.3">2.3.</a> <a href="#model-media" id="model-media">The media Object</a>
 </h1>
-<p id="rfc.section.2.3.p.1">The CDDL for the entity object is as follows:</p>
+<p id="rfc.section.2.3.p.1">The CDDL for the entity object is represented as a text string that follows the definition of</p>
 <pre>
 media = (10: [ + [ media-expression,
                      ? [ media-operation,
@@ -1142,7 +1142,7 @@ evidence = 3
 link = 4
 software-meta = 5
 payload = 6
-;   no 7? also, hash should be in the upper region as anything file
+hash = 7
 corpus = 8
 patch = 9
 media = 10
@@ -1192,7 +1192,6 @@ revision = 54
 summary = 55
 unspsc-code = 56
 unspsc-version = 57
-hash = 58
 </pre>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#coswid-indexed-label-values" id="coswid-indexed-label-values">CoSWID Indexed Label Values</a>
